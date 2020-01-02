@@ -1,6 +1,9 @@
+[![Build Status](https://travis-ci.org/synnea/the-modern-witcher.svg?branch=master)](https://travis-ci.org/synnea/the-modern-witcher)
+
 # The Modern Witcher
 
 ### Milestone Project 4: Fullstack Frameworks
+
 
 The Modern Witcher is an E-Commerce website aimed at fans of the Witcher franchise. Through it, fans can purchase goods that replicate items that exist within the world of the The Witcher novels and video games.
 
