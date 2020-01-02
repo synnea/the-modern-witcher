@@ -2,4 +2,3 @@
 .vscode
 *.sqlite3
 env.py
-.travis.yml
