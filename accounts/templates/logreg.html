@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid logreg-wrapper">
+
+    <div class="row form-row justify-content-center align-items-center">
+
+        <!-- Begin centered jumbotron -->
+
+        <div class="jumbotron form-jumbo">
+            <div class="col-12 jumbo-content mx-auto">
+
+                <!--Login Tab. -->
+
+                <nav>
+                    <ul class="nav nav-tabs">
+
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#loginTab" id="login" role="tab"
+                                aria-controls="login"><i class="fas fa-sign-in-alt"></i> Login</a>
+                        </li>
+
+                        <!-- Register Tab. -->
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#registerTab" id="register" role="tab"
+                                aria-controls="register"><i class="fas fa-user-plus"></i> Register</a>
+                        </li>
+
+                    </ul>
+                </nav>
+
+
+                <!-- Tab Contents -->
+
+                <div class="tab-content">
+
+                    <!-- Begin Login Tab -->
+                    <div class="tab-pane container fade show active" id="loginTab" role="tabpanel"
+                        aria-labelledby="login">
+
+                        <!-- Login Form -->
+
+                        <form id="loginform" method="POST">
+
+                            <div class="form-group">
+                                <label class="logreg-label" for="loginUsername">Username</label>
+                                <input type="text" class="form-control" id="loginUsername" name="username" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="logreg-label" for="loginPassword">Password</label>
+                                <input type="password" class="form-control" name="password" id="loginPassword"
+                                    placeholder="Password" required>
+                            </div>
+
+                            <!-- Login Button  -->
+
+                            <button type="submit" class="btn btn-primary btn-large logreg-btn my-auto" name="btn"
+                                value="login">Login</button>
+                        </form>
+                        <!-- End Login Tab -->
+                    </div>
+
+                    <!-- Begin Register Tab -->
+
+                    <div class="tab-pane container fade" id="registerTab" role="tabpanel" aria-labelledby="register">
+
+                        <!-- Registration Form -->
+
+                        <form id="registerform" method="POST">
+
+                            <div class="form-group">
+                                <label class="logreg-label" for="newUsername">Username</label>
+
+                                <!-- Username input form contains a pattern which enforces that usernames must only contain letters from
+                                a-z, A-Z, numbers from 0-9, and hyphens. They must also be between 3 and 20 letters long. -->
+
+                                <input type="text" class="form-control" name="username" id="newUsername"
+                                    pattern="[a-zA-Z0-9\-]{3,20}"
+                                    title="allow username without special characters (apart from hypthens) and between 3 to 20 characters"
+                                    required>
+
+                                <p><small>* Usernames must be unique and must contain no special characters other than
+                                        hyphens. Please choose a username between 3 and 20 characters in length.</small>
+                                </p>
+                            </div>
+
+                            <!-- E-Mail input form. Pattern enforces that emails must contain characters, followed by an @, followed by more characters and a full-stop. -->
+
+                            <div class="form-group">
+                                <label class="logreg-label" for="newEmail">E-Mail</label>
+                                <input type="email" class="form-control" name="email" id="newEmail"
+                                    placeholder="myemail@email.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                    title="email addresses must follow standard email pattern" required>
+                            </div>
+
+                            <!-- Password input form. Pattern enforces that passwords must not contain special characters and be at least 6 characters long. -->
+                            <!-- A checkbox below the form allows the user to view the password they have typed. -->
+
+                            <div class="form-group">
+                                <label class="logreg-label" for="newPassword">Password</label>
+                                <input type="password" class="form-control" name="password" id="newPassword"
+                                    placeholder="Password" pattern="[a-zA-Z0-9\-]{6,}"
+                                    title="allow passwords with minimum 6 characters" required>
+                                <input type="checkbox" class="mt-1 mb-1" onclick="showPW()">Show Password
+                                <p class="d-block"><small>* Passwords must not contain special characters other than
+                                        hyphens. Please
+                                        choose a password that is at least 6 characters long.</small></p>
+                            </div>
+
+                            <!-- Registration Submit Button -->
+
+                            <button type="submit" class="btn btn-primary btn-large logreg-btn my-auto" name="btn"
+                                value="register">Register</button>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Function that shows and hides the password upon clicking the checkbox. -->
+
+<script>
+    function showPW() {
+        var x = document.getElementById("newPassword");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+
+</script>
+
+{% endblock %}
