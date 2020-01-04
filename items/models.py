@@ -23,6 +23,11 @@ class Item(models.Model):
         default=OTHER,
     )
 
+
+    height = models.DecimalField(max_digit=3, decimal_places=1)
+    width = models.DecimalField(max_digit=3, decimal_places=1)
+    weight = models.DecimalField(max_digit=3, decimal_places=1)
+    
     price = models.DecimalField(max_digits=6, decimal_places=2)
     image = models.ImageField(upload_to='item_images')
 
