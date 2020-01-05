@@ -16,9 +16,8 @@ def view_logreg(request):
 
 def register(request):
     """A view that manages the registration form"""
-    print("register activado")
     if request.method == 'POST':
-        print("POST activated")
+        print("request activated")
         user_form = UserRegistrationForm(request.POST)
         if user_form.is_valid():
             print("userformisvalid")
@@ -33,14 +32,20 @@ def register(request):
                 messages.success(request, "You have successfully registered")
                 return redirect(reverse('view_cart'))
 
+            else:
+                print("was not valid")
+                messages.error(request, "unable to log you in at this time!")
+
         else:
-            print("was not valid")
-            messages.error(request, "unable to log you in at this time!")
+            messages.error(request, "form was not valid")
+            return redirect(reverse("view_logreg") )
     else:
         user_form = UserRegistrationForm()
 
     args = {'user_form': user_form}
     return render(request, 'cart.html', args)
+
+    
 
 
 # def logout(request):

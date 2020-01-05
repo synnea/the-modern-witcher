@@ -74,6 +74,8 @@
                                 <!-- <p>Already got an account? <a href="">Sign In</a></p> -->
                                 {% csrf_token %}
                                 {% load bootstrap_tags %}
+                                {{ form.errors }}
+                                {{ form.non_field_errors }}
                                 {{  user_form | as_bootstrap }}                                
                                 <button type="submit" class="btn btn-primary">Register</button>
                             </fieldset>
