@@ -27,9 +27,9 @@ def register(request):
             else:
                 messages.error(request, "unable to log you in at this time!")
     else:
-        registerform = UserRegistrationForm()
+        user_form = UserRegistrationForm()
 
-    args = {'registerform': registerform}
+    args = {'user_form': user_form}
     return render(request, 'view_cart', args)
 
 
