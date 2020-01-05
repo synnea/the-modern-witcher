@@ -34,6 +34,7 @@ def register(request):
                 return redirect(reverse('view_cart'))
 
         else:
+            print("was not valid")
             messages.error(request, "unable to log you in at this time!")
     else:
         user_form = UserRegistrationForm()
