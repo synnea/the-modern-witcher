@@ -49,11 +49,11 @@ def register(request):
     
 
 
-# def logout(request):
-#     """A view that logs the user out and redirects back to the index page"""
-#     auth.logout(request)
-#     messages.success(request, 'You have successfully logged out')
-#     return redirect(reverse('view_home'))
+def logout(request):
+    """A view that logs the user out and redirects back to the index page"""
+    auth.logout(request)
+    messages.success(request, 'You have successfully logged out')
+    return redirect(reverse('view_home'))
 
 
 def login(request):
@@ -72,14 +72,14 @@ def login(request):
                     next = request.GET['next']
                     return HttpResponseRedirect(next)
                 else:
-                    return redirect(reverse('index'))
+                    return redirect(reverse('view_home'))
             else:
                 login_form.add_error(None, "Your username or password are incorrect")
     else:
         login_form = UserLoginForm()
 
     args = {'login_form': login_form, 'next': request.GET.get('next', '')}
-    return render(request, 'cart.html', args)
+    return render(request, 'myaccount.html', args)
 
 
 # @login_required
