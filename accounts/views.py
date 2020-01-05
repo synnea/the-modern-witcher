@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.contrib import messages, auth
 from .forms import UserLoginForm, UserRegistrationForm
 from django.template.context_processors import csrf
+from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 
 def view_logreg(request):
@@ -50,10 +51,13 @@ def register(request):
 
 
 def logout(request):
+    print("logout activated")
     """A view that logs the user out and redirects back to the index page"""
-    auth.logout(request)
-    messages.success(request, 'You have successfully logged out')
-    return redirect(reverse('view_home'))
+    if request.method == 'POST':
+        print("logout activated")         
+        auth.logout(request)
+        messages.success(request, 'You have successfully logged out')
+        return redirect(reverse('view_home'))
 
 
 def login(request):
@@ -61,7 +65,8 @@ def login(request):
     if request.method == 'POST':
         login_form = UserLoginForm(request.POST)
         if login_form.is_valid():
-            user = auth.authenticate(request.POST['username_or_email'],
+            print("user login form is valid")
+            user = auth.authenticate(username=request.POST['username'],
                                      password=request.POST['password'])
 
             if user:
@@ -72,11 +77,15 @@ def login(request):
                     next = request.GET['next']
                     return HttpResponseRedirect(next)
                 else:
-                    return redirect(reverse('view_home'))
+                    return redirect(reverse('view_logreg'))
             else:
+                messages.error(request, "Your username or password are incorrect")
                 login_form.add_error(None, "Your username or password are incorrect")
-    else:
-        login_form = UserLoginForm()
+                return redirect(reverse('view_logreg'))
+
+        else:
+            messages.error(request, "We could not log you in")
+            return redirect(reverse('view_logreg'))
 
     args = {'login_form': login_form, 'next': request.GET.get('next', '')}
     return render(request, 'myaccount.html', args)
