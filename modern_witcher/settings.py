@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'accounts',
     'order',
     'items',
-    'cart'
+    'cart',
+    'bootstrapform',
 ]
 
 MIDDLEWARE = [

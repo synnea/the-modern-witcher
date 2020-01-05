@@ -6,12 +6,19 @@ from django.template.context_processors import csrf
 from django.contrib.auth.decorators import login_required
 
 def view_logreg(request):
-    return render(request, 'logreg.html')
+
+    user_form = UserRegistrationForm(request.POST)
+    args = {'user_form': user_form}
+
+    print(args)
+
+    return render(request, 'logreg.html', args)
+
 
 
 def register(request):
     """A view that manages the registration form"""
-    if request.method == 'POST' and id == 'registerform':
+    if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)
         if user_form.is_valid():
             user_form.save()
@@ -30,7 +37,7 @@ def register(request):
         user_form = UserRegistrationForm()
 
     args = {'user_form': user_form}
-    return render(request, 'view_cart', args)
+    return render(request, 'cart.html', args)
 
 
 # def logout(request):
