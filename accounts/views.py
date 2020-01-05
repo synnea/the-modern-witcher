@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages, auth
 from .forms import UserLoginForm, UserRegistrationForm
+from modern_witcher.views import home_view
 from django.template.context_processors import csrf
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
@@ -53,11 +54,11 @@ def register(request):
 def logout(request):
     print("logout activated")
     """A view that logs the user out and redirects back to the index page"""
-    if request.method == 'POST':
-        print("logout activated")         
-        auth.logout(request)
-        messages.success(request, 'You have successfully logged out')
-        return redirect(reverse('view_home'))
+
+    print("logout activated")         
+    auth.logout(request)
+    messages.success(request, 'You have successfully logged out')
+    return redirect(reverse('home_view'))
 
 
 def login(request):
@@ -65,19 +66,13 @@ def login(request):
     if request.method == 'POST':
         login_form = UserLoginForm(request.POST)
         if login_form.is_valid():
-            print("user login form is valid")
             user = auth.authenticate(username=request.POST['username'],
                                      password=request.POST['password'])
 
             if user:
-                auth.login(request, user)
-                messages.error(request, "You have successfully logged in")
+                auth.login(request=request, user=user)
+                messages.success(request, "You have successfully logged in")
 
-                if request.GET and request.GET['next'] !='':
-                    next = request.GET['next']
-                    return HttpResponseRedirect(next)
-                else:
-                    return redirect(reverse('view_logreg'))
             else:
                 messages.error(request, "Your username or password are incorrect")
                 login_form.add_error(None, "Your username or password are incorrect")
@@ -87,7 +82,7 @@ def login(request):
             messages.error(request, "We could not log you in")
             return redirect(reverse('view_logreg'))
 
-    args = {'login_form': login_form, 'next': request.GET.get('next', '')}
+    args = {'login_form': login_form}
     return render(request, 'myaccount.html', args)
 
 
