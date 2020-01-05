@@ -67,14 +67,15 @@
 
                         <!-- Registration Form -->
 
-                        <form id="registerform" class="registerform" method="POST" action="">
+                        <form id="registerform" class="registerform" method="POST" action="{% url 'register' %}">
 
                             <fieldset class="form-group">
                                 <legend>Create a new account</legend>
-                                <p>Already got an account? <a href="">Sign In</a></p>
+                                <!-- <p>Already got an account? <a href="">Sign In</a></p> -->
                                 {% csrf_token %}
-                                {{  user_form }}
-                                <button type="submit" class="btn btn-primary">Create account</button>
+                                {% load bootstrap_tags %}
+                                {{  user_form | as_bootstrap }}                                
+                                <button type="submit" class="btn btn-primary">Register</button>
                             </fieldset>
 
                         </form>

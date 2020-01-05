@@ -10,29 +10,31 @@ def view_logreg(request):
     user_form = UserRegistrationForm(request.POST)
     args = {'user_form': user_form}
 
-    print(args)
-
     return render(request, 'logreg.html', args)
 
 
 
 def register(request):
     """A view that manages the registration form"""
+    print("register activado")
     if request.method == 'POST':
+        print("POST activated")
         user_form = UserRegistrationForm(request.POST)
         if user_form.is_valid():
+            print("userformisvalid")
             user_form.save()
 
             user = auth.authenticate(request.POST.get('email'),
                                      password=request.POST.get('password1'))
 
             if user:
+                print("userisvalid")
                 auth.login(request, user)
                 messages.success(request, "You have successfully registered")
                 return redirect(reverse('view_cart'))
 
-            else:
-                messages.error(request, "unable to log you in at this time!")
+        else:
+            messages.error(request, "unable to log you in at this time!")
     else:
         user_form = UserRegistrationForm()
 
