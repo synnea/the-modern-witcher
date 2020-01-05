@@ -7,8 +7,9 @@ from django.contrib.auth.decorators import login_required
 
 def view_logreg(request):
 
-    user_form = UserRegistrationForm(request.POST)
-    args = {'user_form': user_form}
+    register_form = UserRegistrationForm(request.POST)
+    login_form = UserLoginForm(request.POST)
+    args = {'register_form': register_form, 'login_form': login_form}
 
     return render(request, 'logreg.html', args)
 
@@ -18,10 +19,10 @@ def register(request):
     """A view that manages the registration form"""
     if request.method == 'POST':
         print("request activated")
-        user_form = UserRegistrationForm(request.POST)
-        if user_form.is_valid():
+        register_form = UserRegistrationForm(request.POST)
+        if register_form.is_valid():
             print("userformisvalid")
-            user_form.save()
+            register_form.save()
 
             user = auth.authenticate(request.POST.get('email'),
                                      password=request.POST.get('password1'))
@@ -40,9 +41,9 @@ def register(request):
             messages.error(request, "form was not valid")
             return redirect(reverse("view_logreg") )
     else:
-        user_form = UserRegistrationForm()
+        register_form = UserRegistrationForm()
 
-    args = {'user_form': user_form}
+    args = {'register_form': register_form}
     return render(request, 'cart.html', args)
 
     
@@ -55,30 +56,30 @@ def register(request):
 #     return redirect(reverse('view_home'))
 
 
-# def login(request):
-#     """A view that manages the login form"""
-#     if request.method == 'POST':
-#         user_form = UserLoginForm(request.POST)
-#         if user_form.is_valid():
-#             user = auth.authenticate(request.POST['username_or_email'],
-#                                      password=request.POST['password'])
+def login(request):
+    """A view that manages the login form"""
+    if request.method == 'POST':
+        login_form = UserLoginForm(request.POST)
+        if login_form.is_valid():
+            user = auth.authenticate(request.POST['username_or_email'],
+                                     password=request.POST['password'])
 
-#             if user:
-#                 auth.login(request, user)
-#                 messages.error(request, "You have successfully logged in")
+            if user:
+                auth.login(request, user)
+                messages.error(request, "You have successfully logged in")
 
-#                 if request.GET and request.GET['next'] !='':
-#                     next = request.GET['next']
-#                     return HttpResponseRedirect(next)
-#                 else:
-#                     return redirect(reverse('index'))
-#             else:
-#                 user_form.add_error(None, "Your username or password are incorrect")
-#     else:
-#         user_form = UserLoginForm()
+                if request.GET and request.GET['next'] !='':
+                    next = request.GET['next']
+                    return HttpResponseRedirect(next)
+                else:
+                    return redirect(reverse('index'))
+            else:
+                login_form.add_error(None, "Your username or password are incorrect")
+    else:
+        login_form = UserLoginForm()
 
-#     args = {'user_form': user_form, 'next': request.GET.get('next', '')}
-#     return render(request, 'login.html', args)
+    args = {'login_form': login_form, 'next': request.GET.get('next', '')}
+    return render(request, 'cart.html', args)
 
 
 # @login_required

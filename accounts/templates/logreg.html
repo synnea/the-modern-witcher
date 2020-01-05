@@ -40,24 +40,19 @@
                         aria-labelledby="login">
 
                         <!-- Login Form -->
+                        <form id="loginform" class="loginform" method="POST" action="{% url 'login' %}">
 
-                        <form id="loginform" method="POST">
-
-                            <div class="form-group">
-                                <label class="logreg-label" for="loginUsername">Username</label>
-                                <input type="text" class="form-control" id="loginUsername" name="username" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="logreg-label" for="loginPassword">Password</label>
-                                <input type="password" class="form-control" name="password" id="loginPassword"
-                                    placeholder="Password" required>
-                            </div>
-
-                            <!-- Login Button  -->
-
-                            <button type="submit" class="btn btn-primary btn-large logreg-btn my-auto" name="btn"
-                                value="login">Login</button>
+                        <fieldset class="form-group">
+                            <!-- <p>Already got an account? <a href="">Sign In</a></p> -->
+                            {% csrf_token %}
+                            {% load bootstrap_tags %}
+                            {{ form.errors }}
+                            {{ form.non_field_errors }}
+                            {{  login_form | as_bootstrap }}                                
+                            <button type="submit" class="btn btn-primary">Signin</button>
+                        </fieldset>
                         </form>
+
                         <!-- End Login Tab -->
                     </div>
 
@@ -70,13 +65,12 @@
                         <form id="registerform" class="registerform" method="POST" action="{% url 'register' %}">
 
                             <fieldset class="form-group">
-                                <legend>Create a new account</legend>
                                 <!-- <p>Already got an account? <a href="">Sign In</a></p> -->
                                 {% csrf_token %}
                                 {% load bootstrap_tags %}
                                 {{ form.errors }}
                                 {{ form.non_field_errors }}
-                                {{  user_form | as_bootstrap }}                                
+                                {{  register_form | as_bootstrap }}                                
                                 <button type="submit" class="btn btn-primary">Register</button>
                             </fieldset>
 
