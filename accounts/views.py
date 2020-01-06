@@ -16,6 +16,8 @@ def view_account(request):
 
         register_form = UserRegistrationForm(request.POST)
         login_form = UserLoginForm(request.POST)
+        account = True
+        request.session['account'] = account
         args = {'register_form': register_form, 'login_form': login_form}
 
         return render(request, 'logreg.html', args)
@@ -25,23 +27,19 @@ def view_account(request):
 def register(request):
     """A view that manages the registration form"""
     if request.method == 'POST':
-        print("request activated")
         register_form = UserRegistrationForm(request.POST)
         if register_form.is_valid():
-            print("userformisvalid")
             register_form.save()
 
             user = auth.authenticate(request.POST.get('email'),
                                      password=request.POST.get('password1'))
 
             if user:
-                print("userisvalid")
                 auth.login(request, user)
                 messages.success(request, "You have successfully registered")
                 return redirect(reverse('view_cart'))
 
             else:
-                print("was not valid")
                 messages.error(request, "unable to log you in at this time!")
 
         else:
@@ -53,14 +51,10 @@ def register(request):
     args = {'register_form': register_form}
     return render(request, 'cart.html', args)
 
-    
-
 
 def logout(request):
-    print("logout activated")
-    """A view that logs the user out and redirects back to the index page"""
-
-    print("logout activated")         
+    """A view that logs the user out and redirects back to the home page"""
+        
     auth.logout(request)
     messages.success(request, 'You have successfully logged out')
     return redirect(reverse('home_view'))
@@ -87,13 +81,10 @@ def login(request):
             messages.error(request, "We could not log you in")
             return redirect(reverse('view_account'))
 
-    args = {'login_form': login_form}
-    return render(request, 'myaccount.html', args)
+    if request.session.get('account'):
+        return render(request, 'myaccount.html')
 
-
-# @login_required
-# def profile(request):
-#     """A view that displays the profile page of a logged in user"""
-#     return render(request, 'profile.html')
+    else:
+        return render(request, 'cart.html')
 
 
