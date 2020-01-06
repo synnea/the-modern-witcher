@@ -47,4 +47,5 @@ class ProfileAddressForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['username','last_name', 'first_name', 'address1', 'address2', 'zipcode', 'country']
+        exclude = ('username',)
 
