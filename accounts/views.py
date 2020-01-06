@@ -10,7 +10,8 @@ from django.contrib.auth.decorators import login_required
 def view_account(request):
 
     if request.user.is_authenticated:
-        return render(request, 'myaccount.html')
+        user = request.user
+        return render(request, 'myaccount.html', {'user': user})
 
     else:
 
