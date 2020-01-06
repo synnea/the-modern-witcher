@@ -7,13 +7,18 @@ from django.template.context_processors import csrf
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 
-def view_logreg(request):
+def view_account(request):
 
-    register_form = UserRegistrationForm(request.POST)
-    login_form = UserLoginForm(request.POST)
-    args = {'register_form': register_form, 'login_form': login_form}
+    if request.user.is_authenticated:
+        return render(request, 'myaccount.html')
 
-    return render(request, 'logreg.html', args)
+    else:
+
+        register_form = UserRegistrationForm(request.POST)
+        login_form = UserLoginForm(request.POST)
+        args = {'register_form': register_form, 'login_form': login_form}
+
+        return render(request, 'logreg.html', args)
 
 
 
@@ -41,7 +46,7 @@ def register(request):
 
         else:
             messages.error(request, "form was not valid")
-            return redirect(reverse("view_logreg") )
+            return redirect(reverse("view_account") )
     else:
         register_form = UserRegistrationForm()
 
@@ -76,11 +81,11 @@ def login(request):
             else:
                 messages.error(request, "Your username or password are incorrect")
                 login_form.add_error(None, "Your username or password are incorrect")
-                return redirect(reverse('view_logreg'))
+                return redirect(reverse('view_account'))
 
         else:
             messages.error(request, "We could not log you in")
-            return redirect(reverse('view_logreg'))
+            return redirect(reverse('view_account'))
 
     args = {'login_form': login_form}
     return render(request, 'myaccount.html', args)
