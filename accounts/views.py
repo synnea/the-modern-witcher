@@ -26,30 +26,26 @@ def view_account(request):
 
 def register(request):
     """A view that manages the registration form"""
-    if request.method == 'POST':
-        register_form = UserRegistrationForm(request.POST)
-        if register_form.is_valid():
-            register_form.save()
 
-            user = auth.authenticate(request.POST.get('email'),
-                                     password=request.POST.get('password1'))
+    register_form = UserRegistrationForm(request.POST)
+    if register_form.is_valid():
+        register_form.save()
 
-            if user:
-                auth.login(request, user)
-                messages.success(request, "You have successfully registered")
-                return redirect(reverse('view_cart'))
-
-            else:
-                messages.error(request, "unable to log you in at this time!")
+        username = register_form.cleaned_data.get('username')
+        raw_password = register_form.cleaned_data.get('password1')
+        user = authenticate(username=username, password=raw_password)
+        auth.login(request=request, user=user)
+        messages.success(request, "Place of power, it's gotta be! You've been registered.")
+        if request.session.get('account'):
+            return redirect(reverse('view_account'))
 
         else:
-            messages.error(request, "form was not valid")
-            return redirect(reverse("view_account") )
+            return render(request, 'cart.html')
     else:
-        register_form = UserRegistrationForm()
+        messages.error(request, "Doppler spotted?! You seem to have already registered")
+        return redirect(reverse('view_account'))
+        
 
-    args = {'register_form': register_form}
-    return render(request, 'cart.html', args)
 
 
 def logout(request):
