@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 def view_account(request):
 
     if request.user.is_authenticated:
-        profile_form = ProfileAddressForm(request.POST)
+        profile_form = ProfileAddressForm()
         return render(request, 'myaccount.html', {'profile_form': profile_form})
 
     else:
@@ -82,15 +82,22 @@ def login(request):
     else:
         return render(request, 'cart.html')
 
+@login_required
+def save_address(request):
+    profile_form = ProfileAddressForm(request.POST)
+    if profile_form.is_valid():
+        instance = profile_form.save(commit=False)
+        instance.username = request.user
+        instance.save()
 
-# def save_address(request):
+        print(instance)
 
-#     address_form = UserAddressForm(request.POST)
-#     if address_form.is_valid():
-#         address_form.save()
-#         return redirect(reverse(view_account))
+        messages.success(request, 'You successfully saved your profile!')
+        # return redirect(reverse('view_account'))
+    
+    else:
+        messages.error(request, 'Sharpen your eyes, Witcher! Something went wrong.')
+        return redirect(reverse('view_account'))
 
-#     else:
-#         messages.error(request, "Sharpen your eyes, Witcher! Something went wrong.")
 
 

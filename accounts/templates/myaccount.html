@@ -4,7 +4,7 @@
 
 <h1>Greetings, {{ user.username }}</h1>
 <div class="jumbotron">
-    <form id="addressform" class="addressform" method="POST" action="">
+    <form id="addressform" class="addressform" method="POST" action="{% url 'save_address' %}">
 
         <fieldset class="form-group">
             <!-- <p>Already got an account? <a href="">Sign In</a></p> -->
