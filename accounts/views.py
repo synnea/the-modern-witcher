@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages, auth
-from .forms import UserLoginForm, UserRegistrationForm
+from .forms import UserLoginForm, UserRegistrationForm, UserAddressForm
 from modern_witcher.views import home_view
 from django.template.context_processors import csrf
 from django.contrib.auth import authenticate
@@ -11,7 +11,9 @@ def view_account(request):
 
     if request.user.is_authenticated:
         user = request.user
-        return render(request, 'myaccount.html', {'user': user})
+        address_form = UserAddressForm(request.POST)
+
+        return render(request, 'myaccount.html', {'user': user, 'address_form': address_form})
 
     else:
 
@@ -47,8 +49,6 @@ def register(request):
         return redirect(reverse('view_account'))
         
 
-
-
 def logout(request):
     """A view that logs the user out and redirects back to the home page"""
         
@@ -77,9 +77,21 @@ def login(request):
         return redirect(reverse('view_account'))
 
     if request.session.get('account'):
-        return render(request, 'myaccount.html')
+        address_form = UserAddressForm()
+        return render(request, 'myaccount.html', {'address_form':address_form})
 
     else:
         return render(request, 'cart.html')
+
+
+def save_address(request):
+
+    address_form = UserAddressForm(request.POST)
+    if address_form.is_valid():
+        address_form.save()
+        return redirect(reverse(view_account))
+
+    else:
+        messages.error(request, "Sharpen your eyes, Witcher! Something went wrong.")
 
 
