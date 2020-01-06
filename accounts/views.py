@@ -43,7 +43,7 @@ def register(request):
         else:
             return render(request, 'cart.html')
     else:
-        messages.error(request, "Doppler spotted?! You seem to have already registered")
+        messages.error(request, "We could not register you! Sure you re-entered your password correctly and haven't already registered?")
         return redirect(reverse('view_account'))
         
 
