@@ -90,7 +90,7 @@ def save_address(request):
         instance.username = request.user
         instance.save()
 
-        profile_form = instance
+        profile_form = ProfileAddressForm(request.POST)
 
         messages.success(request, 'You successfully saved your profile!')
         return render(request, 'myaccount.html', {'profile_form': profile_form} )
