@@ -62,24 +62,22 @@ def logout(request):
 
 def login(request):
     """A view that manages the login form"""
-    if request.method == 'POST':
-        login_form = UserLoginForm(request.POST)
-        if login_form.is_valid():
-            user = auth.authenticate(username=request.POST['username'],
+
+    login_form = UserLoginForm(request.POST)
+    if login_form.is_valid():
+        user = auth.authenticate(username=request.POST['username'],
                                      password=request.POST['password'])
 
-            if user:
-                auth.login(request=request, user=user)
-                messages.success(request, "You have successfully logged in")
-
-            else:
-                messages.error(request, "Your username or password are incorrect")
-                login_form.add_error(None, "Your username or password are incorrect")
-                return redirect(reverse('view_account'))
+        if user:
+            auth.login(request=request, user=user)
+            messages.success(request, "Welcome back, witcher!")
 
         else:
-            messages.error(request, "We could not log you in")
+            messages.error(request, "Wind's howling... your credentials are incorrect.")
             return redirect(reverse('view_account'))
+
+    else:
+        return redirect(reverse('view_account'))
 
     if request.session.get('account'):
         return render(request, 'myaccount.html')
