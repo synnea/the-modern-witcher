@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages, auth
-from .forms import UserLoginForm, UserRegistrationForm, UserAddressForm
+from django.contrib.auth.models import User
+from .forms import UserLoginForm, UserRegistrationForm, ProfileAddressForm
+from .models import Profile
 from modern_witcher.views import home_view
 from django.template.context_processors import csrf
 from django.contrib.auth import authenticate
@@ -10,10 +12,8 @@ from django.contrib.auth.decorators import login_required
 def view_account(request):
 
     if request.user.is_authenticated:
-        user = request.user
-        address_form = UserAddressForm(request.POST)
-
-        return render(request, 'myaccount.html', {'user': user, 'address_form': address_form})
+        profile_form = ProfileAddressForm(request.POST)
+        return render(request, 'myaccount.html', {'profile_form': profile_form})
 
     else:
 
@@ -77,21 +77,20 @@ def login(request):
         return redirect(reverse('view_account'))
 
     if request.session.get('account'):
-        address_form = UserAddressForm()
-        return render(request, 'myaccount.html', {'address_form':address_form})
+        return render(request, 'myaccount.html')
 
     else:
         return render(request, 'cart.html')
 
 
-def save_address(request):
+# def save_address(request):
 
-    address_form = UserAddressForm(request.POST)
-    if address_form.is_valid():
-        address_form.save()
-        return redirect(reverse(view_account))
+#     address_form = UserAddressForm(request.POST)
+#     if address_form.is_valid():
+#         address_form.save()
+#         return redirect(reverse(view_account))
 
-    else:
-        messages.error(request, "Sharpen your eyes, Witcher! Something went wrong.")
+#     else:
+#         messages.error(request, "Sharpen your eyes, Witcher! Something went wrong.")
 
 
