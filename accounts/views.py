@@ -92,7 +92,7 @@ def save_address(request):
 
         profile_form = ProfileAddressForm(request.POST)
 
-        messages.success(request, 'You successfully saved your profile!')
+        messages.success(request, 'Your profile info has been updated.')
         return render(request, 'myaccount.html', {'profile_form': profile_form} )
     
     else:
