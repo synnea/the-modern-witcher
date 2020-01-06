@@ -90,10 +90,10 @@ def save_address(request):
         instance.username = request.user
         instance.save()
 
-        print(instance)
+        profile_form = instance
 
         messages.success(request, 'You successfully saved your profile!')
-        # return redirect(reverse('view_account'))
+        return render(request, 'myaccount.html', {'profile_form': profile_form} )
     
     else:
         messages.error(request, 'Sharpen your eyes, Witcher! Something went wrong.')
