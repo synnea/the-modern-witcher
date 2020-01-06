@@ -2,12 +2,12 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
+from django_countries.fields import CountryField
 
 
 class UserLoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
-
 
 
 class UserRegistrationForm(UserCreationForm):
@@ -39,3 +39,17 @@ class UserRegistrationForm(UserCreationForm):
             raise ValidationError("Passwords do not match")
 
         return password2
+
+
+class UserAddressForm(forms.Form):
+
+    class Meta:
+        model = User
+        fields = ['last_name', 'first_name', 'address1', 'address2', 'zipcode', 'country']
+
+    last_name = forms.CharField(max_length=30, required=True)
+    first_name = forms.CharField(max_length=30, required=True)
+    address1 = forms.CharField(max_length=30, required=True)
+    address2 = forms.CharField(max_length=30, required=False)
+    zipcode = forms.CharField(max_length=20, required=True)
+    country = CountryField()
