@@ -28,6 +28,8 @@ class Item(models.Model):
     width = models.DecimalField(max_digits=3, decimal_places=1)
     weight = models.DecimalField(max_digits=3, decimal_places=1)
 
+    origin = models.CharField(max_length=100, blank=True)
+
     price = models.DecimalField(max_digits=6, decimal_places=2)
     image = models.ImageField(upload_to='item_images')
 
