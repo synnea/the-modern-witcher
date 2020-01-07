@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from .views import home_view
 from accounts import urls as accounts_urls
+from shop import urls as shop_urls
 from cart import urls as cart_urls
 
 urlpatterns = [
@@ -24,4 +25,5 @@ urlpatterns = [
     path('', home_view, name="home_view"),
     path('cart/', include(cart_urls)),
     path('user/', include(accounts_urls)),
+    path('shop/', include(shop_urls)),
 ]
