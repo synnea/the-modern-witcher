@@ -8,7 +8,7 @@ class ItemDetailView(DetailView):
     template_name = 'item_details.html'
     context_object_name = 'item'
     
-    def get_item(self, id=id):
+    def get_object(self, kwargs):
         _id = self.kwargs.get('pk')
         product = get_object_or_404(Item, id=_id)
 

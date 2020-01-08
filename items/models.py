@@ -1,6 +1,5 @@
 from django.db import models
 from django.urls import reverse
-from .views import ItemDetailView
 
 class Item(models.Model):
 
@@ -43,7 +42,7 @@ class Item(models.Model):
     def get_item_details(self):
         """ Gets absolute url including listing id as pk for dynamic url """
         id = int(self.pk)
-        return reverse('get_item', {'pk': id})
+        return reverse('item_details', kwargs={'pk': id})
 
     def __str__(self):
         return self.name
