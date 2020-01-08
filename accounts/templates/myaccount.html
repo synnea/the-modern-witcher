@@ -9,10 +9,10 @@
         <fieldset class="form-group">
             <!-- <p>Already got an account? <a href="">Sign In</a></p> -->
             {% csrf_token %}
-            {% load bootstrap_tags %}
-            {{ form.errors }}
-            {{ form.non_field_errors }}
-            {{  profile_form | as_bootstrap }}
+            <!-- {% load bootstrap_tags %} -->
+            <!-- {{ form.errors }}
+            {{ form.non_field_errors }} -->
+            {{  profile_form }}
             <button type="submit" class="btn btn-primary">Update</button>
         </fieldset>
     </form>
