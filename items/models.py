@@ -41,8 +41,7 @@ class Item(models.Model):
 
     def get_item_details(self):
         """ Gets absolute url including listing id as pk for dynamic url """
-        id = int(self.pk)
-        return reverse('item_details', kwargs={'pk': id})
+        return reverse('item_details', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.name

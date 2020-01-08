@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from .models import Item
 from django.views.generic.detail import DetailView
 
@@ -6,10 +6,14 @@ class ItemDetailView(DetailView):
 
     model = Item
     template_name = 'item_details.html'
-    context_object_name = 'item'
     
-    def get_object(self, kwargs):
-        _id = self.kwargs.get('pk')
-        product = get_object_or_404(Item, id=_id)
+    def get_object(self, queryset=Item):
+        _id = int(self.kwargs.get('pk'))
+        print(_id)
+        product = get_object_or_404(Item, pk=_id)
+        print(product)
+        return product
 
-        return render(id, 'item_details.html', {'product': product})
+def get_detail(request, kwargs):
+    product = get_object_or_404(Item, pk=kwargs)
+    return render(request, 'item_details.html', {'product': product})
