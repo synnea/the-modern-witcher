@@ -14,6 +14,6 @@ class ItemDetailView(DetailView):
         print(product)
         return product
 
-def get_detail(request, kwargs):
-    product = get_object_or_404(Item, pk=kwargs)
-    return render(request, 'item_details.html', {'product': product})
+# def get_detail(request, kwargs):
+#     product = get_object_or_404(Item, pk=kwargs)
+#     return render(request, 'item_details.html', {'product': product})
