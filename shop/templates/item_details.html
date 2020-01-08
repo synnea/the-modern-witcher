@@ -2,36 +2,21 @@
 
 {% block content %}
 
-<h1>Shop</h1>
-
-<ul class="list-reset flex flex-wrap justify-center items-center">
-    <li class="mx-1">
-        <a href="" class="btn">View All</a>
-    </li>
-    <li class="mx-1">
-        <a href="" class="btn">Blacksmith</a>
-    </li>
-    <li class="mx-1">
-        <a href="" class="btn">Armorer</a>
-    </li>
-    <li class="mx-1">
-        <a href="" class="btn">Herbalist</a>
-    </li>
-    <li class="mx-1">
-        <a href="" class="btn">Other</a>
-    </li>
-</ul>
+<h1>Item Detail</h1>
 
 <div class="row row-flex">
-    {% for product in products %}
+
         <div class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-4 display panel panel-default">
             <div class="panel-body">
 
                 <div class="product" style="background-image: url('{{ MEDIA_URL }}{{ product.image }}')"></div>
                 <h3>{{ product.name }}</h3>
-                <p class="product-category">{{product.category}}</p>
                 <p class="product-description">{{ product.description }}</p>
+                <p class="product-category">{{product.category}}</p>
                 <p>€{{ product.price }}</p>
+                <p>{{product.height}}</p>
+                <p>{{product.width}}</p>
+                <p>{{product.weight}}</p>
 
                 <form method="post" action="">
                     {% csrf_token %}
