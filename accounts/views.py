@@ -13,12 +13,10 @@ from django.core.exceptions import ObjectDoesNotExist
 def view_account(request):
 
     if request.user.is_authenticated:
-        current_user = request.user
-        id = current_user.id
-        
 
         try:
-            user = Profile.objects.get(username_id=id)
+            current_user = request.user
+            user = Profile.objects.get(user=current_user)
             print(user)
         
         except:
@@ -93,21 +91,25 @@ def login(request):
         return render(request, 'cart.html')
 
 @login_required
+
 def save_address(request):
-    profile_form = ProfileAddressForm(request.POST)
-    if profile_form.is_valid():
-        instance = profile_form.save(commit=False)
-        instance.username = request.user
-        instance.save()
+    form = ProfileAddressForm(request.POST)
+    if form.is_valid():
+        user = request.user
+        profile = form.cleaned_data
+        obj, created = Profile.objects.update_or_create(username=user, defaults=profile)
+        if created:
+            messages.success(request, 'Thanks for saving your address!')
+        else:
+            messages.success(request, 'Updated successfully.')
 
-        profile_form = ProfileAddressForm(request.POST)
-
-        messages.success(request, 'Your profile info has been updated.')
+        profile_form = ProfileAddressForm(request.POST)        
         return render(request, 'myaccount.html', {'profile_form': profile_form} )
     
     else:
         messages.error(request, 'Sharpen your eyes, Witcher! Something went wrong.')
         return redirect(reverse('view_account'))
+
 
 
 
