@@ -16,10 +16,12 @@ def view_account(request):
 
         try:
             current_user = request.user
-            user = Profile.objects.get(user=current_user)
-            print(user)
+            user = Profile.objects.get(username=current_user)
+            profile_form = ProfileAddressForm(instance=user)
+            return render(request, 'myaccount.html', {'profile_form': profile_form})
         
         except:
+            print("exception activated")
             profile_form = ProfileAddressForm()
             return render(request, 'myaccount.html', {'profile_form': profile_form})
 
