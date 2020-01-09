@@ -73,27 +73,27 @@ def login(request):
     if login_form.is_valid():
         user = auth.authenticate(username=request.POST['username'],
                                      password=request.POST['password'])
-
-
         if user:
             auth.login(request=request, user=user)
             current_user = request.user
             user = Profile.objects.get(username=current_user)
             profile_form = ProfileAddressForm(instance=user)
-            return render(request, 'myaccount.html', {'profile_form': profile_form})
+
+            if request.session.get('account'):
+                return render(request, 'myaccount.html', {'profile_form': profile_form})
+
+            else:
+                return render(request, 'cart.html')
 
         else:
             messages.error(request, "Wind's howling... your credentials are incorrect.")
             return redirect(reverse('view_account'))
 
     else:
+        messages.error(request, "Wind's howling... something went wrong.")
         return redirect(reverse('view_account'))
 
-    if request.session.get('account'):
-        return render(request, 'myaccount.html')
 
-    else:
-        return render(request, 'cart.html')
 
 @login_required
 def save_address(request):
