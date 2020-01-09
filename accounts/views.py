@@ -8,12 +8,22 @@ from modern_witcher.views import home_view
 from django.template.context_processors import csrf
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
 
 def view_account(request):
 
     if request.user.is_authenticated:
-        profile_form = ProfileAddressForm()
-        return render(request, 'myaccount.html', {'profile_form': profile_form})
+        current_user = request.user
+        id = current_user.id
+        
+
+        try:
+            user = Profile.objects.get(username_id=id)
+            print(user)
+        
+        except:
+            profile_form = ProfileAddressForm()
+            return render(request, 'myaccount.html', {'profile_form': profile_form})
 
     else:
 
