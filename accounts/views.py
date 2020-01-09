@@ -21,7 +21,6 @@ def view_account(request):
             return render(request, 'myaccount.html', {'profile_form': profile_form})
         
         except:
-            print("exception activated")
             profile_form = ProfileAddressForm()
             return render(request, 'myaccount.html', {'profile_form': profile_form})
 
@@ -75,9 +74,13 @@ def login(request):
         user = auth.authenticate(username=request.POST['username'],
                                      password=request.POST['password'])
 
+
         if user:
             auth.login(request=request, user=user)
-            messages.success(request, "Welcome back, witcher!")
+            current_user = request.user
+            user = Profile.objects.get(username=current_user)
+            profile_form = ProfileAddressForm(instance=user)
+            return render(request, 'myaccount.html', {'profile_form': profile_form})
 
         else:
             messages.error(request, "Wind's howling... your credentials are incorrect.")
@@ -93,7 +96,6 @@ def login(request):
         return render(request, 'cart.html')
 
 @login_required
-
 def save_address(request):
     form = ProfileAddressForm(request.POST)
     if form.is_valid():
