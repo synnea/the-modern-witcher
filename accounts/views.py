@@ -13,15 +13,14 @@ from django.core.exceptions import ObjectDoesNotExist
 def view_account(request):
 
     if request.user.is_authenticated:
-        current_user = request.user
-        id = current_user.id
-        
 
         try:
-            user = Profile.objects.get(username_id=id)
+            current_user = request.user
+            user = Profile.objects.get(user=current_user)
             print(user)
         
         except:
+            print("exception activated")
             profile_form = ProfileAddressForm()
             return render(request, 'myaccount.html', {'profile_form': profile_form})
 
@@ -97,7 +96,7 @@ def save_address(request):
     profile_form = ProfileAddressForm(request.POST)
     if profile_form.is_valid():
         instance = profile_form.save(commit=False)
-        instance.username = request.user
+        instance.user = request.user
         instance.save()
 
         profile_form = ProfileAddressForm(request.POST)
