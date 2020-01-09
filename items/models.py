@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class Item(models.Model):
 
@@ -37,6 +38,10 @@ class Item(models.Model):
     image = models.ImageField(upload_to='item_images')
 
     featured = models.BooleanField(default=False)
+
+    def get_item_details(self):
+        """ Gets absolute url including listing id as pk for dynamic url """
+        return reverse('item_details', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.name
