@@ -21,5 +21,6 @@ def cart_contents(request):
             total += quantity * product.price
             product_count += quantity
             cart_items.append({'id': id, 'quantity': quantity, 'product': product})
+            print(cart_items)
     
     return {'cart_items': cart_items, 'total': total, 'product_count': product_count}
