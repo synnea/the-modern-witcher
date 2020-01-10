@@ -26,8 +26,8 @@ def view_account(request):
 
     else:
 
-        register_form = UserRegistrationForm(request.POST)
-        login_form = UserLoginForm(request.POST)
+        register_form = UserRegistrationForm()
+        login_form = UserLoginForm()
         account = True
         request.session['account'] = account
         args = {'register_form': register_form, 'login_form': login_form}
