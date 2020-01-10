@@ -13,8 +13,6 @@ def cart_contents(request):
     total = 0
     product_count = 0
 
-    print(cart)
-
     if cart != {}:
     
         for id, quantity in cart.items():

@@ -1,12 +1,22 @@
 from django.shortcuts import render, redirect, reverse
-from accounts.forms import UserRegistrationForm, UserLoginForm
+from accounts.forms import UserRegistrationForm, UserLoginForm, ProfileAddressForm
+from accounts.models import Profile
 from django.contrib import messages
 from accounts import views
 
 def view_cart(request):
 
     if request.user.is_authenticated:
-        return render(request, 'cart.html')
+        print("authenticated")
+        try:
+            current_user = request.user
+            user = Profile.objects.get(username=current_user)
+            profile_form = ProfileAddressForm(instance=user)
+            return render(request, 'cart.html', {'profile_form': profile_form})
+        
+        except:
+            profile_form = ProfileAddressForm()
+            return render(request, 'cart.html', {'profile_form': profile_form})
 
     else:
         return redirect(reverse('logreg'))
