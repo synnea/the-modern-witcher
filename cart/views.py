@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from accounts.forms import UserRegistrationForm, UserLoginForm
+from django.contrib import messages
 from accounts import views
 
 def view_cart(request):
@@ -13,11 +14,11 @@ def view_cart(request):
 
 def add_to_cart(request, id):
     """Add a quantity of the specified product to the cart."""
+    print(id)
+    print(request.POST.get('quantity'))
 
-    quantity = int(request.POST.get('quantity'))
-
-    cart = request.session.get('cart', {})
-    cart[id] = cart.get(id, quantity)
+    # cart = request.session.get('cart', {})
+    # cart[id] = cart.get(id, quantity)
 
     request.session['cart'] = cart
-    return redirect(reverse('index'))
+    return redirect(reverse('view_cart'))
