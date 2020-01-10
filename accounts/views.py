@@ -4,6 +4,7 @@ from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from .forms import UserLoginForm, UserRegistrationForm, ProfileAddressForm
 from .models import Profile
+from cart.views import view_cart
 from modern_witcher.views import home_view
 from django.template.context_processors import csrf
 from django.contrib.auth import authenticate
@@ -83,7 +84,7 @@ def login(request):
                 return render(request, 'myaccount.html', {'profile_form': profile_form})
 
             else:
-                return render(request, 'cart.html')
+                return redirect(reverse('view_cart'))
 
         else:
             messages.error(request, "Wind's howling... your credentials are incorrect.")
