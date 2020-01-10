@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from accounts.forms import UserRegistrationForm, UserLoginForm
-from accounts.views import logreg
+from accounts import views
 
 def view_cart(request):
 
