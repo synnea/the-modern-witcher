@@ -26,15 +26,18 @@ def view_account(request):
             return render(request, 'myaccount.html', {'profile_form': profile_form})
 
     else:
-
-        register_form = UserRegistrationForm()
-        login_form = UserLoginForm()
         account = True
         request.session['account'] = account
-        args = {'register_form': register_form, 'login_form': login_form}
+        return redirect(reverse('logreg'))
 
-        return render(request, 'logreg.html', args)
 
+def logreg(request):
+
+    register_form = UserRegistrationForm()
+    login_form = UserLoginForm()
+    args = {'register_form': register_form, 'login_form': login_form}
+
+    return render(request, 'logreg.html', args)
 
 
 def register(request):
