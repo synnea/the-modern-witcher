@@ -1,8 +1,7 @@
 @font-face{ 
-	font-family: 'the-witcher';
-    src: url('https://github.com/synnea/the-modern-witcher/blob/d329f2db0ffc3d03473a88254c64d737a3725449/static/fonts/the-witcher.woffr.woff') format('woff');
-    src: url('https://github.com/synnea/the-modern-witcher/blob/d329f2db0ffc3d03473a88254c64d737a3725449/static/fonts/the-witcher.woffr.woff') format('woff2');
-
+    font-family: 'the-witcher';
+    src: url('/static/fonts/the-witcher.woff') format('woff');
+    src: url('/static/fonts/the-witcher.woff') format('woff2');
 }
 
 h1 {
