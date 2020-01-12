@@ -1,3 +1,12 @@
+@font-face{ 
+	font-family: 'The-witcher';
+	src: url('The-witcher.eot');
+	src: url('The-witcher.eot?#iefix') format('embedded-opentype'),
+	     url('The-witcher.woff') format('woff'),
+	     url('The-witcher.ttf') format('truetype'),
+	     url('The-witcher.svg#webfont') format('svg');
+}
+
 h1 {
-    color: red;
+    h1 { font-family: 'The-witcher', Arial, sans-serif; }
 }
