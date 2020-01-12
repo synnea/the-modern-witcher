@@ -13,4 +13,9 @@ def view_all(request):
 def view_categories(request, category):
 
     print(category)
-    return redirect(reverse('view_all'))
+
+    categories = dict(Item.CATEGORY_CHOICES)
+    categories = categories.values()
+    
+    products = Item.objects.filter(category=category)
+    return render(request, 'shop.html', {'products': products, 'categories': categories})
