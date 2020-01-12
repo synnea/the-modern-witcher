@@ -21,6 +21,7 @@ class Review(models.Model):
     def __str__(self):
         return "{0} reviewed {1}".format(self.user, self.reviewed_item)
 
+# user can only review item that they thought
 
 
 
