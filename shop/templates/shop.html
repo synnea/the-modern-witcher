@@ -11,7 +11,7 @@
 
     {% for category in categories %}
     <li class="mx-1">
-        <a href="" class="btn">{{ category }}</a>
+        <a href="{% url 'view_categories' category %}" class="btn">{{ category }}</a>
     </li>
     {% endfor %}
 </ul>
