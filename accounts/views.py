@@ -53,9 +53,11 @@ def register(request):
         auth.login(request=request, user=user)
         messages.success(request, "Place of power, it's gotta be! You've been registered.")
         if request.session.get('account'):
+            del request.session['account']
             return redirect(reverse('view_account'))
 
         elif request.session.get('cart_access'):
+            del request.session['cart_access']
             return redirect(reverse('view_cart'))
     else:
         messages.error(request, "We could not register you! Sure you re-entered your password correctly and haven't already registered?")
