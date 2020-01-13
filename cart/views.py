@@ -10,7 +10,6 @@ def view_cart(request):
     if request.user.is_authenticated:
 
         if request.session.get('amended'):
-            print("amended")
             del request.session['amended']
         
         try:
@@ -21,8 +20,14 @@ def view_cart(request):
         except:
             profile_form = ProfileAddressForm()
 
-        if 'checkout' in request.POST:
+        if request.method == "POST":
+
+            profile_form = ProfileAddressForm(request.POST)
             if profile_form.is_valid():
+                user = request.user
+                profile = profile_form.cleaned_data
+                obj, created = Profile.objects.update_or_create(username=user, defaults=profile)
+                print(obj, created)
                 return render(request, 'shipping.html')
 
             else:
@@ -60,7 +65,6 @@ def amend_cart(request, id):
 
     quantity = int(request.POST.get('quantity'))
     cart = request.session.get('cart', {})
-    print(cart)
 
     if quantity > 0:
         cart[id] = quantity
@@ -70,3 +74,10 @@ def amend_cart(request, id):
     amended = True
     request.session['amended'] = amended
     return redirect(reverse('view_cart'))
+
+
+def view_shipping(request):
+
+    profile_form = ProfileAddressForm(request.POST)
+
+    return render(request, 'shipping.html')

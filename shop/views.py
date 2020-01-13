@@ -12,8 +12,6 @@ def view_all(request):
 
 def view_categories(request, category):
 
-    print(category)
-
     categories = dict(Item.CATEGORY_CHOICES)
     categories = categories.values()
     
