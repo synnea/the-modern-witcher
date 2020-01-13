@@ -20,7 +20,7 @@ def view_cart(request):
         except:
             profile_form = ProfileAddressForm()
 
-        if request.method == "POST":
+        if 'shipping' in request.POST:
 
             profile_form = ProfileAddressForm(request.POST)
             if profile_form.is_valid():
