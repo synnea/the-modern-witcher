@@ -2,12 +2,16 @@ from django.shortcuts import render, redirect, reverse
 from accounts.forms import UserRegistrationForm, UserLoginForm, ProfileAddressForm
 from accounts.models import Profile
 from django.contrib import messages
+from .contexts import cart_contents
 from accounts import views
 
 def view_cart(request):
 
     if request.user.is_authenticated:
-        print("authenticated")
+
+        if request.session.get('amended'):
+            print("amended")
+            del request.session['amended']
         
         try:
             current_user = request.user
@@ -17,7 +21,7 @@ def view_cart(request):
         except:
             profile_form = ProfileAddressForm()
 
-        if request.method == "POST":
+        if 'checkout' in request.POST:
             if profile_form.is_valid():
                 return render(request, 'shipping.html')
 
@@ -49,4 +53,22 @@ def add_to_cart(request, id):
         cart[id] = cart.get(id, quantity) 
 
     request.session['cart'] = cart
+    return redirect(reverse('view_cart'))
+
+def amend_cart(request, id):
+    """Adjust the quantity of the specified product to the specified amount."""
+
+    quantity = int(request.POST.get('quantity'))
+    cart = request.session.get('cart', {})
+    print(cart)
+
+    if quantity > 0:
+        cart[id] = quantity
+    else:
+        cart.pop(id)
+    
+    request.session['cart'] = cart
+
+    amended = True
+    request.session['amended'] = amended
     return redirect(reverse('view_cart'))
