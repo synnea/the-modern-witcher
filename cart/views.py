@@ -63,12 +63,10 @@ def amend_cart(request, id):
     print(cart)
 
     if quantity > 0:
-        cart = cart[id] = quantity
+        cart[id] = quantity
     else:
-        cart = cart.pop(str(id))    
+        cart.pop(str(id))    
     
-    request.session['cart'] = cart
-
     amended = True
     request.session['amended'] = amended
     return redirect(reverse('view_cart'))
