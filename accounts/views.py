@@ -55,8 +55,8 @@ def register(request):
         if request.session.get('account'):
             return redirect(reverse('view_account'))
 
-        else:
-            return render(request, 'cart.html')
+        elif request.session.get('cart_access'):
+            return redirect(reverse('view_cart'))
     else:
         messages.error(request, "We could not register you! Sure you re-entered your password correctly and haven't already registered?")
         return redirect(reverse('view_account'))
@@ -86,7 +86,7 @@ def login(request):
             if request.session.get('account'):
                 return render(request, 'myaccount.html', {'profile_form': profile_form})
 
-            else:
+            elif request.session.get('cart_access'):
                 return redirect(reverse('view_cart'))
 
         else:
