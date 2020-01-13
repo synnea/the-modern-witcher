@@ -43,10 +43,10 @@ def add_to_cart(request, id):
 
     str_id = str(id)
     if str_id in cart:
-        print("exists")
+        cart[id] = int(cart[id]) + int(quantity) 
 
     else:
-        print("doesn't exist")
+        cart[id] = cart.get(id, quantity) 
 
     request.session['cart'] = cart
     return redirect(reverse('view_cart'))

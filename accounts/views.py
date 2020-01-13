@@ -86,9 +86,11 @@ def login(request):
             profile_form = ProfileAddressForm(instance=user)
 
             if request.session.get('account'):
+                del request.session['account']
                 return render(request, 'myaccount.html', {'profile_form': profile_form})
 
             elif request.session.get('cart_access'):
+                del request.session['cart_access']
                 return redirect(reverse('view_cart'))
 
         else:
