@@ -13,7 +13,7 @@
         Email: {{user.email}}
 
         <h2>Shipping Address</h2>
-        <form id="addressform" class="addressform" method="POST" action="">
+        <form id="shipping" class="shipping" method="POST" action="{% url 'view_cart' %}">
 
             <fieldset class="form-group">
                 {% csrf_token %}
@@ -55,8 +55,8 @@
         <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{product.total}}</p>
 
         {% if cart_items %}
-        <a href="/" class="btn btn-success" value="checkout" name="checkout" role="button"><span class="glyphicon glyphicon-ok-sign"
-                aria-hidden="true"></span>Checkout</a>
+        <button class="btn btn-success" button="submit" value="shipping" form="shipping" name="shipping" role="button"><span class="glyphicon glyphicon-ok-sign"
+                aria-hidden="true"></span>Checkout</button>
         {% else %}
 
         <p>Add to your cart in order to get your awesome Witcher items! <a href="{% url 'view_all' %}">Go to shop</a></p>
