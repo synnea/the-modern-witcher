@@ -1,7 +1,37 @@
-{% extends 'base.html'}
+{% extends 'base.html' %}
 
 {% block content %}
 
 <h1>Shipping</h1>
 
+<p>Cart > Information > Shipping > Payment > Confirm</p>
+<div class="row">
+    <div class="col-6">
+
+        <h3>Shipping Address</h3>
+
+        <button data-toggle="address" data-target="#address">Collapsible</button>
+
+        <div id="address" class="collapse">
+            <fieldset class="form-group">
+                {% csrf_token %}
+                {% load bootstrap_tags %}
+                {{  profile_form | as_bootstrap }}
+            </fieldset>
+        </div>
+
+    </div>
+
+    <div class="col-6">
+
+        {% block ordersummary %}
+        {% include 'ordersummary.html' %}
+        {% endblock %}
+
+    </div>
+</div>
+
+<script>
+$('.collapse').collapse()
+</script>
 {% endblock %}
