@@ -28,7 +28,7 @@ def view_cart(request):
                 profile = profile_form.cleaned_data
                 obj, created = Profile.objects.update_or_create(username=user, defaults=profile)
                 print(obj, created)
-                return redirect(reverse('view_shipping'))
+                return redirect(reverse('view_payment'))
 
             else:
                 messages.error(request, "Keep an eye on your mana! Something went wrong with that form.")
@@ -77,13 +77,13 @@ def amend_cart(request, id):
 
     if request.session.get('shipping'):
         del request.session['shipping']
-        return redirect(reverse('view_shipping'))
+        return redirect(reverse('view_payment'))
 
     else:    
         return redirect(reverse('view_cart'))
 
 
-def view_shipping(request):
+def view_payment(request):
 
     shipping = True
     request.session['shipping'] = shipping
@@ -92,4 +92,4 @@ def view_shipping(request):
     user = Profile.objects.get(username=current_user)
     profile_form = ProfileAddressForm(instance=user)
 
-    return render(request, 'shipping.html', {'profile_form': profile_form})
+    return render(request, 'payment.html', {'profile_form': profile_form})
