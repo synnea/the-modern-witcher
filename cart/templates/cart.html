@@ -21,48 +21,18 @@
                 {{  profile_form | as_bootstrap }}
             </fieldset>
         </form>
-
     </div>
 
     <div class="col-6">
-        <h2>Order Details</h2>
 
-        {% for item in cart_items %}
+        {% block ordersummary %}
+        {% include 'ordersummary.html' %}
+        {% endblock %}
 
-        <div class="caption">
-            <h3>{{ item.product.name }}</h3>
-            <p>{{ item.product.price }}</p>
-            <p>
-
-                <form class="form-inline" method="post" action="{% url 'amend_cart' id=item.product.id %}">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="exampleInputAmount" class="sr-only">New Qty</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">Qty</div>
-                            <input name="quantity" type="number" min="0" max="999" class="form-control" placeholder="{{item.quantity}}">
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Amend</button>
-                </form>
-            </p>
-        </div>
-
-        {% endfor %}
-
-
-        <p>Total</p>
-        <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{product.total}}</p>
-
-        {% if cart_items %}
-        <button class="btn btn-success" button="submit" value="shipping" form="shipping" name="shipping" role="button"><span class="glyphicon glyphicon-ok-sign"
-                aria-hidden="true"></span>Checkout</button>
-        {% else %}
-
-        <p>Add to your cart in order to get your awesome Witcher items! <a href="{% url 'view_all' %}">Go to shop</a></p>
-
-        {% endif %}
     </div>
+  
+    {% endblock %}
+   
+
 </div>
 
-{% endblock %}
