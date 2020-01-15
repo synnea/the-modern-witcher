@@ -13,14 +13,14 @@ def cart_contents(request):
     total = 0
     product_count = 0
 
-    if cart != {}:
     
-        for id, quantity in cart.items():
-            product = get_object_or_404(Item, pk=id)
-            quantity = int(quantity)
-            total += float(quantity * product.price)
-            product_count += quantity
-            cart_items.append({'id': id, 'quantity': quantity, 'product': product, 'total': total})
-        total += total + 7.5
+    for id, quantity in cart.items():
+        product = get_object_or_404(Item, pk=id)
+        quantity = int(quantity)
+        total += float(quantity * product.price)
+        product_count += quantity
+        cart_items.append({'id': id, 'quantity': quantity, 'product': product})
+        
+    total = total + 7.5
 
     return {'cart_items': cart_items, 'total': total, 'product_count': product_count}
