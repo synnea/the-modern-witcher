@@ -7,7 +7,6 @@
     <form id="addressform" class="addressform" method="POST" action="{% url 'save_address' %}">
 
         <fieldset class="form-group">
-            <!-- <p>Already got an account? <a href="">Sign In</a></p> -->
             {% csrf_token %}
             {% load bootstrap_tags %}
             {{  profile_form | as_bootstrap }}

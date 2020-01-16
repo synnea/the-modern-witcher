@@ -95,4 +95,6 @@ def view_payment(request):
 
     payment_form = MakePaymentForm()
 
-    return render(request, 'payment.html', {'profile_form': profile_form, 'payment_form': payment_form})
+    profile = Profile.objects.get(username=request.user)
+
+    return render(request, 'payment.html', {'profile_form': profile_form, 'payment_form': payment_form, 'profile': profile})

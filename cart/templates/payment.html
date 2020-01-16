@@ -5,6 +5,8 @@
 <a></a>
 <h1>Shipping</h1>
 
+
+
 <div class="row">
     <div class="col-12 d-block">
         <a href="{% url 'view_cart' %}">Go back</a>
@@ -17,9 +19,18 @@
 
         <h3>Shipping Address</h3>
         <p>
+            <div class="row">
+                <div class="col-6">
+
+                    {{profile.address1}}, {{profile.zipcode}}, {{profile.country}}
+
+                </div>
+         <div class="col-6">
             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#address" aria-expanded="false" aria-controls="address">
-              Button with data-target
+              View Full Address
             </button>
+        </div>
+        </div>
           </p>
           <div class="collapse show" id="address">
             <fieldset class="form-group">
