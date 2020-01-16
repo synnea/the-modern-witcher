@@ -16,23 +16,26 @@
     <div class="col-6">
 
         <h3>Shipping Address</h3>
-
-        <button data-toggle="address" data-target="#address">Collapsible</button>
-
-        <div id="address" class="collapse">
+        <p>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#address" aria-expanded="false" aria-controls="address">
+              Button with data-target
+            </button>
+          </p>
+          <div class="collapse show" id="address">
             <fieldset class="form-group">
                 {% csrf_token %}
                 {% load bootstrap_tags %}
                 {{  profile_form | as_bootstrap }}
             </fieldset>
-        </div>
+          </div>
+
+        <h3>Payment Details</h3>
+
         <fieldset class="form-group">
             {% csrf_token %}
             {% load bootstrap_tags %}
             {{  payment_form | as_bootstrap }}
         </fieldset>
-
-
     </div>
 
     <div class="col-6">
