@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect, reverse
 from accounts.forms import UserRegistrationForm, UserLoginForm, ProfileAddressForm
 from accounts.models import Profile
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .contexts import cart_contents
 from .forms import MakePaymentForm
 from accounts import views
+
 
 def view_cart(request):
 
@@ -61,7 +63,7 @@ def add_to_cart(request, id):
     request.session['cart'] = cart
     return redirect(reverse('view_cart'))
 
-
+@login_required
 def amend_cart(request, id):
     """Adjust the quantity of the specified product to the specified amount."""
 
@@ -83,7 +85,7 @@ def amend_cart(request, id):
     else:    
         return redirect(reverse('view_cart'))
 
-
+@login_required
 def view_payment(request):
 
     shipping = True
@@ -96,5 +98,8 @@ def view_payment(request):
     payment_form = MakePaymentForm()
 
     profile = Profile.objects.get(username=request.user)
+    payment = True
 
-    return render(request, 'payment.html', {'profile_form': profile_form, 'payment_form': payment_form, 'profile': profile})
+    print(payment)
+
+    return render(request, 'payment.html', {'profile_form': profile_form, 'payment_form': payment_form, 'profile': profile, 'payment': payment})
