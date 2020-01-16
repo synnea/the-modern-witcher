@@ -6,6 +6,8 @@ from django.contrib import messages
 from .contexts import cart_contents
 from .forms import MakePaymentForm
 from accounts import views
+import stripe
+import os
 
 
 def view_cart(request):
@@ -85,21 +87,40 @@ def amend_cart(request, id):
     else:    
         return redirect(reverse('view_cart'))
 
+
 @login_required
 def view_payment(request):
 
     shipping = True
     request.session['shipping'] = shipping
 
-    current_user = request.user
-    user = Profile.objects.get(username=current_user)
-    profile_form = ProfileAddressForm(instance=user)
+    if request.method == "POST":
+        stripe_key = os.environ.get("STRIPE_SECRET")
 
-    payment_form = MakePaymentForm()
+        profile_form = ProfileAddressForm(request.POST)
+        payment_form = MakePaymentForm(request.POST)
 
-    profile = Profile.objects.get(username=request.user)
-    payment = True
+        if payment_form.is_valid() and profile_form.is_valid():
 
-    print(payment)
+            profile = profile_form.cleaned_data
+            obj, created = Profile.objects.update_or_create(username=request.user, defaults=profile)
 
-    return render(request, 'payment.html', {'profile_form': profile_form, 'payment_form': payment_form, 'profile': profile, 'payment': payment})
+            print("stripe checkout happens")
+
+        else:
+            messages.error(request, "Focus, Witcher! Something went wrong with your credit card.")
+            return redirect(reverse('view_shipping'))
+
+    else:
+        current_user = request.user
+        user = Profile.objects.get(username=current_user)
+        profile_form = ProfileAddressForm(instance=user)
+
+        payment_form = MakePaymentForm()
+
+        profile = Profile.objects.get(username=request.user)
+        payment = True
+
+        print(payment)
+
+        return render(request, 'payment.html', {'profile_form': profile_form, 'payment_form': payment_form, 'profile': profile, 'payment': payment})
