@@ -112,8 +112,18 @@ def view_payment(request):
             # payment = payment_form.save(commit=False)
 
             # cart = request.session.get('cart')
+        
+        cart = request.session['cart']
 
-        order = Order.objects.create(user=request.user)
+        print(cart)
+
+        for id, quantity in cart.items():
+            id = id
+            quantity = quantity
+
+        order = Order.objects.create(user=request.user, quantity=quantity)
+        order.products.add(id)
+        order.save()
 
         print(request.user.id)
 

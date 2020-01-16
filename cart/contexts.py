@@ -23,4 +23,5 @@ def cart_contents(request):
         
     total = total + 7.5
 
-    return {'cart_items': cart_items, 'total': total, 'product_count': product_count}
+    return {'cart_items': cart_items, 'total': total, 'product_count': product_count, 
+                'product': product, 'quantity': quantity}

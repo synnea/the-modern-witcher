@@ -12,7 +12,7 @@ class Order(models.Model):
     date = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return "{0} @ {1} {2}".format(self.user, self.products.name, self.quantity)
+        return "{0} @ {1} {2}".format(self.user, self.products, self.quantity)
 
 
 # len(carina.orders.products.filter(pk=item_to_review.pk)) == 0
