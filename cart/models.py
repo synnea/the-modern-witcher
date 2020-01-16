@@ -4,6 +4,8 @@ from items.models import Item
 
 class Order(models.Model):
 
+    objects = models.Manager()
+
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="orders")
     products = models.ManyToManyField(Item)
     quantity = models.IntegerField(blank=False)

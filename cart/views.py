@@ -4,6 +4,8 @@ from accounts.models import Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .contexts import cart_contents
+from items.models import Item
+from .models import Order
 from .forms import MakePaymentForm
 from accounts import views
 import stripe
@@ -108,7 +110,10 @@ def view_payment(request):
             obj, created = Profile.objects.update_or_create(username=request.user, defaults=profile)
 
             payment = payment_form.save(commit=False)
-            payment.date = datetime.datetime.now()
+
+            cart = request.session.get('cart')
+
+            order = Order.objects.create(username=request.user)
 
             print("stripe checkout happens")
 
