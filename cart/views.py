@@ -8,6 +8,8 @@ from .forms import MakePaymentForm
 from accounts import views
 import stripe
 import os
+import datetime
+
 
 
 def view_cart(request):
@@ -104,6 +106,9 @@ def view_payment(request):
 
             profile = profile_form.cleaned_data
             obj, created = Profile.objects.update_or_create(username=request.user, defaults=profile)
+
+            payment = payment_form.save(commit=False)
+            payment.date = datetime.datetime.now()
 
             print("stripe checkout happens")
 
