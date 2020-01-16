@@ -8,7 +8,7 @@ class Order(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="orders")
     products = models.ManyToManyField(Item)
-    quantity = models.IntegerField(blank=False)
+    quantity = models.IntegerField(blank=False, default=0)
     date = models.DateTimeField(auto_now=True)
     
     def __str__(self):

@@ -42,11 +42,14 @@
 
         <h3>Payment Details</h3>
 
+        <form id="payment" class="payment" method="POST">
+
         <fieldset class="form-group">
             {% csrf_token %}
             {% load bootstrap_tags %}
             {{  payment_form | as_bootstrap }}
         </fieldset>
+    </form>
     </div>
 
     <div class="col-6">
@@ -54,6 +57,11 @@
         {% block ordersummary %}
         {% include 'ordersummary.html' %}
         {% endblock %}
+
+    <button class="btn btn-success" button="submit" form="payment" role="button"><span class="glyphicon glyphicon-ok-sign"
+            aria-hidden="true"></span>Complete Order</button>
+
+<small class="d-block">*clicking on the above button will charge your credit cart</small>
 
 
     </div>

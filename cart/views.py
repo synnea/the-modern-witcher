@@ -104,27 +104,31 @@ def view_payment(request):
         profile_form = ProfileAddressForm(request.POST)
         payment_form = MakePaymentForm(request.POST)
 
-        if payment_form.is_valid() and profile_form.is_valid():
 
-            profile = profile_form.cleaned_data
-            obj, created = Profile.objects.update_or_create(username=request.user, defaults=profile)
 
-            payment = payment_form.save(commit=False)
+            # profile = profile_form.cleaned_data
+            # obj, created = Profile.objects.update_or_create(username=request.user, defaults=profile)
 
-            cart = request.session.get('cart')
+            # payment = payment_form.save(commit=False)
 
-            order = Order.objects.create(username=request.user)
+            # cart = request.session.get('cart')
 
-            print("stripe checkout happens")
+        order = Order.objects.create(user=request.user)
 
-        else:
-            messages.error(request, "Focus, Witcher! Something went wrong with your credit card.")
-            return redirect(reverse('view_shipping'))
+        print(request.user.id)
+
+        print("stripe checkout happens")
+        messages.success(request, "PAID")
+        return redirect(reverse('view_payment'))
+
+        # else:
+        #     messages.error(request, "Focus, Witcher! Something went wrong with your credit card.")
+        #     return redirect(reverse('view_payment'))
 
     else:
         current_user = request.user
-        user = Profile.objects.get(username=current_user)
-        profile_form = ProfileAddressForm(instance=user)
+        
+        profile_form = ProfileAddressForm(instance=request.user)
 
         payment_form = MakePaymentForm()
 

@@ -29,13 +29,5 @@
     <p>Total</p>
     <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{total}}</p>
 
-    {% if cart_items %}
-    <button class="btn btn-success" button="submit" value="shipping" form="shipping" name="shipping" role="button"><span class="glyphicon glyphicon-ok-sign"
-            aria-hidden="true"></span>{% if not payment %}Continue{% endif %}{% if payment %}Complete Order{% endif %}</button>
 
-    {% if payment %}<small class="d-block">*clicking on the above button will charge your credit cart</small>{% endif %}
-    {% else %}
-    <p>Add to your cart in order to get your awesome Witcher items! <a href="{% url 'view_all' %}">Go to shop</a></p>
-
-    {% endif %}
 </div>
