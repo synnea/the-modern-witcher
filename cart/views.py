@@ -3,6 +3,7 @@ from accounts.forms import UserRegistrationForm, UserLoginForm, ProfileAddressFo
 from accounts.models import Profile
 from django.contrib import messages
 from .contexts import cart_contents
+from .forms import MakePaymentForm
 from accounts import views
 
 def view_cart(request):
@@ -92,4 +93,6 @@ def view_payment(request):
     user = Profile.objects.get(username=current_user)
     profile_form = ProfileAddressForm(instance=user)
 
-    return render(request, 'payment.html', {'profile_form': profile_form})
+    payment_form = MakePaymentForm()
+
+    return render(request, 'payment.html', {'profile_form': profile_form, 'payment_form': payment_form})

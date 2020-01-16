@@ -26,6 +26,12 @@
                 {{  profile_form | as_bootstrap }}
             </fieldset>
         </div>
+        <fieldset class="form-group">
+            {% csrf_token %}
+            {% load bootstrap_tags %}
+            {{  payment_form | as_bootstrap }}
+        </fieldset>
+
 
     </div>
 
