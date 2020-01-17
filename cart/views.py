@@ -123,12 +123,9 @@ def view_payment(request):
             total += float(quantity * product.price)
             product_count += quantity
             cart_items.append({'id': id, 'quantity': product_count, 'product': product})
-
-        print(product)
-        print(product_count)
-        order = Order.objects.create(user=request.user, quantity=quantity)
-        order.products.add(id)
-        order.save()
+            order = Order.objects.create(user=request.user, quantity=quantity)
+            order.products.add(id)
+            order.save()
 
         messages.success(request, "PAID")
         return redirect(reverse('view_payment'))
