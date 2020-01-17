@@ -38,7 +38,6 @@ def view_cart(request):
                 user = request.user
                 profile = profile_form.cleaned_data
                 obj, created = Profile.objects.update_or_create(username=user, defaults=profile)
-                print(obj, created)
                 return redirect(reverse('view_payment'))
 
             else:
@@ -137,14 +136,11 @@ def view_payment(request):
 
     else:
         current_user = request.user
-        
-        profile_form = ProfileAddressForm(instance=request.user)
+        profile = Profile.objects.get(username=current_user)
+        profile_form = ProfileAddressForm(instance=profile)
 
         payment_form = MakePaymentForm()
 
-        profile = Profile.objects.get(username=request.user)
         payment = True
-
-        print(payment)
 
         return render(request, 'payment.html', {'profile_form': profile_form, 'payment_form': payment_form, 'profile': profile, 'payment': payment})
