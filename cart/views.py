@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from accounts.forms import UserRegistrationForm, UserLoginForm, ProfileAddressForm
+from django.shortcuts import get_object_or_404
 from accounts.models import Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -104,8 +105,6 @@ def view_payment(request):
         profile_form = ProfileAddressForm(request.POST)
         payment_form = MakePaymentForm(request.POST)
 
-
-
             # profile = profile_form.cleaned_data
             # obj, created = Profile.objects.update_or_create(username=request.user, defaults=profile)
 
@@ -113,21 +112,24 @@ def view_payment(request):
 
             # cart = request.session.get('cart')
         
-        cart = request.session['cart']
-
-        print(cart)
+        cart = request.session.get('cart')
+        cart_items = []
+        total = 0
+        product_count = 0
 
         for id, quantity in cart.items():
-            id = id
-            quantity = quantity
+            product = get_object_or_404(Item, pk=id)
+            quantity = int(quantity)
+            total += float(quantity * product.price)
+            product_count += quantity
+            cart_items.append({'id': id, 'quantity': product_count, 'product': product})
 
+        print(product)
+        print(product_count)
         order = Order.objects.create(user=request.user, quantity=quantity)
         order.products.add(id)
         order.save()
 
-        print(request.user.id)
-
-        print("stripe checkout happens")
         messages.success(request, "PAID")
         return redirect(reverse('view_payment'))
 
