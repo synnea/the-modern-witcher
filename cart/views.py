@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils import timezone
 from .contexts import cart_contents
+from django.conf import settings
 from items.models import Item
 from .models import Order
 from .forms import MakePaymentForm
@@ -14,7 +15,8 @@ import stripe
 import os
 import datetime
 
-
+stripe.api_key = settings.STRIPE_SECRET
+print(stripe.api_key)
 
 def view_cart(request):
 
@@ -99,13 +101,11 @@ def view_payment(request):
     shipping = True
     request.session['shipping'] = shipping
 
-    if 'payment' in request.POST:
-        stripe_key = os.environ.get("STRIPE_SECRET")
+    if request.method == 'POST':
 
         profile_form = ProfileAddressForm(request.POST)
-        payment_form = MakePaymentForm(request.POST)
 
-        if profile_form.is_valid() and payment_form.is_valid():
+        if profile_form.is_valid():
             profile = profile_form.cleaned_data
             obj, created = Profile.objects.update_or_create(username=request.user, defaults=profile)
             
@@ -123,28 +123,9 @@ def view_payment(request):
                 order = Order.objects.create(user=request.user, quantity=quantity)
                 order.products.add(id)
                 order.save()
-
-            try:
-                customer = stripe.Charge.create(
-                amount=int(total * 100),
-                currency="EUR",
-                description=request.user.email,
-                card=payment_form.cleaned_data['stripe_id']
-                )
-
-            except stripe.error.CardError:
-                messages.error(request, "Your card was declined!")
-            
-            if customer.paid:
-                messages.error(request, "You have successfully paid")
-                request.session['cart'] = {}
-                return redirect(reverse('view_confirm'))
-            else:
-                messages.error(request, "Unable to take payment")
-                return redirect(reverse('view_payment'))
-
+        
         else:
-            messages.error(request, "Something was wrong with one of your forms. You have not been charged.")
+            messages.error(request, "Something was wrong with your address. You have not been charged.")
             return redirect(reverse('view_payment'))
 
     else:
@@ -157,6 +138,38 @@ def view_payment(request):
         payment = True
 
         return render(request, 'payment.html', {'profile_form': profile_form, 'payment_form': payment_form, 'profile': profile, 'payment': payment})
+
+
+def payment(request):
+    
+    payment_form = MakePaymentForm(request.POST)
+
+    if payment_form.is_valid():
+
+        print("valid")
+
+        # try:
+        # customer = stripe.Charge.create(
+        # amount=int(total * 100),
+        # currency="EUR",
+        # description=request.user.email,
+        # card=payment_form.cleaned_data['stripe_id']
+        #     )
+
+        # except stripe.error.CardError:
+        #     messages.error(request, "Your card was declined!")
+            
+        # if customer.paid:
+        #     messages.error(request, "You have successfully paid")
+        #     request.session['cart'] = {}
+        #     return redirect(reverse('view_confirm'))
+        # else:
+        #     messages.error(request, "Unable to take payment")
+        #     return redirect(reverse('view_payment'))
+
+    else:
+        messages.error(request, "Please check your payment form again.")
+        return redirect(reverse('view_payment'))
 
 
 def view_confirm(request):

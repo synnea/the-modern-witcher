@@ -42,7 +42,7 @@
 
         <h3>Payment Details</h3>
 
-        <form id="payment" class="payment" method="POST">
+        <form id="payment" class="payment" method="POST" action="{% url 'payment' %}">
 
         <fieldset class="form-group">
             {% csrf_token %}
