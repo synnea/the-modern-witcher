@@ -101,75 +101,73 @@ def view_payment(request):
     shipping = True
     request.session['shipping'] = shipping
 
-    if request.method == 'POST':
+    current_user = request.user
+    profile = Profile.objects.get(username=current_user)
+    profile_form = ProfileAddressForm(instance=profile)
 
-        profile_form = ProfileAddressForm(request.POST)
+    payment_form = MakePaymentForm()
 
-        if profile_form.is_valid():
-            profile = profile_form.cleaned_data
-            obj, created = Profile.objects.update_or_create(username=request.user, defaults=profile)
-            
-            cart = request.session.get('cart')
-            cart_items = []
-            total = 0
-            product_count = 0
+    payment = True
 
-            for id, quantity in cart.items():
-                product = get_object_or_404(Item, pk=id)
-                quantity = int(quantity)
-                total += float(quantity * product.price)
-                product_count += quantity
-                cart_items.append({'id': id, 'quantity': product_count, 'product': product})
-                order = Order.objects.create(user=request.user, quantity=quantity)
-                order.products.add(id)
-                order.save()
-        
-        else:
-            messages.error(request, "Something was wrong with your address. You have not been charged.")
-            return redirect(reverse('view_payment'))
-
-    else:
-        current_user = request.user
-        profile = Profile.objects.get(username=current_user)
-        profile_form = ProfileAddressForm(instance=profile)
-
-        payment_form = MakePaymentForm()
-
-        payment = True
-
-        return render(request, 'payment.html', {'profile_form': profile_form, 'payment_form': payment_form, 'profile': profile, 'payment': payment})
+    return render(request, 'payment.html', {'profile_form': profile_form, 'payment_form': payment_form, 'profile': profile, 'payment': payment})
 
 
 def payment(request):
     
     payment_form = MakePaymentForm(request.POST)
+    profile_form = ProfileAddressForm(request.POST)
 
-    if payment_form.is_valid():
 
-        print("valid")
-
-        # try:
-        # customer = stripe.Charge.create(
-        # amount=int(total * 100),
-        # currency="EUR",
-        # description=request.user.email,
-        # card=payment_form.cleaned_data['stripe_id']
-        #     )
-
-        # except stripe.error.CardError:
-        #     messages.error(request, "Your card was declined!")
+    if profile_form.is_valid():
+        profile = profile_form.cleaned_data
+        obj, created = Profile.objects.update_or_create(username=request.user, defaults=profile)
             
-        # if customer.paid:
-        #     messages.error(request, "You have successfully paid")
-        #     request.session['cart'] = {}
-        #     return redirect(reverse('view_confirm'))
-        # else:
-        #     messages.error(request, "Unable to take payment")
-        #     return redirect(reverse('view_payment'))
+        cart = request.session.get('cart')
+        cart_items = []
+        total = 0
+        product_count = 0
+
+        for id, quantity in cart.items():
+            product = get_object_or_404(Item, pk=id)
+            quantity = int(quantity)
+            total += float(quantity * product.price)
+            product_count += quantity
+            cart_items.append({'id': id, 'quantity': product_count, 'product': product})
+            order = Order.objects.create(user=request.user, quantity=quantity)
+            order.products.add(id)
+            order.save()
 
     else:
-        messages.error(request, "Please check your payment form again.")
+        print(profile_form.errors)
+        messages.error(request, "Your address form was not valid")
         return redirect(reverse('view_payment'))
+
+    # if payment_form.is_valid():
+
+    #     print("valid")
+
+    #     try:
+    #     customer = stripe.Charge.create(
+    #     amount=int(total * 100),
+    #     currency="EUR",
+    #     description=request.user.email,
+    #     card=payment_form.cleaned_data['stripe_id']
+    #         )
+
+    #     except stripe.error.CardError:
+    #         messages.error(request, "Your card was declined!")
+            
+    #     if customer.paid:
+    #         messages.error(request, "You have successfully paid")
+    #         request.session['cart'] = {}
+    #         return redirect(reverse('view_confirm'))
+    #     else:
+    #         messages.error(request, "Unable to take payment")
+    #         return redirect(reverse('view_payment'))
+
+    # else:
+    #     messages.error(request, "Please check your payment form again.")
+    #     return redirect(reverse('view_payment'))
 
 
 def view_confirm(request):

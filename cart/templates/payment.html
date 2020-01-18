@@ -18,57 +18,43 @@
     <div class="col-6">
 
         <h3>Shipping Address</h3>
-        <p>
-            <div class="row">
-                <div class="col-6">
 
-                    {{profile.address1}}, {{profile.zipcode}}, {{profile.country}}
+        <div class="row">
+            <div class="col-6">
 
-                </div>
-         <div class="col-6">
-            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#address" aria-expanded="false" aria-controls="address">
-              View Full Address
-            </button>
+                {{profile.address1}}, {{profile.zipcode}}, {{profile.country}}
+
+            </div>
+            <div class="col-6">
+                <a class="btn btn-primary" type="button" href="{% url 'view_cart' %}">
+                    Change Address
+                </a>
+            </div>
+
+            <h3>Payment Details</h3>
+
+            <form id="payment" class="payment" method="POST" action="{% url 'payment' %}">
+
+                <fieldset class="form-group">
+                    {% csrf_token %}
+                    {% load bootstrap_tags %}
+                    {{  payment_form | as_bootstrap }}
+                </fieldset>
+            </form>
         </div>
-        </div>
-          </p>
-          <div class="collapse show" id="address" name="address" value="address">
-            <fieldset class="form-group">
-                {% csrf_token %}
-                {% load bootstrap_tags %}
-                {{  profile_form | as_bootstrap }}
-            </fieldset>
-          </div>
-
-        <h3>Payment Details</h3>
-
-        <form id="payment" class="payment" method="POST" action="{% url 'payment' %}">
-
-        <fieldset class="form-group">
-            {% csrf_token %}
-            {% load bootstrap_tags %}
-            {{  payment_form | as_bootstrap }}
-        </fieldset>
-    </form>
     </div>
-
     <div class="col-6">
 
         {% block ordersummary %}
         {% include 'ordersummary.html' %}
         {% endblock %}
 
-    <button class="btn btn-success" button="submit" form="payment" role="button"><span class="glyphicon glyphicon-ok-sign"
-            aria-hidden="true"></span>Complete Order</button>
+        <button class="btn btn-success" button="submit" form="payment" role="button"><span
+                class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Complete Order</button>
 
-<small class="d-block">*clicking on the above button will charge your credit cart</small>
+        <small class="d-block">*clicking on the above button will charge your credit cart</small>
 
 
     </div>
-</div>
 
-<script>
-
-$('.collapse').collapse()
-</script>
-{% endblock %}
+    {% endblock %}
