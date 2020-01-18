@@ -106,7 +106,8 @@ def view_payment(request):
 
     payment = True
 
-    return render(request, 'payment.html', {'profile_form': profile_form, 'payment_form': payment_form, 'profile': profile, 'payment': payment})
+    return render(request, 'payment.html', {'profile_form': profile_form, 'payment_form': payment_form, 'profile': profile, 'payment': payment,
+     'publishable': settings.STRIPE_PUBLISHABLE})
 
 
 def payment(request):
