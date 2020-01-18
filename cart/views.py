@@ -99,40 +99,53 @@ def view_payment(request):
     shipping = True
     request.session['shipping'] = shipping
 
-    if request.method == "POST":
+    if 'payment' in request.POST:
         stripe_key = os.environ.get("STRIPE_SECRET")
 
         profile_form = ProfileAddressForm(request.POST)
         payment_form = MakePaymentForm(request.POST)
 
-            # profile = profile_form.cleaned_data
-            # obj, created = Profile.objects.update_or_create(username=request.user, defaults=profile)
+        if profile_form.is_valid() and payment_form.is_valid():
+            profile = profile_form.cleaned_data
+            obj, created = Profile.objects.update_or_create(username=request.user, defaults=profile)
+            
+            cart = request.session.get('cart')
+            cart_items = []
+            total = 0
+            product_count = 0
 
-            # payment = payment_form.save(commit=False)
+            for id, quantity in cart.items():
+                product = get_object_or_404(Item, pk=id)
+                quantity = int(quantity)
+                total += float(quantity * product.price)
+                product_count += quantity
+                cart_items.append({'id': id, 'quantity': product_count, 'product': product})
+                order = Order.objects.create(user=request.user, quantity=quantity)
+                order.products.add(id)
+                order.save()
 
-            # cart = request.session.get('cart')
-        
-        cart = request.session.get('cart')
-        cart_items = []
-        total = 0
-        product_count = 0
+            try:
+                customer = stripe.Charge.create(
+                amount=int(total * 100),
+                currency="EUR",
+                description=request.user.email,
+                card=payment_form.cleaned_data['stripe_id']
+                )
 
-        for id, quantity in cart.items():
-            product = get_object_or_404(Item, pk=id)
-            quantity = int(quantity)
-            total += float(quantity * product.price)
-            product_count += quantity
-            cart_items.append({'id': id, 'quantity': product_count, 'product': product})
-            order = Order.objects.create(user=request.user, quantity=quantity)
-            order.products.add(id)
-            order.save()
+            except stripe.error.CardError:
+                messages.error(request, "Your card was declined!")
+            
+            if customer.paid:
+                messages.error(request, "You have successfully paid")
+                request.session['cart'] = {}
+                return redirect(reverse('view_confirm'))
+            else:
+                messages.error(request, "Unable to take payment")
+                return redirect(reverse('view_payment'))
 
-        messages.success(request, "PAID")
-        return redirect(reverse('view_payment'))
-
-        # else:
-        #     messages.error(request, "Focus, Witcher! Something went wrong with your credit card.")
-        #     return redirect(reverse('view_payment'))
+        else:
+            messages.error(request, "Something was wrong with one of your forms. You have not been charged.")
+            return redirect(reverse('view_payment'))
 
     else:
         current_user = request.user
@@ -144,3 +157,8 @@ def view_payment(request):
         payment = True
 
         return render(request, 'payment.html', {'profile_form': profile_form, 'payment_form': payment_form, 'profile': profile, 'payment': payment})
+
+
+def view_confirm(request):
+
+    return render(request, 'confirm.html')
