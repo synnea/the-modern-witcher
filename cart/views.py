@@ -115,42 +115,39 @@ def payment(request):
     payment_form = MakePaymentForm(request.POST)
     if payment_form.is_valid():
 
-        print("is valid")
-        messages.success(request, "VALID")
-        return redirect(reverse('view_payment'))
+        cart = request.session.get('cart')
+        cart_items = []
+        total = 0
+        product_count = 0
 
-        # for id, quantity in cart.items():
-        #     product = get_object_or_404(Item, pk=id)
-        #     quantity = int(quantity)
-        #     total += float(quantity * product.price)
-        #     product_count += quantity
-        #     cart_items.append({'id': id, 'quantity': product_count, 'product': product})
-        #     order = Order.objects.create(user=request.user, quantity=quantity)
-        #     order.products.add(id)
-        #     order.save()
+        for id, quantity in cart.items():
+            product = get_object_or_404(Item, pk=id)
+            quantity = int(quantity)
+            total += float(quantity * product.price)
+            product_count += quantity
+            cart_items.append({'id': id, 'quantity': product_count, 'product': product})
+            order = Order.objects.create(user=request.user, quantity=quantity)
+            order.products.add(id)
+            order.save()
 
-        #  try:
-    #     customer = stripe.Charge.create(
-    #     amount=int(total * 100),
-    #     currency="EUR",
-    #     description=request.user.email,
-    #     card=payment_form.cleaned_data['stripe_id']
-    #         )
+        try:
+            customer = stripe.Charge.create(
+                amount=int(total*100),
+                currency='EUR',
+                description=request.user.email,
+                card=payment_form.cleaned_data['stripe_id'],
+                    )
 
-    #     except stripe.error.CardError:
-    #         messages.error(request, "Your card was declined!")
+        except stripe.error.CardError:
+            messages.error(request, "Your card was declined!")
             
-    #     if customer.paid:
-    #         messages.error(request, "You have successfully paid")
-    #         request.session['cart'] = {}
-    #         return redirect(reverse('view_confirm'))
-    #     else:
-    #         messages.error(request, "Unable to take payment")
-    #         return redirect(reverse('view_payment'))
-
-    # else:
-    #     messages.error(request, "Please check your payment form again.")
-    #     return redirect(reverse('view_payment'))
+        if customer.paid:
+            messages.error(request, "You have successfully paid")
+            request.session['cart'] = {}
+            return redirect(reverse('view_confirm'))
+        else:
+            messages.error(request, "Unable to take payment")
+            return redirect(reverse('view_payment'))
 
 
     else:
