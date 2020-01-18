@@ -1,4 +1,14 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block head_js %}
+<script type='text/javascript' src='https://js.stripe.com/v2/'></script>
+<script type='text/javascript'>
+    //<![CDATA[
+    Stripe.publishableKey = '{{ publishable }}';
+    //]]>
+</script>
+
+{% endblock %}
 
 {% block content %}
 
@@ -33,13 +43,19 @@
 
             <h3>Payment Details</h3>
 
-            <form id="payment" class="payment" method="POST" action="{% url 'payment' %}">
+            <form role="form" id="payment-form" method="POST" action="{% url 'payment' %}">
 
                 <fieldset class="form-group">
                     {% csrf_token %}
                     {% load bootstrap_tags %}
                     {{  payment_form | as_bootstrap }}
                 </fieldset>
+
+                <button class="btn btn-success" button="submit" id="submit_payment_btn" name="commit" type="submit"
+                value="Submit Payment"><span
+                    class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Complete Order</button>
+    
+            <small class="d-block">*clicking on the above button will charge your credit cart</small>
             </form>
         </div>
     </div>
@@ -48,12 +64,6 @@
         {% block ordersummary %}
         {% include 'ordersummary.html' %}
         {% endblock %}
-
-        <button class="btn btn-success" button="submit" form="payment" role="button"><span
-                class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Complete Order</button>
-
-        <small class="d-block">*clicking on the above button will charge your credit cart</small>
-
 
     </div>
 

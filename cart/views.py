@@ -98,9 +98,6 @@ def amend_cart(request, id):
 @login_required
 def view_payment(request):
 
-    shipping = True
-    request.session['shipping'] = shipping
-
     current_user = request.user
     profile = Profile.objects.get(username=current_user)
     profile_form = ProfileAddressForm(instance=profile)
@@ -115,38 +112,21 @@ def view_payment(request):
 def payment(request):
     
     payment_form = MakePaymentForm(request.POST)
-    profile_form = ProfileAddressForm(request.POST)
+    if payment_form.is_valid():
 
+        print("is valid")
 
-    if profile_form.is_valid():
-        profile = profile_form.cleaned_data
-        obj, created = Profile.objects.update_or_create(username=request.user, defaults=profile)
-            
-        cart = request.session.get('cart')
-        cart_items = []
-        total = 0
-        product_count = 0
+        # for id, quantity in cart.items():
+        #     product = get_object_or_404(Item, pk=id)
+        #     quantity = int(quantity)
+        #     total += float(quantity * product.price)
+        #     product_count += quantity
+        #     cart_items.append({'id': id, 'quantity': product_count, 'product': product})
+        #     order = Order.objects.create(user=request.user, quantity=quantity)
+        #     order.products.add(id)
+        #     order.save()
 
-        for id, quantity in cart.items():
-            product = get_object_or_404(Item, pk=id)
-            quantity = int(quantity)
-            total += float(quantity * product.price)
-            product_count += quantity
-            cart_items.append({'id': id, 'quantity': product_count, 'product': product})
-            order = Order.objects.create(user=request.user, quantity=quantity)
-            order.products.add(id)
-            order.save()
-
-    else:
-        print(profile_form.errors)
-        messages.error(request, "Your address form was not valid")
-        return redirect(reverse('view_payment'))
-
-    # if payment_form.is_valid():
-
-    #     print("valid")
-
-    #     try:
+        #  try:
     #     customer = stripe.Charge.create(
     #     amount=int(total * 100),
     #     currency="EUR",
@@ -168,6 +148,12 @@ def payment(request):
     # else:
     #     messages.error(request, "Please check your payment form again.")
     #     return redirect(reverse('view_payment'))
+
+
+    else:
+        print(payment_form.errors)
+        messages.error(request, "Your payment form was not valid")
+        return redirect(reverse('view_payment'))
 
 
 def view_confirm(request):
