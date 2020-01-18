@@ -116,6 +116,8 @@ def payment(request):
     if payment_form.is_valid():
 
         print("is valid")
+        messages.success(request, "VALID")
+        return redirect(reverse('view_payment'))
 
         # for id, quantity in cart.items():
         #     product = get_object_or_404(Item, pk=id)

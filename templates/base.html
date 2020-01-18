@@ -27,6 +27,9 @@
 
       <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
 
+      {% block head_js %}
+      {% endblock head_js%}
+
       <link rel="stylesheet" href="{% static 'fonts/the-witcher-stylesheet.css' %}" type="text/css" charset="utf-8" />
 
       {% load compress %}
