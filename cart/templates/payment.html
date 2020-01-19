@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head_js %}
+<script type='text/javascript' src='https://js.stripe.com/v2/'></script>
+<script type='text/javascript'>
+    //<![CDATA[
+    Stripe.publishableKey = '{{ publishable }}';
+    //]]>
+</script>
+
+{% endblock %}
+
+{% block content %}
+
+<a></a>
+<h1>Shipping</h1>
+
+
+
+<div class="row">
+    <div class="col-12 d-block">
+        <a href="{% url 'view_cart' %}">Go back</a>
+    </div>
+</div>
+
+<p>Cart > Shipping > Payment > Confirm</p>
+<div class="row">
+    <div class="col-6">
+
+        <h3>Shipping Address</h3>
+
+        <div class="row">
+            <div class="col-6">
+
+                {{profile.address1}}, {{profile.zipcode}}, {{profile.country}}
+
+            </div>
+            <div class="col-6">
+                <a class="btn btn-primary" type="button" href="{% url 'view_cart' %}">
+                    Change Address
+                </a>
+            </div>
+
+
+
+            <form role="form" id="payment-form" method="POST" action="{% url 'payment' %}">
+
+                
+                <h3>Order Details</h3>
+
+                <fieldset class="form-group">
+                    {% csrf_token %}
+                    {% load bootstrap_tags %}
+                    {{  order_form | as_bootstrap }}
+                </fieldset>
+
+                <h3>Payment Details</h3>
+
+                <fieldset class="form-group">
+                    {% csrf_token %}
+                    {% load bootstrap_tags %}
+                    {{  payment_form | as_bootstrap }}
+                </fieldset>
+
+                <button class="btn btn-success" button="submit" id="submit_payment_btn" name="commit" type="submit"
+                value="Submit Payment"><span
+                    class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Complete Order</button>
+    
+            <small class="d-block">*clicking on the above button will charge your credit cart</small>
+            </form>
+        </div>
+    </div>
+    <div class="col-6">
+
+        {% block ordersummary %}
+        {% include 'ordersummary.html' %}
+        {% endblock %}
+
+    </div>
+
+    {% endblock %}

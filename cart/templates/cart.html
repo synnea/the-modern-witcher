@@ -4,7 +4,7 @@
 
 <h1>Cart</h1>
 
-<p>Cart > Information > Shipping > Payment > Confirm</p>
+<p>Cart > Information > Payment > Confirm</p>
 
 <div class="row">
     <div class="col-6">
@@ -29,10 +29,17 @@
         {% include 'ordersummary.html' %}
         {% endblock %}
 
+        {% if cart_items %}
+        <button class="btn btn-success" button="submit" value="shipping" form="shipping" name="shipping" role="button"><span class="glyphicon glyphicon-ok-sign"
+                aria-hidden="true"></span>Continue</button>
+            {% else %}
+        <p>Add to your cart in order to get your awesome Witcher items! <a href="{% url 'view_all' %}">Go to shop</a></p>
+    
+        {% endif %}
+
     </div>
-  
+
     {% endblock %}
-   
+
 
 </div>
-
