@@ -121,12 +121,11 @@ def payment(request):
     order_form = OrderForm(request.POST)
 
     order = order_form.save(commit=False)
+    order.date = timezone.now()
     order.user = get_object_or_404(User, pk=request.user.id)
 
-    if payment_form.is_valid() and order_form.is_valid():
+    if payment_form.is_valid() and order.is_valid():
 
-        order.date = timezone.now()
-        print(order)
         order.save()
 
         cart = request.session.get('cart')
@@ -168,6 +167,8 @@ def payment(request):
 
     else:
         print(payment_form.errors)
+        print(order_form.errors)
+        print(order.errors)
         messages.error(request, "Your payment form was not valid")
         return redirect(reverse('view_payment'))
 

@@ -13,7 +13,7 @@ class Order(models.Model):
 
     full_name = models.CharField(max_length=50, blank=False, default="Test")
     phone_number = models.CharField(max_length=20, blank=False, default=0)
-    # user = models.ForeignKey(User, on_delete=models.PROTECT)
+    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     date = models.DateField(default=datetime.date.today, null=True)
     
     def __str__(self):
