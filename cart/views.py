@@ -120,12 +120,13 @@ def payment(request):
     payment_form = MakePaymentForm(request.POST)
     order_form = OrderForm(request.POST)
 
-    order = order_form.save(commit=False)
-    order.date = timezone.now()
-    order.user = get_object_or_404(User, pk=request.user.id)
 
-    if payment_form.is_valid() and order.is_valid():
 
+    if payment_form.is_valid() and order_form.is_valid():
+
+        order = order_form.save(commit=False)
+        order.date = timezone.now()
+        order.user = get_object_or_404(User, pk=request.user.id)
         order.save()
 
         cart = request.session.get('cart')
@@ -140,8 +141,7 @@ def payment(request):
                 order_line_item = OrderLineItem(
                         order=order,
                         product=product,
-                        quantity=quantity,
-                        user = request.user
+                        quantity=quantity
                     )
                 order_line_item.save()
 
