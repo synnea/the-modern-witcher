@@ -177,7 +177,9 @@ def payment(request):
 def view_confirm(request):
 
     today = datetime.date.today()
-    order = Order.objects.filter(date=today)
-    print(order)
+    order = Order.objects.last()
 
-    return render(request, 'confirm.html')
+    orderline = OrderLineItem.objects.filter(order=order)
+    print(orderline)
+
+    return render(request, 'confirm.html', {'orderline': orderline})

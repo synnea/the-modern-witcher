@@ -4,14 +4,13 @@
 
 <h1>Thank you for purchasing from The Witcher!</h1>
 
-<h3>Order Summary:</h3
+<h3>Purchased Items</h3>
 
-{% for order in order %}
+{% for orderline in orderline %}
 
-{{ order }}
+{{ orderline.product }}
 
 {% endfor %}
-
-    
-
 {% endblock %}
+
+
