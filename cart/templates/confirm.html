@@ -9,6 +9,7 @@
 {% for orderline in orderline %}
 
 <p>{{ orderline.product }} {{ orderline.quantity }} {{ orderline.product.price }}</p>
+<p><button class="reviewbutton">Review this item!</button></p>
 
 {% endfor %}
 {% endblock %}
