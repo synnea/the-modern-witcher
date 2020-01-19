@@ -16,7 +16,9 @@ import os
 import datetime
 
 stripe.api_key = settings.STRIPE_SECRET
-print(stripe.api_key)
+
+today = datetime.date.today()
+order = Order.objects.filter(date=today)
 
 def view_cart(request):
 
@@ -106,8 +108,11 @@ def view_payment(request):
 
     payment = True
 
-    return render(request, 'payment.html', {'profile_form': profile_form, 'payment_form': payment_form, 'profile': profile, 'payment': payment,
-     'publishable': settings.STRIPE_PUBLISHABLE})
+    context = {'profile_form': profile_form, 'payment_form': payment_form, 
+            'profile': profile, 'payment': payment,
+            'publishable': settings.STRIPE_PUBLISHABLE}
+
+    return render(request, 'payment.html', context)
 
 
 def payment(request):
@@ -127,7 +132,7 @@ def payment(request):
             product_count += quantity
             cart_items.append({'id': id, 'quantity': product_count, 'product': product})
             order = Order.objects.create(user=request.user, quantity=quantity)
-            order.products.add(id)
+            order.products.add(product)
             order.save()
 
         try:
@@ -156,6 +161,11 @@ def payment(request):
         return redirect(reverse('view_payment'))
 
 
+
 def view_confirm(request):
+
+    today = datetime.date.today()
+    order = Order.objects.filter(date=today)
+    print(order)
 
     return render(request, 'confirm.html')
