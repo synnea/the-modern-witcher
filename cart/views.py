@@ -1,9 +1,22 @@
 from django.shortcuts import render, redirect, reverse
 from accounts.forms import UserRegistrationForm, UserLoginForm, ProfileAddressForm
+from django.shortcuts import get_object_or_404
 from accounts.models import Profile
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.utils import timezone
 from .contexts import cart_contents
+from django.conf import settings
+from items.models import Item
+from accounts.models import User
+from .models import Order, OrderLineItem
+from .forms import MakePaymentForm, OrderForm
 from accounts import views
+import stripe
+import os
+import datetime
+
+stripe.api_key = settings.STRIPE_SECRET
 
 def view_cart(request):
 
@@ -27,8 +40,7 @@ def view_cart(request):
                 user = request.user
                 profile = profile_form.cleaned_data
                 obj, created = Profile.objects.update_or_create(username=user, defaults=profile)
-                print(obj, created)
-                return render(request, 'shipping.html')
+                return redirect(reverse('view_payment'))
 
             else:
                 messages.error(request, "Keep an eye on your mana! Something went wrong with that form.")
@@ -60,7 +72,7 @@ def add_to_cart(request, id):
     request.session['cart'] = cart
     return redirect(reverse('view_cart'))
 
-
+@login_required
 def amend_cart(request, id):
     """Adjust the quantity of the specified product to the specified amount."""
 
@@ -74,11 +86,97 @@ def amend_cart(request, id):
     
     amended = True
     request.session['amended'] = amended
-    return redirect(reverse('view_cart'))
+
+    if request.session.get('shipping'):
+        del request.session['shipping']
+        return redirect(reverse('view_payment'))
+
+    else:    
+        return redirect(reverse('view_cart'))
 
 
-def view_shipping(request):
+@login_required
+def view_payment(request):
 
-    profile_form = ProfileAddressForm(request.POST)
+    current_user = request.user
+    profile = Profile.objects.get(username=current_user)
+    profile_form = ProfileAddressForm(instance=profile)
 
-    return render(request, 'shipping.html')
+    payment_form = MakePaymentForm()
+    order_form = OrderForm()
+
+    payment = True
+
+    context = {'profile_form': profile_form, 'payment_form': payment_form, 
+            'profile': profile, 'payment': payment,
+            'order_form': order_form,
+            'publishable': settings.STRIPE_PUBLISHABLE}
+
+    return render(request, 'payment.html', context)
+
+
+def payment(request):
+    
+    payment_form = MakePaymentForm(request.POST)
+    order_form = OrderForm(request.POST)
+
+    order = order_form.save(commit=False)
+    order.user = get_object_or_404(User, pk=request.user.id)
+
+    if payment_form.is_valid() and order_form.is_valid():
+
+        order.date = timezone.now()
+        print(order)
+        order.save()
+
+        cart = request.session.get('cart')
+        cart_items = []
+        total = 0
+        product_count = 0
+
+        for id, quantity in cart.items():
+                product = get_object_or_404(Item, pk=id)
+                quantity = int(quantity)
+                total += quantity * product.price
+                order_line_item = OrderLineItem(
+                        order=order,
+                        product=product,
+                        quantity=quantity,
+                        user = request.user
+                    )
+                order_line_item.save()
+
+        try:
+            customer = stripe.Charge.create(
+                amount=int(total*100),
+                currency='EUR',
+                description=request.user.email,
+                card=payment_form.cleaned_data['stripe_id'],
+                    )
+
+        except stripe.error.CardError:
+            messages.error(request, "Your card was declined!")
+            
+        if customer.paid:
+            messages.error(request, "You have successfully paid")
+            request.session['cart'] = {}
+            return redirect(reverse('view_confirm'))
+        else:
+            messages.error(request, "Unable to take payment")
+            return redirect(reverse('view_payment'))
+
+
+    else:
+        print(payment_form.errors)
+        messages.error(request, "Your payment form was not valid")
+        return redirect(reverse('view_payment'))
+
+
+
+def view_confirm(request):
+
+    today = datetime.date.today()
+    order = Order.objects.filter(date=today)
+    print(order)
+
+    return render(request, 'confirm.html')
