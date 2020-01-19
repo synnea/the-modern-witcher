@@ -8,17 +8,15 @@ from django.utils import timezone
 from .contexts import cart_contents
 from django.conf import settings
 from items.models import Item
-from .models import Order
-from .forms import MakePaymentForm
+from accounts.models import User
+from .models import Order, OrderLineItem
+from .forms import MakePaymentForm, OrderForm
 from accounts import views
 import stripe
 import os
 import datetime
 
 stripe.api_key = settings.STRIPE_SECRET
-
-today = datetime.date.today()
-order = Order.objects.filter(date=today)
 
 def view_cart(request):
 
@@ -105,11 +103,13 @@ def view_payment(request):
     profile_form = ProfileAddressForm(instance=profile)
 
     payment_form = MakePaymentForm()
+    order_form = OrderForm()
 
     payment = True
 
     context = {'profile_form': profile_form, 'payment_form': payment_form, 
             'profile': profile, 'payment': payment,
+            'order_form': order_form,
             'publishable': settings.STRIPE_PUBLISHABLE}
 
     return render(request, 'payment.html', context)
@@ -118,7 +118,16 @@ def view_payment(request):
 def payment(request):
     
     payment_form = MakePaymentForm(request.POST)
-    if payment_form.is_valid():
+    order_form = OrderForm(request.POST)
+
+
+
+    if payment_form.is_valid() and order_form.is_valid():
+
+        order = order_form.save(commit=False)
+        order.date = timezone.now()
+        order.user = get_object_or_404(User, pk=request.user.id)
+        order.save()
 
         cart = request.session.get('cart')
         cart_items = []
@@ -126,14 +135,15 @@ def payment(request):
         product_count = 0
 
         for id, quantity in cart.items():
-            product = get_object_or_404(Item, pk=id)
-            quantity = int(quantity)
-            total += float(quantity * product.price)
-            product_count += quantity
-            cart_items.append({'id': id, 'quantity': product_count, 'product': product})
-            order = Order.objects.create(user=request.user, quantity=quantity)
-            order.products.add(product)
-            order.save()
+                product = get_object_or_404(Item, pk=id)
+                quantity = int(quantity)
+                total += quantity * product.price
+                order_line_item = OrderLineItem(
+                        order=order,
+                        product=product,
+                        quantity=quantity
+                    )
+                order_line_item.save()
 
         try:
             customer = stripe.Charge.create(
@@ -157,6 +167,8 @@ def payment(request):
 
     else:
         print(payment_form.errors)
+        print(order_form.errors)
+        print(order.errors)
         messages.error(request, "Your payment form was not valid")
         return redirect(reverse('view_payment'))
 

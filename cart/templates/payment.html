@@ -41,9 +41,20 @@
                 </a>
             </div>
 
-            <h3>Payment Details</h3>
+
 
             <form role="form" id="payment-form" method="POST" action="{% url 'payment' %}">
+
+                
+                <h3>Order Details</h3>
+
+                <fieldset class="form-group">
+                    {% csrf_token %}
+                    {% load bootstrap_tags %}
+                    {{  order_form | as_bootstrap }}
+                </fieldset>
+
+                <h3>Payment Details</h3>
 
                 <fieldset class="form-group">
                     {% csrf_token %}
