@@ -4,6 +4,7 @@ from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from .forms import UserLoginForm, UserRegistrationForm, ProfileAddressForm
 from .models import Profile
+from cart.models import Order, OrderLineItem
 from cart.views import view_cart
 from modern_witcher.views import home_view
 from django.template.context_processors import csrf
@@ -19,11 +20,28 @@ def view_account(request):
             current_user = request.user
             user = Profile.objects.get(username=current_user)
             profile_form = ProfileAddressForm(instance=user)
-            return render(request, 'myaccount.html', {'profile_form': profile_form})
+
         
         except:
             profile_form = ProfileAddressForm()
-            return render(request, 'myaccount.html', {'profile_form': profile_form})
+
+        orders = Order.objects.filter(user=request.user).order_by('-date')
+
+        all_orders = []
+
+        for order in orders:
+            order_items_db = OrderLineItem.objects.filter(order=order)
+            order_items = []
+            order_total = 0
+            for order_item in order_items_db:
+                order_items.append(order_item)
+                order_items = order_items
+                order_total += int(order_item.product.price * order_item.quantity)
+                print(order_items)
+            all_orders.append({'order': order, 'order_items': order_items, "total": order_total})
+
+
+        return render(request, 'myaccount.html', {'profile_form': profile_form, 'all_orders': all_orders, 'order_items': order_items})
 
     else:
         account = True

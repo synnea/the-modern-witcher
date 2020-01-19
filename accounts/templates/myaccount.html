@@ -3,16 +3,46 @@
 {% block content %}
 
 <h1>Greetings, {{ user.username }}</h1>
-<div class="jumbotron">
-    <form id="addressform" class="addressform" method="POST" action="{% url 'save_address' %}">
 
-        <fieldset class="form-group">
-            {% csrf_token %}
-            {% load bootstrap_tags %}
-            {{  profile_form | as_bootstrap }}
-            <button type="submit" class="btn btn-primary">Update</button>
-        </fieldset>
-    </form>
+<div class="row">
+    <div class="col-6">
+
+        <h3>Saved Address</h3>
+
+        <div class="jumbotron">
+            <form id="addressform" class="addressform" method="POST" action="{% url 'save_address' %}">
+
+                <fieldset class="form-group">
+                    {% csrf_token %}
+                    <!-- {% load bootstrap_tags %} -->
+                    <!-- {{ form.errors }}
+            {{ form.non_field_errors }} -->
+                    {{  profile_form }}
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-6">
+        <h3>Purchased Items</h3>
+
+{% for order in all_orders %}
+
+<p>{{ order.order.date }} {{ order.total }}</p>
+
+{% for order_item in order.order_items %}
+
+{{ order_item }}
+
+{% endfor %}
+
+{% endfor %}
+
+
+
+
+
 </div>
 
 <a href="{% url 'logout' %}">
