@@ -8,7 +8,7 @@
 
 {% for orderline in orderline %}
 
-{{ orderline.product }}
+<p>{{ orderline.product }} {{ orderline.quantity }}</p>
 
 {% endfor %}
 {% endblock %}
