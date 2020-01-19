@@ -27,26 +27,41 @@
     <div class="col-6">
         <h3>Purchased Items</h3>
 
-{% for order in all_orders %}
+        {% for order in all_orders %}
 
-<p>{{ order.order.date }} {{ order.total }}</p>
+        <p><b>{{ order.order.date }} - Total Order Price: € {{ order.total }}</p></b>
 
-{% for order_item in order.order_items %}
+        <table class="table">
 
-{{ order_item }}
+            <thead>
+                <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price per Unit</th>
+            </tr>
+            </thead>
 
-{% endfor %}
+            <tbody>
+            {% for order_item in order.order_items %}
+            <tr>
+                <td>{{ order_item.product }}:</td>
+                <td>{{ order_item.quantity }}</td> -- € <td>{{ order_item.product.price }}</td>
+            </th>
+            </tr>
 
-{% endfor %}
+        </table>
+        {% endfor %}
+
+        {% endfor %}
 
 
 
 
 
-</div>
+    </div>
 
-<a href="{% url 'logout' %}">
-    Logout
-</a>
+    <a href="{% url 'logout' %}">
+        Logout
+    </a>
 
-{% endblock %}
+    {% endblock %}
