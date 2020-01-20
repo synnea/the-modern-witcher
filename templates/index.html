@@ -24,5 +24,14 @@
     </div>
 
     <!-- END LANDING PAGE -->
+
+    <div class="container-fluid">
+
+        {% for feature in featured %}
+
+        {{ feature }}
+
+        {% endfor %}
+    </div>
 </section>
 {% endblock %}

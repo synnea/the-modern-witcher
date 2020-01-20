@@ -1,4 +1,12 @@
 from django.shortcuts import render
+from items.models import Item
 
 def home_view(request):
-    return render(request, 'index.html')
+    """ A view that renders the home page. 
+    Looks up items that are featured. """
+
+    featured = Item.objects.filter(featured="True")[:3]
+
+    print(featured)
+
+    return render(request, 'index.html', {'featured': featured})
