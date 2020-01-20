@@ -6,7 +6,5 @@ def home_view(request):
     Looks up items that are featured. """
 
     featured = Item.objects.filter(featured="True")[:3]
-
-    print(featured)
-
+    
     return render(request, 'index.html', {'featured': featured})
