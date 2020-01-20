@@ -3,6 +3,8 @@ from items.models import Item
 from django.contrib.auth.decorators import login_required
 from .forms import ReviewForm
 from django.contrib import messages
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.models import User
 
 
 def view_all(request):
@@ -29,17 +31,18 @@ def submit_review(request, id):
     review_form = ReviewForm(request.POST)
 
     if review_form.is_valid():
-        review_form.save(commit=False)
-
-        review_form.user = request.user
-        review_form.reviewed_item = id
+        review = review_form.save(commit=False)
+        review.user = get_object_or_404(User, pk=request.user.id)
+        review.reviewed_item = get_object_or_404(Item, pk=id)
+        
 
         review_form.save()
-        
+        product = Item.objects.get(pk=id)
         messages.success(request, "Thank you for telling us what you think!")
-        return redirect('product.get_item_details')
+        return redirect('view_all')
 
 
     else: 
+        product = Item.objects.get(pk=id)
         messages.error(request, "Sorry, we could not save your review.")
-        return redirect(reverse('product.get_item_details'))
+        return redirect(reverse('view_all'))

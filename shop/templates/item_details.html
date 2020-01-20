@@ -46,8 +46,15 @@
 
 <h3>View Reviews</h3>
 
-<h3>Leave your Review</h3>
+{% for review in reviews %}
 
+{{ reviews.headline }}
+
+{{ reviews.rating }}
+
+{{ reviews.review_text }}
+
+{% endfor %}
 
 </div>
 
@@ -57,7 +64,7 @@
 {% if purchased %}
 
 
-<form role="form" id="review-form" method="POST" action=".">
+<form role="form" id="review-form" method="POST" action="{% url 'submit_review' id=item.id %}">
 
                 
     <h3>Leave a Review!</h3>
