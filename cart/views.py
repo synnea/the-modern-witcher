@@ -117,7 +117,7 @@ def amend_cart(request, id):
 
 @login_required
 def view_payment(request):
-
+    """ View that shows the renders payment.html."""
 
     current_user = request.user
     profile = Profile.objects.get(username=current_user)
@@ -126,10 +126,9 @@ def view_payment(request):
     payment_form = MakePaymentForm()
     order_form = OrderForm()
 
-    payment = True
 
     context = {'profile_form': profile_form, 'payment_form': payment_form, 
-            'profile': profile, 'payment': payment,
+            'profile': profile,
             'order_form': order_form,
             'publishable': settings.STRIPE_PUBLISHABLE}
 
@@ -137,11 +136,14 @@ def view_payment(request):
 
 
 def payment(request):
+    """ View that handles all the payment functionality."""
     
     payment_form = MakePaymentForm(request.POST)
     order_form = OrderForm(request.POST)
 
     if payment_form.is_valid() and order_form.is_valid():
+
+        # adds the current time zone and the logged in user to the form.
 
         order = order_form.save(commit=False)
         order.date = timezone.now()
@@ -152,6 +154,9 @@ def payment(request):
         cart_items = []
         total = 0
         product_count = 0
+
+        # loops through all the items in the cart and inserts the
+        # data into OrderLineItem objects.
 
         for id, quantity in cart.items():
                 product = get_object_or_404(Item, pk=id)
@@ -164,6 +169,8 @@ def payment(request):
                         user = request.user
                     )
                 order_line_item.save()
+
+        # handle Stripe functionality
 
         try:
             customer = stripe.Charge.create(
@@ -184,17 +191,14 @@ def payment(request):
             messages.error(request, "Unable to take payment")
             return redirect(reverse('view_payment'))
 
-
     else:
-        print(payment_form.errors)
-        print(order_form.errors)
-        print(order.errors)
         messages.error(request, "Your payment form was not valid")
         return redirect(reverse('view_payment'))
 
 
 
 def view_confirm(request):
+    """View that renders the confirmation page after successful payment"""
 
     order = Order.objects.last()
 
