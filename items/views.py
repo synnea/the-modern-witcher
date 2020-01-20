@@ -16,17 +16,14 @@ class ItemDetailView(DetailView):
 
         user = self.request.user
 
-        ordered_items = Order.objects.filter(user=user)
+        try:
+            ordered_items = OrderLineItem.objects.filter(user=user, product=item)[0]
+            purchased = "Yes, bought"
 
-        if _id in ordered_items:
-            purchased = "Bought"
-
-        else:
-            purchased = "Not bought"
+        except:
+            purchased = "No, not bought"
 
         product = {'item': item, 'purchased': purchased}
-
-        print(product)
 
         return product
 
