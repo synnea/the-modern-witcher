@@ -25,6 +25,7 @@ class OrderLineItem(models.Model):
 
     objects = models.Manager()
     order = models.ForeignKey(Order, null=False, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     product = models.ForeignKey(Item, null=False, on_delete=models.CASCADE)
     quantity = models.IntegerField(blank=False)
 
