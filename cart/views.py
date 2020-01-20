@@ -120,8 +120,6 @@ def payment(request):
     payment_form = MakePaymentForm(request.POST)
     order_form = OrderForm(request.POST)
 
-
-
     if payment_form.is_valid() and order_form.is_valid():
 
         order = order_form.save(commit=False)

@@ -13,8 +13,8 @@ class Review(models.Model):
     ('1', '1'),
 )
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    reviewed_item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+    reviewed_item = models.ForeignKey(Item, null=True,  on_delete=models.CASCADE)
     headline = models.CharField(max_length=25, blank=False)
     rating = models.CharField(max_length=1,choices=RATING_CHOICES, blank=False)
     review_text = models.TextField(max_length=250, blank=True)

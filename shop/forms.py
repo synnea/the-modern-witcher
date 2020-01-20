@@ -7,3 +7,4 @@ class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = ('headline', 'rating', 'review_text')
+        exclude = ('user', 'item',)
