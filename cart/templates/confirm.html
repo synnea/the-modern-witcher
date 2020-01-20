@@ -9,7 +9,7 @@
 {% for orderline in orderline %}
 
 <p>{{ orderline.product }} {{ orderline.quantity }} {{ orderline.product.price }}</p>
-<p><button class="reviewbutton">Review this item!</button></p>
+<a href="{{ orderline.product.get_item_details }}">Review this item!</a>
 
 {% endfor %}
 {% endblock %}

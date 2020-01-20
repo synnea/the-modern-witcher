@@ -44,7 +44,7 @@
             <tbody>
             {% for order_item in order.order_items %}
             <tr>
-                <td>{{ order_item.product }}</td> <p><button class="reviewbutton">Review this item!</button></p>
+                <td>{{ order_item.product }}</td> <p><a href="{{ order_item.product.get_item_details }}">Review this item!</a></p>
                 <td>{{ order_item.quantity }}</td> -- € <td>{{ order_item.product.price }}</td>
             </th>
             </tr>
