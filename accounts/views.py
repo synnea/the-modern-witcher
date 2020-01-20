@@ -13,6 +13,13 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 
 def view_account(request):
+    """
+    Renders the account page.
+    Checks if the user is logged in. If they are, fetch their
+    profile from the database and instantiate it.
+    Also look up their orders in the database.
+    If they're not logged in, redirect to logreg page.
+    """
 
     if request.user.is_authenticated:
 
@@ -50,6 +57,8 @@ def view_account(request):
 
 
 def logreg(request):
+    """ Login and registration view that renders
+    the corresponding forms. """
 
     register_form = UserRegistrationForm()
     login_form = UserLoginForm()
@@ -65,6 +74,8 @@ def register(request):
     if register_form.is_valid():
         register_form.save()
 
+        # if the form was valid, insert the user data into the form.
+
         username = register_form.cleaned_data.get('username')
         raw_password = register_form.cleaned_data.get('password1')
         user = authenticate(username=username, password=raw_password)
@@ -77,6 +88,8 @@ def register(request):
         elif request.session.get('cart_access'):
             del request.session['cart_access']
             return redirect(reverse('view_cart'))
+
+            # if the form was not valid, reject the form and reload the page.
     else:
         messages.error(request, "We could not register you! Sure you re-entered your password correctly and haven't already registered?")
         return redirect(reverse('view_account'))
@@ -103,9 +116,13 @@ def login(request):
             user = Profile.objects.get(username=current_user)
             profile_form = ProfileAddressForm(instance=user)
 
+            # Checks if the user previously tried to access account and redirects to account
+
             if request.session.get('account'):
                 del request.session['account']
                 return render(request, 'myaccount.html', {'profile_form': profile_form})
+
+            # Checks if the user previously tried to access the cart and redirects to cart
 
             elif request.session.get('cart_access'):
                 del request.session['cart_access']
@@ -123,6 +140,10 @@ def login(request):
 
 @login_required
 def save_address(request):
+    """ A view that saves the address in the Profile model.
+    It updates the profile model if no address had been saved before.
+    Otherwise, it creates a new profile instance. """
+     
     form = ProfileAddressForm(request.POST)
     if form.is_valid():
         user = request.user

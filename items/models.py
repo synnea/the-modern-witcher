@@ -2,8 +2,7 @@ from django.db import models
 from django.urls import reverse
 
 class Item(models.Model):
-
-    
+   
     objects = models.Manager()
 
     ARMORER = 'Armor'

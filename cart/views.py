@@ -19,21 +19,34 @@ import datetime
 stripe.api_key = settings.STRIPE_SECRET
 
 def view_cart(request):
+    """ A view that renders the cart view."""
 
     if request.user.is_authenticated:
 
-        if request.session.get('amended'):
-            del request.session['amended']
-        
+        # Save a cookie to signify that the user is on the shipping part of 
+        # the checkout process. This is needed for the amend_cart function.
+
+        shipping = True
+        request.session['shipping'] = shipping
+
+        # checks if the user already has saved their address in the account section.
+
         try:
             current_user = request.user
             user = Profile.objects.get(username=current_user)
             profile_form = ProfileAddressForm(instance=user)
         
+        # if they haven't, instantiate an empty form.
+
         except:
             profile_form = ProfileAddressForm()
 
         if 'shipping' in request.POST:
+
+            del request.session['shipping']
+
+            # checks if the profile form is valid, and if it is,
+            # either updates the existing data or creates a new instance.
 
             profile_form = ProfileAddressForm(request.POST)
             if profile_form.is_valid():
@@ -50,6 +63,10 @@ def view_cart(request):
             return render(request, 'cart.html', {'profile_form': profile_form})
 
     else:
+
+        # if the user is not logged in, redirect them to logreg.
+        # Save cookie that marks their access point.
+
         cart_access = True
         request.session['cart_access'] = cart_access
         return redirect(reverse('logreg'))
@@ -72,6 +89,7 @@ def add_to_cart(request, id):
     request.session['cart'] = cart
     return redirect(reverse('view_cart'))
 
+
 @login_required
 def amend_cart(request, id):
     """Adjust the quantity of the specified product to the specified amount."""
@@ -79,24 +97,27 @@ def amend_cart(request, id):
     quantity = int(request.POST.get('quantity'))
     cart = request.session.get('cart', {})
 
+    # if the quantity is reduced to 0, remove the item.
+
     if quantity > 0:
         cart[id] = quantity
     else:
         cart.pop(str(id))    
-    
-    amended = True
-    request.session['amended'] = amended
+
+    request.session['cart'] = cart
+
+    # check if the 'shipping' cookie is present.
 
     if request.session.get('shipping'):
-        del request.session['shipping']
-        return redirect(reverse('view_payment'))
+        return redirect(reverse('view_cart'))
 
     else:    
-        return redirect(reverse('view_cart'))
+        return redirect(reverse('view_payment'))
 
 
 @login_required
 def view_payment(request):
+
 
     current_user = request.user
     profile = Profile.objects.get(username=current_user)

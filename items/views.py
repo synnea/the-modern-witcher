@@ -6,12 +6,18 @@ from shop.forms import ReviewForm
 from shop.models import Review
 
 class ItemDetailView(DetailView):
+    """ A detailed view for the shop items."""
 
     model = Item
     template_name = 'item_details.html'
     context_object_name = 'product'
 
     def get_context_data(self, queryset=Item, **kwargs):
+        """ Function that createst the context to be renders on the detail page.
+        Fetches the item by id, and determines if the user has already bought
+        that very item by checking against the database.
+        Then it checks if reviews have been submitted for the item, and 
+        collects them in a separate object. """
 
         _id = int(self.kwargs.get('pk'))
         item = get_object_or_404(Item, id=_id)
@@ -32,8 +38,6 @@ class ItemDetailView(DetailView):
             reviews = False
 
         review_form = ReviewForm()
-
-        print(reviews)
 
         product = {'item': item, 'purchased': purchased, 
         'review_form': review_form, 'reviews': reviews}
