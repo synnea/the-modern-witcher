@@ -2,40 +2,64 @@
 
 {% block content %}
 
-<h1>Item Detail</h1>
-
-<h1>{{ purchased }}</h1>
+<h3>{{ item }}</h3>
 
 <div class="row row-flex">
 
     <div class="col-12 d-block">
-    <a href="{% url 'view_all' %}">Go back</a>
+        <a href="{% url 'view_all' %}">Go back</a>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-6">
+        <div class="panel-body">
+            <img src="{{ MEDIA_URL }}{{ item.image }}" class="img-detail" alt="detailed-item-image" />
+
+        </div>
+    </div>
+    <div class="col-6">
+        <form method="post" action="">
+            {% csrf_token %}
+            <div class="input-group">
+                <input name="quantity" type="number" min="1" max="999" class="form-control" placeholder="Quantity">
+                <span class="input-group-btn">
+                    <button class="btn btn-success" type="submit">Add</button>
+                </span>
+            </div>
+        </form>
+
+        <p class="product-description">{{ item.description }}</p>
+        
+    <p>Height: {{item.height}}</p>
+    <p>Width: {{item.width}}</p>
+    <p>Weight: {{item.weight}}</p>
+
+        <p class="product-category">{{item.category}}</p>
+        <p>€{{ item.price }}</p>
+    </div>
 </div>
 
-        <div class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-4 display panel panel-default">
-            <div class="panel-body">
-                <img src="{{ MEDIA_URL }}{{ item.image }}" alt="detailed-item-image" />
+<div class="row">
 
-                <h3>{{ item }}</h3>
+    <div class="col-12">
 
-                <p class="product-description">{{ item.description }}</p>
-                <p class="product-category">{{item.category}}</p>
-                <p>€{{ item.price }}</p>
-                <p>{{item.height}}</p>
-                <p>{{item.width}}</p>
-                <p>{{item.weight}}</p>
+<h3>View Reviews</h3>
 
-                <form method="post" action="">
-                    {% csrf_token %}
-                    <div class="input-group">
-                        <input name="quantity" type="number" min="1" max="999" class="form-control" placeholder="Quantity">
-                        <span class="input-group-btn">
-                            <button class="btn btn-success" type="submit">Add</button>
-                        </span>
-                    </div>
-                </form>
-            </div>
-        </div>
+<h3>Leave your Review</h3>
+
+
+</div>
+
+</div>
+
+
+{% if purchased %}
+
+<h1>I bought this!</h1>
+
+{% endif %}
+</div>
 </div>
 
 {% endblock %}

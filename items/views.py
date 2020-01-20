@@ -18,10 +18,10 @@ class ItemDetailView(DetailView):
 
         try:
             ordered_items = OrderLineItem.objects.filter(user=user, product=item)[0]
-            purchased = "Yes, bought"
+            purchased = True
 
         except:
-            purchased = "No, not bought"
+            purchased = False
 
         product = {'item': item, 'purchased': purchased}
 
