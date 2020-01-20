@@ -2,6 +2,7 @@ from items.models import Item
 from cart.models import OrderLineItem, Order
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.views.generic.detail import DetailView
+from shop.forms import ReviewForm
 
 class ItemDetailView(DetailView):
 
@@ -23,7 +24,9 @@ class ItemDetailView(DetailView):
         except:
             purchased = False
 
-        product = {'item': item, 'purchased': purchased}
+        review_form = ReviewForm()
+
+        product = {'item': item, 'purchased': purchased, 'review_form': review_form}
 
         return product
 

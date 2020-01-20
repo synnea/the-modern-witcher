@@ -56,10 +56,24 @@
 
 {% if purchased %}
 
-<h1>I bought this!</h1>
+
+<form role="form" id="review-form" method="POST" action=".">
+
+                
+    <h3>Leave a Review!</h3>
+
+    <fieldset class="form-group">
+        {% csrf_token %}
+        {% load bootstrap_tags %}
+        {{  review_form | as_bootstrap }}
+    </fieldset>
+
+    <button class="btn btn-success" button="submit" id="submit_review" name="review" type="submit"
+    value="Submit Review"><span
+        class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Review</button>
+</form>
+
 
 {% endif %}
-</div>
-</div>
 
 {% endblock %}
