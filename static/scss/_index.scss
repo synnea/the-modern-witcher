@@ -37,3 +37,14 @@
     // }
 
 }
+
+.tagline {
+    font-family: $secondary-font;
+}
+
+.hero-content {
+
+    @include height-scaling;
+
+    margin-left: 20vh;
+}

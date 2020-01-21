@@ -16,6 +16,11 @@ $purple: #872FB9;
 $black: #1B1725;
 $murky-purple: #534B62;
 
+// Fonts
+
+$main-font: 'Oswald', sans-serif;
+$secondary-font: 'Merriweather', serif;
+
 // Media query breakpoints
 
 $bp-mini: 576px;
@@ -46,4 +51,9 @@ $bp-desktop: 1200px;
     @media (min-width: $bp-desktop) {
         height: 100vh;
     }
+}
+
+
+body {
+    font-family: $main-font;
 }

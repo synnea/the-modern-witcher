@@ -8,8 +8,93 @@ h1 {
   font-family: 'the-witcher', Arial, sans-serif;
 }
 
+body {
+  font-family: "Oswald", sans-serif;
+}
+
 .img-detail {
   width: 500px;
   height: 500px;
+}
+
+@font-face {
+  font-family: 'the-witcher';
+  src: url("/static/fonts/the-witcher.woff") format("woff");
+  src: url("/static/fonts/the-witcher.woff") format("woff2");
+}
+
+h1 {
+  font-family: 'the-witcher', Arial, sans-serif;
+}
+
+body {
+  font-family: "Oswald", sans-serif;
+}
+
+#hero {
+  background: url("/media/hero-img.jpg") center center no-repeat;
+  background-size: cover !important;
+  background-position: center center;
+  -moz-background-size: cover !important;
+  -o-background-size: cover !important;
+  position: relative;
+  height: 60vh;
+}
+
+@media screen and (orientation: landscape) {
+  #hero {
+    height: 100vh;
+  }
+}
+
+@media (min-width: 992px) {
+  #hero {
+    height: 70vh;
+  }
+}
+
+@media (min-width: 1024px) {
+  #hero {
+    height: 80vh;
+  }
+}
+
+@media (min-width: 1200px) {
+  #hero {
+    height: 100vh;
+  }
+}
+
+.tagline {
+  font-family: "Merriweather", serif;
+}
+
+.hero-content {
+  height: 60vh;
+  margin-left: 20vh;
+}
+
+@media screen and (orientation: landscape) {
+  .hero-content {
+    height: 100vh;
+  }
+}
+
+@media (min-width: 992px) {
+  .hero-content {
+    height: 70vh;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-content {
+    height: 80vh;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero-content {
+    height: 100vh;
+  }
 }
 /*# sourceMappingURL=main.css.map */
