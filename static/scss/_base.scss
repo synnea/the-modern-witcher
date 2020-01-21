@@ -7,3 +7,43 @@
 h1 {
     font-family: 'the-witcher', Arial, sans-serif; 
 }
+
+
+// Colors 
+
+$orange: #D69E63;
+$purple: #872FB9;
+$black: #1B1725;
+$murky-purple: #534B62;
+
+// Media query breakpoints
+
+$bp-mini: 576px;
+$bp-landscape: 667px;
+$bp-mobile: 768px;
+$bp-tablet: 992px;
+$bp-ipadpro: 1024px;
+$bp-desktop: 1200px;
+
+
+// Create height scale mixin to be used for responsive design.
+
+@mixin height-scaling {
+    height: 60vh;
+
+    @media screen and (orientation: landscape) {
+        height: 100vh;
+    }
+
+    @media (min-width: $bp-tablet) {
+        height: 70vh;
+    }
+
+    @media (min-width: $bp-ipadpro) {
+        height: 80vh;
+    }
+
+    @media (min-width: $bp-desktop) {
+        height: 100vh;
+    }
+}

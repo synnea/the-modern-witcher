@@ -17,6 +17,8 @@
 
                     <div class="h-text text-center">
                         <h1>The Modern Witcher</h1>
+                        <h2>upgrade your demon-slaying online!</h2>
+                        <a href="{% url 'view_all' %}"><button>See items now</button></a>
                     </div>
                 </div>
             </div>
@@ -25,6 +27,22 @@
 
     <!-- END LANDING PAGE -->
 
+    </div>
+</section>
+{% endblock %}
+
+<div class="container-fluid about-wrapper"></div>
+
+<h2>About</h2>
+
+
+
+<section id="about">
+
+
+
+</section>
+
     <div class="container-fluid">
 
         {% for feature in featured %}
@@ -32,6 +50,3 @@
         {{ feature }}
 
         {% endfor %}
-    </div>
-</section>
-{% endblock %}
