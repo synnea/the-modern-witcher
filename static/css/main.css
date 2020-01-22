@@ -21,7 +21,11 @@ body {
 }
 
 .bg-light.scrolled {
-  background-color: #D69E63 !important;
+  background-color: #534B62 !important;
+}
+
+.nav-link.scrolled {
+  color: #D69E63 !important;
 }
 
 .img-detail {
@@ -52,7 +56,11 @@ body {
 }
 
 .bg-light.scrolled {
-  background-color: #D69E63 !important;
+  background-color: #534B62 !important;
+}
+
+.nav-link.scrolled {
+  color: #D69E63 !important;
 }
 
 #hero {
