@@ -23,6 +23,14 @@
 
 }
 
+.header-text {
+    font-size: 4rem;
+
+    @media (min-width: $bp-desktop) {
+        font-size: 5rem;
+    }
+}
+
 .tagline {
     font-family: $secondary-font;
 
@@ -38,8 +46,7 @@
     margin-left: 2vh;
 
     @media (min-width: $bp-tablet) {
-        margin: 0;
-        justify-content: left;
+        margin-left: 30vh;
     }
 }
 
