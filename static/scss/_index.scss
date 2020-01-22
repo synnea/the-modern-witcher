@@ -7,9 +7,9 @@
 // Main image. Uses a smaller version of the same image for small devices in order to cut down on loading times.
 
 #hero {
-    background: url("/media/hero-img.jpg") center center no-repeat;
+    background: url("/media/hero-img.jpg") center top no-repeat;
     background-size: cover !important;
-    background-position: center center;
+    background-position: center top;
     -moz-background-size: cover !important;
     -o-background-size: cover !important;
     position: relative;
