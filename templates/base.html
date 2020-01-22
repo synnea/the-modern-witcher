@@ -22,17 +22,13 @@
       <!-- Google fonts -->
       <link href="https://fonts.googleapis.com/css?family=Merriweather|Oswald&display=swap" rel="stylesheet">
 
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha256-CjSoeELFOcH0/uxWu6mC/Vlrc1AARqbm/jiiImDGV3s=" crossorigin="anonymous"></script>
-      {% load static %}
-
-      <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
-      <script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>
+        <!-- Hover CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover.css"/>
 
       {% block head_js %}
       {% endblock head_js%}
-
+      {% load static %}
+      
       <link rel="stylesheet" href="{% static 'fonts/the-witcher-stylesheet.css' %}" type="text/css" charset="utf-8" />
 
       {% load compress %}
@@ -59,5 +55,12 @@
 
      <!-- scripts for bootstrap -->
 
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha256-CjSoeELFOcH0/uxWu6mC/Vlrc1AARqbm/jiiImDGV3s=" crossorigin="anonymous"></script>
+
+
+     <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
+     <script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>
 </body>
 </html>
