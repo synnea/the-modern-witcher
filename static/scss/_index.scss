@@ -16,46 +16,48 @@
 
     @include height-scaling;
 
-    // @media (min-width: $bp-tablet) {
-    //     background: url("/static/img/puzzle-md.jpg");
-    //     background-position: center center;
-
-    // }
-
-    // @media (min-width: $bp-ipadpro) {
-    //     background: url("/static/img/puzzle-lg.jpg");
-    //     background-position: center center;
-    //     background-size: cover;
-
-    // }
-
-    // @media (min-width: $bp-desktop) {
-    //     background: url("/static/img/puzzle-lg-cropped.jpg");
-    //     background-position: center center;
-    //     background-size: cover;
-
-    // }
+    @media (max-width: $bp-tablet) {
+        background: url("/media/bg-mobile.png");
+        background-position: center center;
+    }
 
 }
 
 .tagline {
     font-family: $secondary-font;
+
+    @media (max-width: $bp-desktop) {
+        font-size: 1.2rem;
+    }
 }
 
 .hero-content {
 
     @include height-scaling;
 
-    margin-left: 20vh;
+    margin-left: 2vh;
+
+    @media (min-width: $bp-tablet) {
+        margin: 0;
+        justify-content: left;
+    }
 }
 
 .CTA-button {
     height: 8vh;
     margin-top: 5vh;
-    width: 12vw;
+    width: auto;
     text-transform: uppercase;
     font-family: the-witcher;
     font-size: 1.2rem;
+}
+
+.h-text {
+    text-align: left;
+
+    @media (min-width: $bp-tablet) {
+        text-align: center;
+    }
 }
 
 .about-wrapper {
@@ -66,7 +68,7 @@
 }
 
 .card-deck {
-    height: 15vh;
+    height: auto;
     display: flex;
     justify-content: center;
     margin-bottom: 35vh;
@@ -77,6 +79,19 @@
     height: auto;
     margin-left: 20vh;
 
+    @media (max-width: $bp-tablet) {
+margin: 0 !important;
+    }
+
+}
+
+.card-col {
+    @media (max-width: $bp-tablet) {
+        justify-content: center;
+        display: flex;
+        margin-top: 5vh;
+        margin-bottom: 5vh;
+    }
 }
 
 .card-img-top {
