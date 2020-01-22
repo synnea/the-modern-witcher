@@ -1,6 +1,6 @@
 <div class="container-fluid navbar-container">
     <div class="row">
-        <nav class="col-12 navbar navbar-expand-lg navbar-light bg-light" id="navbar">
+        <nav class="col-12 navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navbar">
 
             <!-- Logo which serves as home button -->
 
@@ -26,12 +26,14 @@
                     </li>
 
                     <li class="nav-item" id="navAccount">
-                        <a class="nav-link hvr-bounce-in" href="{% url 'view_account' %}" id="navAccount">Account</a>
+                        <a class="nav-link hvr-bounce-in" href="{% url 'view_account' %}" id="navAccount">
+                            <i class="fas fa-user-circle"></i>
+                        </a>
                     </li>
 
                     <li class="nav-item" id="navCart">
                         <a class="nav-link hvr-bounce-in" href="{% url 'view_cart' %}" id="navCart">
-                            <i class="fa fa-shipping-cart"></i>
+                            <i class="fas fa-cart-arrow-down"></i>
                             {% if product_count > 0 %}
                             <label class="badge badge-warning">{{ product_count }}</label>
                             {% endif %}

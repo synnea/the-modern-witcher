@@ -12,6 +12,18 @@ body {
   font-family: "Oswald", sans-serif;
 }
 
+.fas {
+  font-size: 1.8rem;
+}
+
+.bg-light {
+  background-color: transparent !important;
+}
+
+.bg-light.scrolled {
+  background-color: #D69E63 !important;
+}
+
 .img-detail {
   width: 500px;
   height: 500px;
@@ -31,10 +43,22 @@ body {
   font-family: "Oswald", sans-serif;
 }
 
+.fas {
+  font-size: 1.8rem;
+}
+
+.bg-light {
+  background-color: transparent !important;
+}
+
+.bg-light.scrolled {
+  background-color: #D69E63 !important;
+}
+
 #hero {
-  background: url("/media/hero-img.jpg") center center no-repeat;
+  background: url("/media/hero-img.jpg") center top no-repeat;
   background-size: cover !important;
-  background-position: center center;
+  background-position: center top;
   -moz-background-size: cover !important;
   -o-background-size: cover !important;
   position: relative;
@@ -43,7 +67,7 @@ body {
 
 @media screen and (orientation: landscape) {
   #hero {
-    height: 90vh;
+    height: 100vh;
   }
 }
 
@@ -61,7 +85,7 @@ body {
 
 @media (min-width: 1200px) {
   #hero {
-    height: 90vh;
+    height: 100vh;
   }
 }
 
@@ -76,7 +100,7 @@ body {
 
 @media screen and (orientation: landscape) {
   .hero-content {
-    height: 90vh;
+    height: 100vh;
   }
 }
 
@@ -94,7 +118,7 @@ body {
 
 @media (min-width: 1200px) {
   .hero-content {
-    height: 90vh;
+    height: 100vh;
   }
 }
 /*# sourceMappingURL=main.css.map */

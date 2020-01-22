@@ -37,7 +37,7 @@ $bp-desktop: 1200px;
     height: 60vh;
 
     @media screen and (orientation: landscape) {
-        height: 90vh;
+        height: 100vh;
     }
 
     @media (min-width: $bp-tablet) {
@@ -49,11 +49,24 @@ $bp-desktop: 1200px;
     }
 
     @media (min-width: $bp-desktop) {
-        height: 90vh;
+        height: 100vh;
     }
 }
 
 
 body {
     font-family: $main-font;
+}
+
+.fas {
+    font-size: 1.8rem;
+}
+
+.bg-light {
+    background-color: transparent !important;
+
+}
+
+.bg-light.scrolled {
+    background-color: $orange !important;
 }
