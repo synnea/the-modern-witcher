@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<section id="hero" class="align-items-center justify-content-center d-flex">
+<section id="hero" class="align-items-center justify-content-center d-block">
 
     <!-- Add overlay -->
 
@@ -18,7 +18,8 @@
                     <div class="h-text text-center">
                         <h1 class="header-text">The Modern Witcher</h1>
                         <h4 class="tagline">upgrade your demon-slaying online!</h4>
-                        <a href="{% url 'view_all' %}" class="CTA"><button class="CTA-button purple-button">See items now</button></a>
+                        <a href="{% url 'view_all' %}" class="CTA"><button class="CTA-button purple-button">See items
+                                now</button></a>
                     </div>
                 </div>
             </div>
@@ -31,20 +32,21 @@
 </section>
 
 
-
-
-<section id="about">
+<section id="about d-block">
 
     <div class="container-fluid about-wrapper">
 
         <h2>About</h2>
 
         <p>'The Modern Witcher' is an online store that specializes in merchandise for the The Witcher franchise.</p>
-        <p>Come discover our exclusive merchandise on offer and enjoy worldwide shipping for all your demon-slaying needs.</p>
-        
-        </div>
+        <p>Come discover our exclusive merchandise on offer and enjoy worldwide shipping for all your demon-slaying
+            needs.</p>
+
+    </div>
 
 </section>
+
+<section id="feature-section" class="d-block">
 
     <div class="container-fluid">
 
@@ -53,8 +55,8 @@
         <div class="card-deck">
             <div class="row justify-content-center">
                 {% for feature in featured %}
-                <div class="col-12 col-md-3">
-                    <div class="card m-5" style="width:300px">
+                <div class="col-12 offset-3 col-md-3">
+                    <div class="card m-5">
                         <img class="card-img-top" src="{{ MEDIA_URL }}{{ feature.image }}" alt="Feature image">
                         <div class="card-body">
                             <h4 class="card-title">{{ feature.name }}</h4>
@@ -71,6 +73,6 @@
             </div>
         </div>
 
-       
+</section>
 
-        {% endblock %}
+{% endblock %}

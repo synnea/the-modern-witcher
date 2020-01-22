@@ -1,0 +1,223 @@
+@font-face {
+  font-family: 'the-witcher';
+  src: url("/static/fonts/the-witcher.woff?5505d5f44908") format("woff");
+  src: url("/static/fonts/the-witcher.woff?5505d5f44908") format("woff2"); }
+
+/* line 7, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_base.scss */
+h1 {
+  font-family: 'the-witcher', Arial, sans-serif;
+  font-size: 3rem; }
+
+/* line 60, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_base.scss */
+.purple-button {
+  box-shadow: inset 0px 39px 0px -24px #534B62;
+  background-color: #872FB9;
+  border-radius: 4px;
+  border: 1px solid #ffffff;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 15px;
+  padding: 6px 15px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #534B62; }
+
+/* line 74, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_base.scss */
+.purple-button:hover {
+  background-color: #534B62; }
+
+/* line 77, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_base.scss */
+.purple-button:active {
+  position: relative;
+  top: 1px; }
+
+/* line 83, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_base.scss */
+body {
+  font-family: "Oswald", sans-serif;
+  padding: 0; }
+
+/* line 88, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_base.scss */
+html {
+  padding: 0; }
+
+/* line 92, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_base.scss */
+.col-12 {
+  padding: 0 !important; }
+
+/* line 96, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_base.scss */
+.fas {
+  font-size: 1.8rem; }
+
+/* line 100, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_base.scss */
+.bg-light {
+  background-color: transparent !important; }
+
+/* line 105, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_base.scss */
+.bg-light.scrolled {
+  background-color: #534B62 !important; }
+
+/* line 109, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_base.scss */
+.nav-link.scrolled {
+  color: #D69E63 !important; }
+
+/* line 1, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_shop.scss */
+.img-detail {
+  width: 500px;
+  height: 500px; }
+
+@font-face {
+  font-family: 'the-witcher';
+  src: url("/static/fonts/the-witcher.woff?5505d5f44908") format("woff");
+  src: url("/static/fonts/the-witcher.woff?5505d5f44908") format("woff2"); }
+
+/* line 7, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_base.scss */
+h1 {
+  font-family: 'the-witcher', Arial, sans-serif;
+  font-size: 3rem; }
+
+/* line 60, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_base.scss */
+.purple-button {
+  box-shadow: inset 0px 39px 0px -24px #534B62;
+  background-color: #872FB9;
+  border-radius: 4px;
+  border: 1px solid #ffffff;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 15px;
+  padding: 6px 15px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #534B62; }
+
+/* line 74, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_base.scss */
+.purple-button:hover {
+  background-color: #534B62; }
+
+/* line 77, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_base.scss */
+.purple-button:active {
+  position: relative;
+  top: 1px; }
+
+/* line 83, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_base.scss */
+body {
+  font-family: "Oswald", sans-serif;
+  padding: 0; }
+
+/* line 88, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_base.scss */
+html {
+  padding: 0; }
+
+/* line 92, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_base.scss */
+.col-12 {
+  padding: 0 !important; }
+
+/* line 96, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_base.scss */
+.fas {
+  font-size: 1.8rem; }
+
+/* line 100, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_base.scss */
+.bg-light {
+  background-color: transparent !important; }
+
+/* line 105, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_base.scss */
+.bg-light.scrolled {
+  background-color: #534B62 !important; }
+
+/* line 109, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_base.scss */
+.nav-link.scrolled {
+  color: #D69E63 !important; }
+
+/* line 9, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_index.scss */
+#hero {
+  background: url("/media/hero-img.jpg") center top no-repeat;
+  background-size: cover !important;
+  background-position: center top;
+  -moz-background-size: cover !important;
+  -o-background-size: cover !important;
+  position: relative;
+  height: 60vh; }
+  @media screen and (orientation: landscape) {
+    /* line 9, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_index.scss */
+    #hero {
+      height: 100vh; } }
+  @media (min-width: 992px) {
+    /* line 9, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_index.scss */
+    #hero {
+      height: 70vh; } }
+  @media (min-width: 1024px) {
+    /* line 9, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_index.scss */
+    #hero {
+      height: 80vh; } }
+  @media (min-width: 1200px) {
+    /* line 9, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_index.scss */
+    #hero {
+      height: 100vh; } }
+/* line 41, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_index.scss */
+.tagline {
+  font-family: "Merriweather", serif; }
+
+/* line 45, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_index.scss */
+.hero-content {
+  height: 60vh;
+  margin-left: 20vh; }
+  @media screen and (orientation: landscape) {
+    /* line 45, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_index.scss */
+    .hero-content {
+      height: 100vh; } }
+  @media (min-width: 992px) {
+    /* line 45, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_index.scss */
+    .hero-content {
+      height: 70vh; } }
+  @media (min-width: 1024px) {
+    /* line 45, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_index.scss */
+    .hero-content {
+      height: 80vh; } }
+  @media (min-width: 1200px) {
+    /* line 45, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_index.scss */
+    .hero-content {
+      height: 100vh; } }
+/* line 52, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_index.scss */
+.CTA-button {
+  height: 8vh;
+  margin-top: 5vh;
+  width: 12vw;
+  text-transform: uppercase;
+  font-family: the-witcher;
+  font-size: 1.2rem; }
+
+/* line 61, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_index.scss */
+.about-wrapper {
+  text-align: center;
+  padding: 5vh;
+  background-color: #D69E63;
+  color: black; }
+
+/* line 68, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_index.scss */
+.card-deck {
+  height: auto;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 35vh; }
+
+/* line 76, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_index.scss */
+.card {
+  display: inline-block;
+  height: auto;
+  margin-left: 20vh;
+  width: 300px; }
+  @media (max-width: 992px) {
+    /* line 76, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_index.scss */
+    .card {
+      width: 150px;
+      margin: 0 auto; } }
+/* line 89, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_index.scss */
+.card-img-top {
+  width: 300px;
+  height: 300px; }
+  @media (max-width: 992px) {
+    /* line 89, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_index.scss */
+    .card-img-top {
+      width: 150px;
+      height: 150px; } }

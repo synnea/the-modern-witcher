@@ -82,6 +82,15 @@ $bp-desktop: 1200px;
 
 body {
     font-family: $main-font;
+    padding: 0;
+}
+
+html {
+    padding:0;
+}
+
+.col-12 {
+    padding:0 !important;
 }
 
 .fas {
