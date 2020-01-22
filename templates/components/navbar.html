@@ -30,7 +30,12 @@
                     </li>
 
                     <li class="nav-item" id="navCart">
-                        <a class="nav-link hvr-bounce-in" href="{% url 'view_cart' %}" id="navCart">Cart</a>
+                        <a class="nav-link hvr-bounce-in" href="{% url 'view_cart' %}" id="navCart">
+                            <i class="fa fa-shipping-cart"></i>
+                            {% if product_count > 0 %}
+                            <label class="badge badge-warning">{{ product_count }}</label>
+                            {% endif %}
+                        </a>
                     </li>
                 </ul>
             </div>

@@ -43,7 +43,7 @@ body {
 
 @media screen and (orientation: landscape) {
   #hero {
-    height: 100vh;
+    height: 90vh;
   }
 }
 
@@ -61,7 +61,7 @@ body {
 
 @media (min-width: 1200px) {
   #hero {
-    height: 100vh;
+    height: 90vh;
   }
 }
 
@@ -76,7 +76,7 @@ body {
 
 @media screen and (orientation: landscape) {
   .hero-content {
-    height: 100vh;
+    height: 90vh;
   }
 }
 
@@ -94,7 +94,7 @@ body {
 
 @media (min-width: 1200px) {
   .hero-content {
-    height: 100vh;
+    height: 90vh;
   }
 }
 /*# sourceMappingURL=main.css.map */
