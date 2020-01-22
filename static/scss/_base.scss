@@ -6,6 +6,7 @@
 
 h1 {
     font-family: 'the-witcher', Arial, sans-serif; 
+    font-size: 3rem;
 }
 
 
@@ -15,6 +16,7 @@ $orange: #D69E63;
 $purple: #872FB9;
 $black: #1B1725;
 $murky-purple: #534B62;
+$red: #C23138;
 
 // Fonts
 
@@ -51,6 +53,30 @@ $bp-desktop: 1200px;
     @media (min-width: $bp-desktop) {
         height: 100vh;
     }
+}
+
+// Button Design
+
+.purple-button {
+	box-shadow:inset 0px 39px 0px -24px $murky-purple;
+	background-color: $purple;
+	border-radius:4px;
+	border:1px solid #ffffff;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	padding:6px 15px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px $murky-purple;
+}
+.purple-button:hover {
+	background-color: $murky-purple;
+}
+.purple-button:active {
+	position:relative;
+	top:1px;
 }
 
 

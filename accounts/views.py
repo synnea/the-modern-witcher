@@ -44,7 +44,6 @@ def view_account(request):
                 order_items.append(order_item)
                 order_items = order_items
                 order_total += int(order_item.product.price * order_item.quantity)
-                print(order_items)
             all_orders.append({'order': order, 'order_items': order_items, "total": order_total})
 
 
@@ -149,7 +148,6 @@ def save_address(request):
         user = request.user
         profile = form.cleaned_data
         obj, created = Profile.objects.update_or_create(username=user, defaults=profile)
-        print(obj)
         if created:
             messages.success(request, 'Thanks for saving your address!')
         else:
