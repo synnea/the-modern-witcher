@@ -4,11 +4,6 @@
     src: url('/static/fonts/the-witcher.woff') format('woff2');
 }
 
-h1 {
-    font-family: 'the-witcher', Arial, sans-serif; 
-    font-size: 3rem;
-}
-
 
 // Colors 
 
@@ -17,6 +12,7 @@ $purple: #872FB9;
 $black: #1B1725;
 $murky-purple: #534B62;
 $red: #C23138;
+$golden: #D6BA70;
 
 // Fonts
 
@@ -36,7 +32,7 @@ $bp-desktop: 1200px;
 // Create height scale mixin to be used for responsive design.
 
 @mixin height-scaling {
-    height: 60vh;
+    height: 80vh;
 
     @media screen and (orientation: landscape) {
         height: 100vh;
@@ -79,6 +75,23 @@ $bp-desktop: 1200px;
 	top:1px;
 }
 
+// General layout
+
+h1 {
+    font-family: 'the-witcher', Arial, sans-serif; 
+    font-size: 2rem;
+
+    @media (min-width: $bp-tablet) {
+        font-size: 3rem;
+    }
+}
+
+.logo {
+    font-family: 'the-witcher', Arial, sans-serif;
+    text-transform: none;
+    font-size: 2rem;
+    color: $red;
+}
 
 body {
     font-family: $main-font;
@@ -103,9 +116,5 @@ html {
 }
 
 .bg-light.scrolled {
-    background-color: $murky-purple !important;
-}
-
-.nav-link.scrolled {
-    color: $orange !important;
+    background-color: $golden !important;
 }

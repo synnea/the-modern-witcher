@@ -8,9 +8,7 @@ $(document).ready(function () {
         $("#navbar").removeClass("fixed-top").addClass("static-top");
     } else {
         $(window).scroll(function () {
-            $("nav").toggleClass('scrolled', $(this).scrollTop() > 20);
-            $(".nav-link").toggleClass('scrolled', $(this).scrollTop() > 20);
-        });
+            $("nav").toggleClass('scrolled', $(this).scrollTop() > 20);        });
     }
 
     // Call the same functions upon window resize.
@@ -24,7 +22,6 @@ $(document).ready(function () {
 
             $(window).scroll(function () {
                 $("nav").toggleClass('scrolled', $(this).scrollTop() > 50);
-                $(".nav-link").toggleClass('scrolled', $(this).scrollTop() > 50);
             });
         }
     });
