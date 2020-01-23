@@ -86,13 +86,15 @@ h1 {
     }
 }
 
-.logo {
+.logo, .logo:hover, .logo:active {
     font-family: 'the-witcher', Arial, sans-serif;
-    text-transform: none;
+    text-decoration: none !important;
+    cursor: pointer !important;
     font-size: 2rem;
     color: $red;
     margin-left: 5vw;
 }
+
 
 body {
     font-family: $main-font;
