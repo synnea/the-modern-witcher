@@ -22,6 +22,7 @@
     vertical-align: middle;
 }
 
-.cat-button:active, .cat-button:focus {
-    background-color: $orange;
+.active {
+    background-color: red !important;
 }
+

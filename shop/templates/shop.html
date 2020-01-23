@@ -8,12 +8,12 @@
 
     <ul class="cat-list flex flex-wrap justify-center items-center">
         <li class="mx-1 d-block cat-item">
-            <a href="{% url 'view_all' %}"><button class="cat-button cat-active">View All</button></a>
+            <a href="{% url 'view_all' %}"><button class="cat-all">View All</button></a>
         </li>
 
         {% for category in categories %}
         <li class="mx-1 cat-item">
-            <a href="{% url 'view_categories' category %}"><button class="cat-button">{{ category }}</button></a>
+            <a href="{% url 'view_categories' category %}"><button id="{{category}}" class="cat-button">{{ category }}</button></a>
         </li>
         {% endfor %}
     </ul>
