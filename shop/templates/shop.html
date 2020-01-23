@@ -13,7 +13,8 @@
 
         {% for category in categories %}
         <li class="mx-1 cat-item">
-            <a href="{% url 'view_categories' category %}"><button id="{{category}}" class="cat-button">{{ category }}</button></a>
+            <a href="{% url 'view_categories' category %}"><button id="{{category}}"
+                    class="cat-button">{{ category }}</button></a>
         </li>
         {% endfor %}
     </ul>
@@ -25,12 +26,13 @@
 
                 <div class="product" style="background-image: url('{{ MEDIA_URL }}{{ product.image }}')"></div>
                 <a href="{{product.get_item_details}}">
-                    <h3>{{ product.name }}</h3>
+                    <h3 class="product-header">{{ product.name }}</h3>
                 </a>
-                <p class="product-category">{{product.category}}</p>
-                <p class="product-description">{{ product.description }}</p>
-                <p>€{{ product.price }}</p>
 
+                <div class="panel-details">
+                    <p class="product-category">{{product.category}}</p>
+                    <p>€{{ product.price }}</p>
+                </div>
                 <form method="post" action="{% url 'add_to_cart' id=product.id %}">
 
                     {% csrf_token %}

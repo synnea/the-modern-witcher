@@ -85,7 +85,7 @@
 
 .card {
     display: inline-block !important;
-    height: auto;
+    min-height: 300px;
     margin-left: 20vh;
     width: 300px;
 
@@ -119,7 +119,7 @@ margin: 0 !important;
 
 .card-img-top {
 width: 300px;
-height: auto;
+height: 200px;
 
 @media (max-width: $bp-tablet) {
     width: 200px;

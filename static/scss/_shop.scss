@@ -46,3 +46,41 @@
     background-color:$orange !important;
 }
 
+.row.row-flex {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.panel-default {
+    border-color: transparent;
+    padding: 0 10px;
+    margin-bottom: 5vh;
+}
+
+.product-header {
+    text-align: center;
+}
+
+.panel-body {
+    height: 100%;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.panel-details {
+text-align: center;
+}
+
+.product-description {
+    min-height: 40px;
+}
+
+.product {
+    height: 200px;
+    width: 200px;
+    background-position:center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+}
