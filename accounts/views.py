@@ -112,14 +112,12 @@ def login(request):
         if user:
             auth.login(request=request, user=user)
             current_user = request.user
-            user = Profile.objects.get(username=current_user)
-            profile_form = ProfileAddressForm(instance=user)
 
             # Checks if the user previously tried to access account and redirects to account
 
             if request.session.get('account'):
                 del request.session['account']
-                return render(request, 'myaccount.html', {'profile_form': profile_form})
+                return redirect(reverse('view_account'))
 
             # Checks if the user previously tried to access the cart and redirects to cart
 
@@ -129,7 +127,7 @@ def login(request):
 
         else:
             messages.error(request, "Wind's howling... your credentials are incorrect.")
-            return redirect(reverse('view_account'))
+            return redirect(reverse('logreg'))
 
     else:
         messages.error(request, "Wind's howling... something went wrong.")

@@ -106,7 +106,7 @@ html {
 }
 
 .message {
-    margin-top: 5vh;
+    padding-top: 10vh;
 }
 
 .col-12 {
@@ -124,4 +124,12 @@ html {
 
 .bg-light.scrolled {
     background-color: $golden !important;
+}
+
+.form-jumbo {
+    margin-top: 10vh;
+}
+
+.alert {
+    margin-bottom: 0;
 }

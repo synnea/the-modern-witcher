@@ -2,66 +2,77 @@
 
 {% block content %}
 
-<h1>Greetings, {{ user.username }}</h1>
+<section class="profile-wrapper">
 
-<div class="row">
-    <div class="col-6">
-
-        <h3>Saved Address</h3>
-
-        <div class="jumbotron">
-            <form id="addressform" class="addressform" method="POST" action="{% url 'save_address' %}">
-
-                <fieldset class="form-group">
-                    {% csrf_token %}
-                    <!-- {% load bootstrap_tags %} -->
-                    <!-- {{ form.errors }}
-            {{ form.non_field_errors }} -->
-                    {{  profile_form }}
-                    <button type="submit" class="btn btn-primary">Update</button>
-                </fieldset>
-            </form>
+    <div class="row">
+        <div class="col-6">
+            <h1>Greetings, {{ user.username }}</h1>
         </div>
-    </div>
 
-    <div class="col-6">
-        <h3>Purchased Items</h3>
-
-        {% for order in all_orders %}
-
-        <p><b>{{ order.order.date }} - Total Order Price: € {{ order.total }}</p></b>
-
-        <table class="table">
-
-            <thead>
-                <tr>
-                <th scope="col">Product</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Price per Unit</th>
-            </tr>
-            </thead>
-
-            <tbody>
-            {% for order_item in order.order_items %}
-            <tr>
-                <td>{{ order_item.product }}</td> <p><a href="{{ order_item.product.get_item_details }}">Review this item!</a></p>
-                <td>{{ order_item.quantity }}</td> -- € <td>{{ order_item.product.price }}</td>
-            </th>
-            </tr>
-
-        </table>
-        {% endfor %}
-
-        {% endfor %}
-
-
-
-
+        <div class="col-6">
+            <button class="btn btn-secondary logout-btn"><a class="logout-link" href="{% url 'logout' %}">
+                Logout
+            </a></button>
+        </div>
 
     </div>
+    <div class="row address-row">
+        <div class="col-6">
 
-    <a href="{% url 'logout' %}">
-        Logout
-    </a>
+            <h3>Saved Address</h3>
 
-    {% endblock %}
+            <div class="jumbotron">
+                <form id="addressform" class="addressform" method="POST" action="{% url 'save_address' %}">
+
+                    <fieldset class="form-group">
+                        {% csrf_token %}
+                        {% load bootstrap_tags %}
+                        {{ form.errors }}
+                        {{ form.non_field_errors }}
+                        {{  profile_form | as_bootstrap  }}
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <h3>Purchased Items</h3>
+
+            {% for order in all_orders %}
+
+            <p><b>{{ order.order.date }} - Total Order Price: € {{ order.total }}</p></b>
+
+            <table class="table">
+
+                <thead>
+                    <tr>
+                        <th scope="col">Product</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Price per Unit</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for order_item in order.order_items %}
+                    <tr>
+                        <td>{{ order_item.product }}</td>
+                        <p><a href="{{ order_item.product.get_item_details }}">Review this item!</a></p>
+                        <td>{{ order_item.quantity }}</td> -- € <td>{{ order_item.product.price }}</td>
+                        </th>
+                    </tr>
+
+            </table>
+            {% endfor %}
+
+            {% endfor %}
+
+
+
+
+
+        </div>
+
+
+</section>
+{% endblock %}
