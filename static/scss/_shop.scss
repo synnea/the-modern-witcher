@@ -9,8 +9,13 @@
 
 
 .img-detail {
-    width: 500px;
-    height: 500px;
+    width: 40vh;
+    height: 40vh;
+
+    @media (min-width: $bp-mobile) {
+        width: 500px;
+        height: 500px;
+    }
 }
 
 .category-item {
@@ -93,11 +98,19 @@ text-align: center;
 }
 
 .img-detail {
-    padding: 50px;
+    padding: 0px;
+
+    @media (min-width: $bp-mobile) {
+padding: 50px;
+    }
 }
 
 .detail-info {
-    padding-top: 50px;
+    padding: 0px;
+
+    @media (min-width: $bp-mobile) {
+padding: 50px;
+    }
 }
 
 .detail-wrapper {
@@ -129,7 +142,11 @@ text-align: center;
 }
 
 .review-row {
-    padding-left: 50px;
+    padding: 0px;
+
+    @media (min-width: $bp-mobile) {
+padding: 50px;
+    }
 }
 
 .fa-arrow-circle-down.active a:before {
@@ -137,3 +154,8 @@ text-align: center;
 	-moz-transform: rotate(180deg);
 	transform: rotate(180deg);
 } 
+
+.leave-review {
+    padding-left: 50px;
+    margin-top: 10vh;
+}

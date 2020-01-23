@@ -9,18 +9,18 @@
     <div class="row row-flex">
 
         <div class="col-12 d-block back-btn">
-            <a href="{% url 'view_all' %}">Go back</a>
+            <a href="{% url 'view_all' %}">Return to Shop</a>
         </div>
 
     </div>
     <div class="row">
-        <div class="col-6">
+        <div class="col-12 col-md-6">
             <div class="detail-panel">
                 <img src="{{ MEDIA_URL }}{{ item.image }}" class="img-detail" alt="detailed-item-image" />
 
             </div>
         </div>
-        <div class="col-6 detail-info">
+        <div class="col-12 col-md-6 detail-info">
             <form method="post" action="{% url 'add_to_cart' id=item.id %}">
 
                 {% csrf_token %}
@@ -45,27 +45,7 @@
 
     <div class="row review-row">
 
-        <div class="panel panel-default">
-            <div class="panel-heading active" role="tab" id="review-heading">
-              <h4 class="panel-title">
-                <a role="button" data-toggle="collapse" href="#reviews" aria-expanded="true" aria-controls="collapseOne">
-                    <h3>View Reviews</h3>                </a>
-              </h4>
-            </div>
-            <div id="reviews" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-              <div class="panel-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-              </div>
-            </div>
-          </div>
-
         <div class="col-12">
-
-            <!-- <a class="btn btn-outline-secondary" data-toggle="collapse" href="#reviews" role="button" aria-expanded="false" aria-controls="collapseExample">
-                <h3>View Reviews</h3><i class="fas fa-arrow-circle-down"></i>
-              </a>
- -->
-
 
             <div class="collapse" id="reviews">
 
@@ -124,21 +104,23 @@
 
     {% if purchased %}
 
+    <div class="row leave-review">
 
-    <form role="form" id="review-form" method="POST" action="{% url 'submit_review' id=item.id %}">
+        <form role="form" id="review-form" method="POST" action="{% url 'submit_review' id=item.id %}">
 
+            <h3>Leave a Review!</h3>
 
-        <h3>Leave a Review!</h3>
+            <fieldset class="form-group">
+                {% csrf_token %}
+                {% load bootstrap_tags %}
+                {{  review_form | as_bootstrap }}
+            </fieldset>
 
-        <fieldset class="form-group">
-            {% csrf_token %}
-            {% load bootstrap_tags %}
-            {{  review_form | as_bootstrap }}
-        </fieldset>
-
-        <button class="btn btn-success" button="submit" id="submit_review" name="review" type="submit"
-            value="Submit Review"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Review</button>
-    </form>
+            <button class="btn btn-success" button="submit" id="submit_review" name="review" type="submit"
+                value="Submit Review"><span class="glyphicon glyphicon-ok-sign"
+                    aria-hidden="true"></span>Review</button>
+        </form>
+    </div>
 
 </div>
 {% endif %}
