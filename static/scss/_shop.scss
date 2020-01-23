@@ -1,10 +1,12 @@
-.shop-wrapper {
+.shop-wrapper, .detail-wrapper {
     margin: 0;
 
     @media (min-width: $bp-tablet) {
         margin: 10vh;
     }
 }
+
+
 
 .img-detail {
     width: 500px;
@@ -83,4 +85,37 @@ text-align: center;
     background-size: contain;
     background-repeat: no-repeat;
     margin: 0 auto;
+}
+
+.back-btn {
+    margin-left: 5vh;
+    margin-bottom: 5vh;
+}
+
+.img-detail {
+    padding: 50px;
+}
+
+.detail-info {
+    padding-top: 50px;
+}
+
+.detail-wrapper {
+    margin-top: 20vh;
+    margin-left: 10vh;
+    margin-right: 10vh;
+}
+
+.back-btn {
+    margin-left: 10vh;
+}
+
+.detail-item-header {
+    font-family: 'the-witcher', Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: 3rem;
+}
+
+.product-description {
+    margin-top: 5vh;
 }

@@ -2,27 +2,31 @@
 
 {% block content %}
 
-<h3>{{ item }}</h3>
+<div class="detail-wrapper">
+
+<h3 class="detail-item-header">{{ item }}</h3>
 
 <div class="row row-flex">
 
-    <div class="col-12 d-block">
+    <div class="col-12 d-block back-btn">
         <a href="{% url 'view_all' %}">Go back</a>
     </div>
 
 </div>
 <div class="row">
     <div class="col-6">
-        <div class="panel-body">
+        <div class="detail-panel">
             <img src="{{ MEDIA_URL }}{{ item.image }}" class="img-detail" alt="detailed-item-image" />
 
         </div>
     </div>
-    <div class="col-6">
-        <form method="post" action="">
+    <div class="col-6 detail-info">
+        <form method="post" action="{% url 'add_to_cart' id=item.id %}">
+
             {% csrf_token %}
             <div class="input-group">
-                <input name="quantity" type="number" min="1" max="999" class="form-control" placeholder="Quantity">
+                <input name="quantity" type="number" min="1" max="999" class="form-control"
+                    placeholder="Quantity">
                 <span class="input-group-btn">
                     <button class="btn btn-success" type="submit">Add</button>
                 </span>
@@ -48,14 +52,17 @@
 
 {% for review in reviews %}
 
-{{ review.headline }}
+<panel>
 
-{{ review.rating }}
+<p><h4>{{ review.headline }}</h4> by {{review.user}}</p>
+
+
+<p><img src="/media/star.svg" /></p>
 
 {{ review.review_text }}
 
 {% endfor %}
-
+</panel>
 </div>
 
 </div>
@@ -80,7 +87,7 @@
         class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Review</button>
 </form>
 
-
+</div>
 {% endif %}
 
 {% endblock %}
