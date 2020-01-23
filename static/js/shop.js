@@ -25,5 +25,8 @@ $( ".cat-button" ).click(function() {
   });
 
 
+  $('.collapse').collapse();
+
+
 
 

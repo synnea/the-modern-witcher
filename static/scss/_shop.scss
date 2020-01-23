@@ -127,3 +127,13 @@ text-align: center;
     background-size: contain;
     display: inline-block;
 }
+
+.review-row {
+    padding-left: 50px;
+}
+
+.fa-arrow-circle-down.active a:before {
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	transform: rotate(180deg);
+} 
