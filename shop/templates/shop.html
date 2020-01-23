@@ -2,37 +2,41 @@
 
 {% block content %}
 
-<h1>Shop</h1>
+<div class="shop-wrapper">
 
-<ul class="list-reset flex flex-wrap justify-center items-center">
-    <li class="mx-1">
-        <a href="{% url 'view_all' %}" class="btn">View All</a>
-    </li>
+    <h1>Shop</h1>
 
-    {% for category in categories %}
-    <li class="mx-1 d-block">
-        <a href="{% url 'view_categories' category %}" class="btn">{{ category }}</a>
-    </li>
-    {% endfor %}
-</ul>
+    <ul class="cat-list flex flex-wrap justify-center items-center">
+        <li class="mx-1 d-block cat-item">
+            <a href="{% url 'view_all' %}"><button class="cat-button">View All</button></a>
+        </li>
 
-<div class="row row-flex">
-    {% for product in products %}
+        {% for category in categories %}
+        <li class="mx-1 cat-item">
+            <a href="{% url 'view_categories' category %}"><button class="cat-button">{{ category }}</button></a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <div class="row row-flex">
+        {% for product in products %}
         <div class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-4 display panel panel-default">
             <div class="panel-body">
 
                 <div class="product" style="background-image: url('{{ MEDIA_URL }}{{ product.image }}')"></div>
                 <a href="{{product.get_item_details}}">
-                    <h3>{{ product.name }}</h3></a>
+                    <h3>{{ product.name }}</h3>
+                </a>
                 <p class="product-category">{{product.category}}</p>
                 <p class="product-description">{{ product.description }}</p>
                 <p>€{{ product.price }}</p>
 
                 <form method="post" action="{% url 'add_to_cart' id=product.id %}">
-                    
+
                     {% csrf_token %}
                     <div class="input-group">
-                        <input name="quantity" type="number" min="1" max="999" class="form-control" placeholder="Quantity">
+                        <input name="quantity" type="number" min="1" max="999" class="form-control"
+                            placeholder="Quantity">
                         <span class="input-group-btn">
                             <button class="btn btn-success" type="submit">Add</button>
                         </span>
@@ -40,7 +44,8 @@
                 </form>
             </div>
         </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
 </div>
 
 {% endblock %}

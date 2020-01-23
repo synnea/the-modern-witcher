@@ -1,4 +1,27 @@
+.shop-wrapper {
+    margin-top: 10vh;
+}
+
 .img-detail {
     width: 500px;
     height: 500px;
+}
+
+.category-item {
+    display: block !important;
+}
+
+.cat-list {
+    display:table-row; 
+}
+
+.cat-item {
+    display: table-cell;
+    list-style-type: none;
+    margin: 10px;
+    vertical-align: middle;
+}
+
+.cat-button {
+    background-color: $orange;
 }
