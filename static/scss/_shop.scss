@@ -22,7 +22,16 @@
     vertical-align: middle;
 }
 
+.cat-button, .cat-all {
+    background-color: transparent;
+
+}
+
+.cat-button:hover, .cat-all:hover {
+    background-color: $golden;
+}
+
 .selected {
-    background-color: red !important;
+    background-color:$orange !important;
 }
 
