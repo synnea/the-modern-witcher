@@ -7,7 +7,7 @@ var currentCat = localStorage.getItem('currentCat');
 
 $( ".cat-button" ).click(function() {
     localStorage.setItem('currentCat', $(this).attr('id'));
-    $('#'+currentCat).addClass('active');
+    $('#'+currentCat).addClass('selected');
   });
   
 
@@ -16,11 +16,11 @@ $( ".cat-button" ).click(function() {
 
   $( document ).ready(function() {
     if (currentCat) {
-        $('#'+currentCat).addClass('active');
+        $('#'+currentCat).addClass('selected');
 
         localStorage.removeItem('currentCat');
     } else {
-        $('.cat-all').addClass('active');
+        $('.cat-all').addClass('selected');
     }
   });
 
