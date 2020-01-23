@@ -7,13 +7,13 @@ class Item(models.Model):
 
     ARMORER = 'Armor'
     BLACKSMITH = 'Weapons'
-    HERBALIST = 'Ingredients'
+    HERBALIST = 'Potions'
     OTHER = 'Other'
 
     CATEGORY_CHOICES = [
         (ARMORER, 'Armor'),
         (BLACKSMITH, 'Weapons'),
-        (HERBALIST, 'Ingredients'),
+        (HERBALIST, 'Potions'),
         (OTHER, 'Other')
     ]
 

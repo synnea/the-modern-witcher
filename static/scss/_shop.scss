@@ -1,5 +1,9 @@
 .shop-wrapper {
-    margin-top: 10vh;
+    margin: 0;
+
+    @media (min-width: $bp-tablet) {
+        margin: 10vh;
+    }
 }
 
 .img-detail {
@@ -20,14 +24,21 @@
     list-style-type: none;
     margin: 10px;
     vertical-align: middle;
+
+    @media (max-width: $bp-tablet) {
+        display: contents;
+    }
 }
 
 .cat-button, .cat-all {
     background-color: transparent;
+    padding:10px;
+    margin: 5px;
 
 }
 
-.cat-button:hover, .cat-all:hover {
+.cat-button:hover, .cat-button:active, .cat-all:hover,
+.cat-all:active {
     background-color: $golden;
 }
 
