@@ -119,3 +119,11 @@ text-align: center;
 .product-description {
     margin-top: 5vh;
 }
+
+.star-rating {
+    background-image: url("/media/star.jpg");
+    height: 20px;
+    width: 20px;
+    background-size: contain;
+    display: inline-block;
+}

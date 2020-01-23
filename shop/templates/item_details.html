@@ -56,10 +56,32 @@
 
 <p><h4>{{ review.headline }}</h4> by {{review.user}}</p>
 
+{% if review.rating == "5" %}
 
-<p><img src="/media/star.svg" /></p>
+<div class="star-rating"></div><div class="star-rating"></div><div class="star-rating"></div><div class="star-rating"></div><div class="star-rating"></div><div class="star-rating"></div>
 
-{{ review.review_text }}
+{% endif %}
+
+{% if review.rating == "4" %}
+
+<div class="star-rating"><div class="star-rating"><div class="star-rating"><div class="star-rating"></div>
+{% endif %}
+
+{% if review.rating == "3" %}
+<div class="star-rating"><div class="star-rating"><div class="star-rating"></div>
+{% endif %}
+
+{% if review.rating == "2" %}
+
+<div class="star-rating"><div class="star-rating">
+{% endif %}
+
+{% if review.rating == "1" %}
+
+<div class="star-rating">
+{% endif %}
+
+<p>{{ review.review_text }}</p>
 
 {% endfor %}
 </panel>
