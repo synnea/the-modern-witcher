@@ -25,6 +25,7 @@
 
 .header-text {
     font-size: 4rem;
+    text-shadow: 1px 1px 2px white;
 
     @media (min-width: $bp-desktop) {
         font-size: 5rem;
@@ -83,25 +84,32 @@
 }
 
 .card {
-    display: inline-block;
+    display: inline-block !important;
     height: auto;
     margin-left: 20vh;
     width: 300px;
 
-    @media (max-width: $bp-tablet) {
-        width: 200px;
+    @media (max-width: $bp-ipadpro) {
+        width: 200px !important;
+        height: auto;
         display: flex;
         justify-content: center;
         }
 
-    @media (max-width: $bp-tablet) {
+    @media (max-width: $bp-ipadpro) {
 margin: 0 !important;
     }
 
 }
 
 .card-col {
+
+    margin-left: 5vh;
+    margin-right: 5vh;
+
     @media (max-width: $bp-tablet) {
+        margin-left: 0;
+        margin-right: 0;
         justify-content: center;
         display: flex;
         margin-top: 5vh;
@@ -111,11 +119,19 @@ margin: 0 !important;
 
 .card-img-top {
 width: 300px;
-height: 300px;
+height: auto;
 
 @media (max-width: $bp-tablet) {
     width: 200px;
-    height: auto;
 }
 
+}
+
+.card-body {
+    width: 300px;
+    height: auto;
+    
+    @media (max-width: $bp-tablet) {
+        width: 200px;
+    } 
 }

@@ -10,7 +10,7 @@
     </li>
 
     {% for category in categories %}
-    <li class="mx-1">
+    <li class="mx-1 d-block">
         <a href="{% url 'view_categories' category %}" class="btn">{{ category }}</a>
     </li>
     {% endfor %}
