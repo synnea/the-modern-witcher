@@ -13,6 +13,8 @@
 </head>
 <body>
 
+    {% load static %}
+
       <!-- bootstrap css -->
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -25,9 +27,6 @@
         <!-- Hover CSS -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover.css"/>
 
-      {% block head_js %}
-      {% endblock head_js%}
-      {% load static %}
       
       <link rel="stylesheet" href="{% static 'fonts/the-witcher-stylesheet.css' %}" type="text/css" charset="utf-8" />
 
@@ -37,6 +36,19 @@
 
           <link type="text/x-scss" href="{% static 'scss/main.scss' %}" rel="stylesheet" media="screen">
       {% endcompress %}
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha256-CjSoeELFOcH0/uxWu6mC/Vlrc1AARqbm/jiiImDGV3s=" crossorigin="anonymous"></script>
+ 
+ 
+      <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
+ 
+      <script type="text/javascript" src="{% static 'js/shop.js' %}"></script>
+ 
+      
+      {% block head_js %}
+      {% endblock head_js%}
     {% include 'components/navbar.html' %}
 
 
@@ -58,13 +70,7 @@
 
      <!-- scripts for bootstrap -->
 
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha256-CjSoeELFOcH0/uxWu6mC/Vlrc1AARqbm/jiiImDGV3s=" crossorigin="anonymous"></script>
 
 
-     <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
-     <script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>
-     <script type="text/javascript" src="{% static 'js/shop.js' %}"></script>
 </body>
 </html>

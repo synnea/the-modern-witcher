@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 
+{% load static %}
+{% block head_js %}
+
+<script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>
+
+{% endblock head_js %}
 {% block content %}
 
 <section id="hero" class="align-items-center justify-content-center d-block">
