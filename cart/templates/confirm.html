@@ -11,6 +11,8 @@
 
 {% block content %}
 
+<div class="cart-wrapper">
+
 <h1>Thank you for purchasing from The Witcher!</h1>
 
 <h3>Purchased Items</h3>
@@ -21,6 +23,8 @@
 <a href="{{ orderline.product.get_item_details }}">Review this item!</a>
 
 {% endfor %}
+
+</div>
 {% endblock %}
 
 

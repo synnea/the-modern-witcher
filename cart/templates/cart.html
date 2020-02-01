@@ -2,44 +2,47 @@
 
 {% block content %}
 
-<h1>Cart</h1>
+<div class="cart-wrapper">
 
-<p>Cart > Information > Payment > Confirm</p>
+    <h1>Cart</h1>
 
-<div class="row">
-    <div class="col-6">
-        <h2 class> Contact Information</h2>
+    <p>Cart > Information > Payment > Confirm</p>
 
-        Email: {{user.email}}
+    <div class="row">
+        <div class="col-6">
+            <h2 class> Contact Information</h2>
 
-        <h2>Shipping Address</h2>
-        <form id="shipping" class="shipping" method="POST" action="{% url 'view_cart' %}">
+            Email: {{user.email}}
 
-            <fieldset class="form-group">
-                {% csrf_token %}
-                {% load bootstrap_tags %}
-                {{  profile_form | as_bootstrap }}
-            </fieldset>
-        </form>
-    </div>
+            <h2>Shipping Address</h2>
+            <form id="shipping" class="shipping" method="POST" action="{% url 'view_cart' %}">
 
-    <div class="col-6">
+                <fieldset class="form-group">
+                    {% csrf_token %}
+                    {% load bootstrap_tags %}
+                    {{  profile_form | as_bootstrap }}
+                </fieldset>
+            </form>
+        </div>
 
-        {% block ordersummary %}
-        {% include 'ordersummary.html' %}
-        {% endblock %}
+        <div class="col-6">
 
-        {% if cart_items %}
-        <button class="btn btn-success" button="submit" value="shipping" form="shipping" name="shipping" role="button"><span class="glyphicon glyphicon-ok-sign"
-                aria-hidden="true"></span>Continue</button>
+            {% block ordersummary %}
+            {% include 'ordersummary.html' %}
+            {% endblock %}
+
+            {% if cart_items %}
+            <button class="btn btn-success" button="submit" value="shipping" form="shipping" name="shipping"
+                role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Continue</button>
             {% else %}
-        <p>Add to your cart in order to get your awesome Witcher items! <a href="{% url 'view_all' %}">Go to shop</a></p>
-    
-        {% endif %}
+            <p>Add to your cart in order to get your awesome Witcher items! <a href="{% url 'view_all' %}">Go to
+                    shop</a></p>
 
+            {% endif %}
+
+        </div>
     </div>
-
-    {% endblock %}
-
 
 </div>
+
+{% endblock %}
