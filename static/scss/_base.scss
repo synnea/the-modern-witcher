@@ -133,3 +133,113 @@ html {
 .alert {
     margin-bottom: 0;
 }
+
+
+footer {
+
+    height: 29vh;
+    position: relative;
+    color: $murky-purple;
+    width: 100% !important;
+    background-color: $orange;
+    display: block;
+    text-transform: uppercase;
+    font-size: 0.7em;
+
+    font-family: 'Montserrat', sans-serif;
+    text-align: center !important;
+
+    @media screen and (orientation: landscape) {
+        margin: 0;
+        font-size: 0.7em !important;
+    }
+
+
+    @media (min-width: $bp-mobile) {
+        height: 22vh;
+        font-size: 0.8em;    }
+
+    @media (min-width: $bp-tablet) {
+        height: 16vh;
+    }
+
+    @media (min-width: $bp-desktop) {
+        height: 18vh;
+    }
+
+}
+
+.fa-github {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.fa-at {
+    font-size: 1.5rem;
+}
+
+.fa-github:hover {
+    color: $murky-purple;
+}
+
+.row {
+margin-right: 0;
+}
+
+// Footer styling
+
+.footer {
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    z-index: 999;
+
+
+}
+
+.footer-col {
+    @media (max-width: $bp-mobile - 1) {
+margin: 1rem;
+    }
+
+    @media screen and (orientation: landscape) {
+        margin: 0 !important;
+        font-size: 0.7em !important;
+    }
+}
+
+.footer-col > h6 {
+    @media (orientation: landscape) {
+        font-size: 0.8em !important;
+    }
+
+    @media (max-width: $bp-mini) {
+        font-size: 0.8em !important;
+    }
+
+    @media (min-width: $bp-desktop) {
+        font-size: 1.5rem !important;
+    }
+}
+
+
+.copyright {
+    padding-bottom: 0.5rem;
+    width: 100%;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+
+}
+
+col-4 {
+    margin-left: 4vh;
+}
+
+ul {
+    margin: 0;
+}
