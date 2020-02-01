@@ -1,5 +1,14 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block head_js %}
+
+<script type="text/javascript" src="{% static 'js/hide-navbar.js' %}"></script>
+
+
+{% endblock head_js %}
+
 {% block content %}
 
 <h1>Thank you for purchasing from The Witcher!</h1>
