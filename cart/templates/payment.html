@@ -22,9 +22,9 @@
     </div>
 </div>
 
-<p>Cart > Shipping > Payment > Confirm</p>
+<p class="checkout-journey">Cart > Shipping > <span class="highlighted">Payment</span> > Confirm</p>
 <div class="row">
-    <div class="col-6">
+    <div class="col-12 col-md-6">
 
         <h3>Shipping Address</h3>
 
@@ -69,7 +69,7 @@
             </form>
         </div>
     </div>
-    <div class="col-6">
+    <div class="col-12 col-md-6">
 
         {% block ordersummary %}
         {% include 'ordersummary.html' %}

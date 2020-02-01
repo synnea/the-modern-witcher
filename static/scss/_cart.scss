@@ -1,3 +1,25 @@
+@import "_base.scss";
+
 .cart-wrapper {
     padding: 10vh;
+
+    @media (min-width: $bp-desktop) {
+        margin-left: 10vh;
+    }
+}
+
+.order-details {
+    @media (min-width: $bp-desktop) {
+        margin-left: 10vh;
+    }
+}
+
+.highlighted {
+    border-radius: 25%;
+    background-color: $orange;
+    padding: 1vh;
+}
+
+.checkout-journey {
+    margin-bottom: 10vh;
 }
