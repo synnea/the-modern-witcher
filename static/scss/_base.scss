@@ -117,9 +117,18 @@ html {
     font-size: 1.8rem;
 }
 
-.bg-light {
-    background-color: transparent !important;
+.navbar-container {
+    padding:0;
+    margin:0;
+}
 
+.bg-color {
+    background-color: $orange !important;
+
+}
+
+.bg-transparent {
+    background-color: transparent;
 }
 
 .bg-light.scrolled {
