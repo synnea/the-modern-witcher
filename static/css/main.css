@@ -216,12 +216,6 @@ footer {
   z-index: 999;
 }
 
-@media (max-width: 767px) {
-  .footer-col {
-    margin: 1rem;
-  }
-}
-
 @media screen and (orientation: landscape) {
   .footer-col {
     margin: 0 !important;
@@ -657,12 +651,6 @@ footer {
   z-index: 999;
 }
 
-@media (max-width: 767px) {
-  .footer-col {
-    margin: 1rem;
-  }
-}
-
 @media screen and (orientation: landscape) {
   .footer-col {
     margin: 0 !important;
@@ -771,7 +759,7 @@ ul {
 
 .hero-content {
   height: 80vh;
-  margin-left: 2vh;
+  padding: 4vh;
 }
 
 @media screen and (orientation: landscape) {
@@ -801,6 +789,7 @@ ul {
 @media (min-width: 992px) {
   .hero-content {
     margin-left: 30vh;
+    padding: 0;
   }
 }
 
@@ -826,8 +815,18 @@ ul {
 .about-wrapper {
   text-align: center;
   padding: 5vh;
-  background-color: #D69E63;
   color: black;
+}
+
+#about {
+  min-height: 35vh;
+  background-color: #D69E63;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .card-deck {
@@ -1138,12 +1137,6 @@ footer {
   margin-bottom: 0;
   padding-bottom: 0;
   z-index: 999;
-}
-
-@media (max-width: 767px) {
-  .footer-col {
-    margin: 1rem;
-  }
 }
 
 @media screen and (orientation: landscape) {

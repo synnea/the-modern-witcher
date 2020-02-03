@@ -44,10 +44,11 @@
 
     @include height-scaling;
 
-    margin-left: 2vh;
+    padding: 4vh;
 
     @media (min-width: $bp-tablet) {
         margin-left: 30vh;
+        padding: 0;
     }
 }
 
@@ -71,8 +72,15 @@
 .about-wrapper {
     text-align: center;
     padding: 5vh;
-    background-color: $orange;
     color: black;
+
+}
+
+#about {
+    min-height: 35vh;
+    background-color: $orange;
+    display: flex;
+    align-items: center;
 }
 
 .card-deck {

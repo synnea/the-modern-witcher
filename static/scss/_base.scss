@@ -265,10 +265,6 @@ margin-right: 0;
 }
 
 .footer-col {
-    @media (max-width: $bp-mobile - 1) {
-margin: 1rem;
-    }
-
     @media screen and (orientation: landscape) {
         margin: 0 !important;
         font-size: 0.7em !important;
