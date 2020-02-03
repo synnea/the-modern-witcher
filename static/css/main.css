@@ -149,6 +149,18 @@ html {
   margin-bottom: 0;
 }
 
+.nav-item {
+  display: inline-block !important;
+}
+
+.navbar-nav {
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+      -ms-flex-direction: initial;
+          flex-direction: initial;
+  margin-right: 2vh;
+}
+
 footer {
   height: 29vh;
   position: relative;
@@ -582,6 +594,18 @@ html {
 
 .alert {
   margin-bottom: 0;
+}
+
+.nav-item {
+  display: inline-block !important;
+}
+
+.navbar-nav {
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+      -ms-flex-direction: initial;
+          flex-direction: initial;
+  margin-right: 2vh;
 }
 
 footer {
@@ -1070,6 +1094,18 @@ html {
 
 .alert {
   margin-bottom: 0;
+}
+
+.nav-item {
+  display: inline-block !important;
+}
+
+.navbar-nav {
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+      -ms-flex-direction: initial;
+          flex-direction: initial;
+  margin-right: 2vh;
 }
 
 footer {

@@ -196,6 +196,14 @@ html {
     margin-bottom: 0;
 }
 
+.nav-item {
+    display: inline-block !important;
+}
+
+.navbar-nav {
+    flex-direction: initial;
+    margin-right: 2vh;
+}
 
 footer {
 
@@ -248,8 +256,6 @@ footer {
 .row {
 margin-right: 0;
 }
-
-// Footer styling
 
 .footer {
 
