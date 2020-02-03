@@ -13,20 +13,42 @@
 
 <div class="cart-wrapper">
 
-<p class="checkout-journey">Cart > Shipping > Payment > <span class="highlighted">Confirm</span></p>
+    <p class="checkout-journey">Cart > Shipping > Payment > <span class="highlighted">Confirm</span></p>
 
-<h1>Thank you for purchasing from The Witcher!</h1>
+    <h2 class="thanks">Thank you for purchasing from The Witcher!</h2>
 
-<h3 class="cart-header">Purchased Items</h3>
+    <h3 class="cart-header">Purchased Items</h3>
 
-{% for orderline in orderline %}
+    <table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Product</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price per Unit</th>
+            <th scope="col">Review</th>
+        </tr>
+    </thead>
 
-<p>{{ orderline.product }} {{ orderline.quantity }} {{ orderline.product.price }}</p>
-<a href="{{ orderline.product.get_item_details }}">Review this item!</a>
+    <tbody>
+        {% for orderline in orderline %}
+        <tr>
+            <td>
+                <p>{{ orderline.product }}</p>
+            </td>
+            <td>
+                <p>{{ orderline.quantity }}</p>
+            </td>
+            <td>
+                <p> {{ orderline.product.price }}</p>
+            </td>
+            <td>
+                <p><a href="{{ orderline.product.get_item_details }}">Review this item!</a></p>
+            </td>
 
-{% endfor %}
+            {% endfor %}
+        </tr>
+    </tbody>
 
+    </table>
 </div>
 {% endblock %}
-
-

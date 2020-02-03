@@ -20,67 +20,73 @@
     </div>
 
 
-<div class="row">
-    <div class="col-12 d-block back-link">
-        <a href="{% url 'view_cart' %}">Go back</a>
-    </div>
-</div>
-
-<p class="checkout-journey">Cart > Shipping > <span class="highlighted">Payment</span> > Confirm</p>
-<div class="row">
-    <div class="col-12 col-md-6">
-
-        <h3 class="cart-header">Shipping Address</h3>
-
-        <div class="row">
-            <div class="col-6 profile-col">
-
-                {{profile.address1}}, {{profile.zipcode}}, {{profile.country}}
-
-            </div>
-            <div class="col-6 profile-col">
-                <a class="btn custom-button orange-button" id="address-button" type="button" href="{% url 'view_cart' %}">
-                    Change Address
-                </a>
-            </div>
-
-
-
-            <form role="form" id="payment-form" method="POST" action="{% url 'payment' %}">
-
-                
-                <h3 class="cart-header">Order Details</h3 c>
-
-                <fieldset class="form-group">
-                    {% csrf_token %}
-                    {% load bootstrap_tags %}
-                    {{  order_form | as_bootstrap }}
-                </fieldset>
-
-                <h3 class="cart-header">Payment Details</h3 c>
-
-                <fieldset class="form-group">
-                    {% csrf_token %}
-                    {% load bootstrap_tags %}
-                    {{  payment_form | as_bootstrap }}
-                </fieldset>
-
-                <button class="btn custom-button green-button order-button" button="submit" id="submit_payment_btn" name="commit" type="submit"
-                value="Submit Payment"><span
-                    class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Complete Order</button>
-    
-            <small class="d-block">*clicking on the above button will charge your credit cart</small>
-            </form>
+    <div class="row">
+        <div class="col-12 d-block back-link">
+            <a href="{% url 'view_cart' %}">Go back</a>
         </div>
     </div>
-    <div class="col-12 col-md-6">
 
-        {% block ordersummary %}
-        {% include 'ordersummary.html' %}
-        {% endblock %}
-
+    <div class="row">
+        <div class="col-12">
+        <p class="checkout-journey">Cart > Shipping > <span class="highlighted">Payment</span> > Confirm</p>
+    </div>
     </div>
 
-</div>
+    <div class="row">
+        <div class="col-12 col-md-6">
+
+            <h3 class="cart-header">Shipping Address</h3>
+
+            <div class="row">
+                <div class="col-6 profile-col">
+
+                    {{profile.address1}}, {{profile.zipcode}}, {{profile.country}}
+
+                </div>
+                <div class="col-6 profile-col">
+                    <a class="btn custom-button orange-button" id="address-button" type="button"
+                        href="{% url 'view_cart' %}">
+                        Change Address
+                    </a>
+                </div>
+
+
+
+                <form role="form" id="payment-form" method="POST" action="{% url 'payment' %}">
+
+
+                    <h3 class="cart-header">Order Details</h3 c>
+
+                    <fieldset class="form-group">
+                        {% csrf_token %}
+                        {% load bootstrap_tags %}
+                        {{  order_form | as_bootstrap }}
+                    </fieldset>
+
+                    <h3 class="cart-header">Payment Details</h3 c>
+
+                    <fieldset class="form-group">
+                        {% csrf_token %}
+                        {% load bootstrap_tags %}
+                        {{  payment_form | as_bootstrap }}
+                    </fieldset>
+
+                    <button class="btn custom-button green-button order-button" button="submit" id="submit_payment_btn"
+                        name="commit" type="submit" value="Submit Payment"><span class="glyphicon glyphicon-ok-sign"
+                            aria-hidden="true"></span>Complete Order</button>
+
+                    <small class="d-block">*clicking on the above button will charge your credit cart</small>
+                </form>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+
+            {% block ordersummary %}
+            {% include 'ordersummary.html' %}
+            {% endblock %}
+
+        </div>
+
+    </div>
 
     {% endblock %}

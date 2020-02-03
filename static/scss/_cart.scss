@@ -1,7 +1,7 @@
 @import "_base.scss";
 
 .cart-wrapper {
-    padding: 10vh;
+    padding: 15vh;
 
     @media (min-width: $bp-desktop) {
         margin-left: 10vh;
@@ -52,4 +52,9 @@
 
 .back-link {
     padding-left: 15px;
+}
+
+.thanks {
+    font-family: 'the-witcher', Arial;
+    margin-bottom: 5vh;
 }

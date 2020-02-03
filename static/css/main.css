@@ -1191,7 +1191,7 @@ ul {
 }
 
 .cart-wrapper {
-  padding: 10vh;
+  padding: 15vh;
 }
 
 @media (min-width: 1200px) {
@@ -1246,5 +1246,10 @@ ul {
 
 .back-link {
   padding-left: 15px;
+}
+
+.thanks {
+  font-family: 'the-witcher', Arial;
+  margin-bottom: 5vh;
 }
 /*# sourceMappingURL=main.css.map */
