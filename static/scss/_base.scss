@@ -13,6 +13,9 @@ $black: #1B1725;
 $murky-purple: #534B62;
 $red: #C23138;
 $golden: #D6BA70;
+$green:  #00b33c;
+$dark-green: #004d1a;
+
 
 // Fonts
 
@@ -53,9 +56,7 @@ $bp-desktop: 1200px;
 
 // Button Design
 
-.purple-button {
-	box-shadow:inset 0px 39px 0px -24px $murky-purple;
-	background-color: $purple;
+.custom-button {
 	border-radius:4px;
 	border:1px solid #ffffff;
 	display:inline-block;
@@ -64,13 +65,56 @@ $bp-desktop: 1200px;
 	font-family:Arial;
 	font-size:15px;
 	padding:6px 15px;
-	text-decoration:none;
+    text-decoration:none;
+    text-transform: uppercase;
+}
+
+.purple-button {
+	box-shadow:inset 0px 39px 0px -24px $murky-purple;
+	background-color: $purple;
 	text-shadow:0px 1px 0px $murky-purple;
 }
 .purple-button:hover {
 	background-color: $murky-purple;
 }
 .purple-button:active {
+	position:relative;
+	top:1px;
+}
+
+
+.orange-button {
+	box-shadow:inset 0px 39px 0px -24px $orange;
+	background-color: $golden;
+	border-radius:4px;
+    color:$murky-purple;
+    font-weight: 600;
+    text-shadow:0px 1px 0px $orange;
+    margin-left: 5vh;
+}
+.orange-button:hover {
+	background-color: $golden;
+}
+.orange-button:active {
+	position:relative;
+	top:1px;
+}
+
+.green-button {
+    box-shadow:inset 0px 39px 0px -24px $green;
+	background-color: $dark-green;
+	border-radius:4px;
+    color:white;
+    font-weight: 600;
+    text-shadow:0px 1px 0px $green;
+    margin-top: 5vh;
+    margin-left: 10vh;
+}
+
+.green-button:hover {
+	background-color: $green;
+}
+.green-button:active {
 	position:relative;
 	top:1px;
 }
@@ -84,6 +128,10 @@ h1 {
     @media (min-width: $bp-tablet) {
         font-size: 3rem;
     }
+}
+
+input {
+    margin: 0 2vh;
 }
 
 .logo, .logo:hover, .logo:active {

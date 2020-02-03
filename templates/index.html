@@ -24,7 +24,7 @@
                     <div class="h-text">
                         <h1 class="header-text">The Modern Witcher</h1>
                         <h4 class="tagline">upgrade your demon-slaying online!</h4>
-                        <a href="{% url 'view_all' %}" class="CTA"><button class="CTA-button purple-button">See items
+                        <a href="{% url 'view_all' %}" class="CTA"><button class="CTA-button custom-button purple-button">See items
                                 now</button></a>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
             <div class="row justify-content-center">
                 {% for feature in featured %}
                 <div class="col-12 col-md-3 card-col">
-                    <div class="card m-5" style="width:300px">
+                    <div class="card index-card m-5" style="width:300px">
                         <img class="card-img-top" src="{{ MEDIA_URL }}{{ feature.image }}" alt="Feature image">
                         <div class="card-body">
                             <h4 class="card-title">{{ feature.name }}</h4>

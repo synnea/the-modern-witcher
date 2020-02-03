@@ -10,11 +10,11 @@
 
     <div class="row">
         <div class="col-12 col-md-6">
-            <h3 class> Contact Information</h3>
+            <h3 class="cart-header"> Contact Information</h3>
 
-            Email: {{user.email}}
+            <p class="mb-5">Email: {{user.email}}</p>
 
-            <h3>Shipping Address</h3>
+            <h3 class="cart-header">Shipping Address</h3>
             <form id="shipping" class="shipping" method="POST" action="{% url 'view_cart' %}">
 
                 <fieldset class="form-group">
@@ -32,16 +32,17 @@
             {% endblock %}
 
             {% if cart_items %}
-            <button class="btn btn-success" button="submit" value="shipping" form="shipping" name="shipping"
-                role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Continue</button>
+            <button class="btn green-button custom-button" button="submit" value="shipping" form="shipping"
+                name="shipping" role="button"><span class="glyphicon glyphicon-ok-sign"
+                    aria-hidden="true"></span>Continue</button>
             {% else %}
             <p>Add to your cart in order to get your awesome Witcher items! <a href="{% url 'view_all' %}">Go to
                     shop</a></p>
 
             {% endif %}
-
         </div>
     </div>
+</div>
 
 </div>
 
