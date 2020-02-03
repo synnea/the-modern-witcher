@@ -85,7 +85,12 @@ h1 {
   }
 }
 
-input {
+.container-fluid {
+  margin: 0;
+  padding: 0;
+}
+
+.quantity-input {
   margin: 0 2vh;
 }
 
@@ -521,7 +526,12 @@ h1 {
   }
 }
 
-input {
+.container-fluid {
+  margin: 0;
+  padding: 0;
+}
+
+.quantity-input {
   margin: 0 2vh;
 }
 
@@ -999,7 +1009,12 @@ h1 {
   }
 }
 
-input {
+.container-fluid {
+  margin: 0;
+  padding: 0;
+}
+
+.quantity-input {
   margin: 0 2vh;
 }
 
@@ -1185,6 +1200,10 @@ ul {
   }
 }
 
+.order-details {
+  padding: 5vh;
+}
+
 @media (min-width: 1200px) {
   .order-details {
     margin-left: 10vh;
@@ -1203,5 +1222,29 @@ ul {
 
 .cart-header {
   margin-bottom: 5vh;
+}
+
+#payment-form {
+  padding-left: 15px;
+}
+
+#address-button {
+  margin: 0 !important;
+}
+
+.profile-col {
+  margin-bottom: 5vh;
+}
+
+.order-card {
+  text-align: center;
+}
+
+.cart-headline {
+  font-family: 'the-witcher';
+}
+
+.back-link {
+  padding-left: 15px;
 }
 /*# sourceMappingURL=main.css.map */

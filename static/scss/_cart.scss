@@ -12,6 +12,8 @@
     @media (min-width: $bp-desktop) {
         margin-left: 10vh;
     }
+
+    padding: 5vh;
 }
 
 .highlighted {
@@ -26,4 +28,28 @@
 
 .cart-header {
     margin-bottom: 5vh;
+}
+
+#payment-form {
+    padding-left: 15px;
+}
+
+#address-button {
+    margin: 0 !important;
+}
+
+.profile-col {
+    margin-bottom: 5vh;
+}
+
+.order-card {
+    text-align: center;
+}
+
+.cart-headline {
+    font-family: 'the-witcher';
+}
+
+.back-link {
+    padding-left: 15px;
 }

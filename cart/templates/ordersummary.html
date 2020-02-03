@@ -1,14 +1,14 @@
 
-<div class="order-details">
+<div class="order-details card order-card">
 
     <h3 class="cart-header">Order Details</h3>
 
     {% for item in cart_items %}
 
     <div class="caption">
-        <h4>{{ item.product.name }}</h4>
-        <p>{{ item.product.price }}</p>
-        <p>
+        <h4 class="d-inline">{{ item.product.name }}</h4>
+        (Price per unit:<p class="d-inline"> €{{ item.product.price }})
+        <div class="form-container d-flex justify-content-center mt-2 mb-2">
 
             <form class="form-inline" method="post" action="{% url 'amend_cart' id=item.product.id %}">
                 {% csrf_token %}
@@ -16,19 +16,23 @@
                     <label for="exampleInputAmount" class="sr-only">New Qty</label>
                     <div class="input-group">
                         <div class="input-group-addon">Qty</div>
-                        <input name="quantity" id="quantity" type="number" min="0" max="999" class="form-control" placeholder="{{item.quantity}}">
+                        <input class="quantity-input" name="quantity" id="quantity" type="number" min="0" max="999" class="form-control" placeholder="{{item.quantity}}">
                     </div>
                 </div>
                 <button type="submit" class="btn custom-button orange-button"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Amend</button>
             </form>
-        </p>
+        </div>
     </div>
 
     {% endfor %}
 
+    <div class="line">
+        <hr>
+    </div>
+
     <p>Shipping: €7.50 <small>Standard shipping fees have automatically been added.</smalL></p>
 
-    <p>Total</p>
-    <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{total}}</p>
+    <p class="d-inline">Total</p c>
+    <p class="d-inline"><span class="glyphicon glyphicon-eur" aria-hidden="true"></span> €{{total}}</p>
 
     </div>
