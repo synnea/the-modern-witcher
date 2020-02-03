@@ -1,8 +1,0 @@
-@font-face {
-  font-family: 'the-witcher';
-  src: url("/static/scss/the-witcher.eot");
-  src: url("/static/scss/the-witcher.eot?#iefix") format("embedded-opentype"), url("/static/scss/the-witcher.woff") format("woff"), url("/static/scss/the-witcher.ttf") format("truetype"), url("/static/scss/the-witcher.svg#webfont") format("svg"); }
-
-/* line 11, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_base.scss */
-h1 h1 {
-  font-family: 'the-witcher', Arial, sans-serif; }

@@ -1,7 +1,0 @@
-@font-face {
-  font-family: 'the-witcher';
-  src: url("https://github.com/synnea/the-modern-witcher/blob/d329f2db0ffc3d03473a88254c64d737a3725449/static/fonts/the-witcher.woffr.woff") format("woff"); }
-
-/* line 8, c:/users/carina/desktop/projects/code institute/4th milestone/static/scss/_base.scss */
-h1 h1 {
-  font-family: 'the-witcher', Arial, sans-serif; }
