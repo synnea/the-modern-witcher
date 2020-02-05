@@ -80,7 +80,7 @@ A color palette was created early on, using the colors found in the background i
 
 The following screenshot features most of the colors used throughout the project:
 
-[COLOR PALETTE](https://github.com/synnea/the-modern-witcher/blob/master/media/design/color_palette.JPG).
+![COLOR PALETTE](https://github.com/synnea/the-modern-witcher/blob/master/media/design/color_palette.JPG).
 
 For the most part, the wireframes are similar to the finished product. However, some features were taken out due to time restraints and/or practical design concerns. One example is the 'related products' feature, which took page real estate from the review function, and which didn't seem particularly helpful due to the low number of the overall items. Since each category currently holds only about 2 items each, the database currently doesn't hold enough items to make meaningful recommendations.
 
