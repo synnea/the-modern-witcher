@@ -36,7 +36,6 @@ def view_account(request):
 
         all_orders = []
         order_items = []
-        print("order items were assigned")
 
         for order in orders:
             order_items_db = OrderLineItem.objects.filter(order=order)
@@ -47,7 +46,6 @@ def view_account(request):
                 order_items = order_items
                 order_total += int(order_item.product.price * order_item.quantity)
             all_orders.append({'order': order, 'order_items': order_items, "total": order_total})
-
 
         return render(request, 'myaccount.html', {'profile_form': profile_form, 'all_orders': all_orders, 'order_items': order_items})
 
@@ -154,7 +152,7 @@ def save_address(request):
             messages.success(request, 'Updated successfully.')
 
         profile_form = ProfileAddressForm(request.POST)        
-        return render(request, 'myaccount.html', {'profile_form': profile_form} )
+        return redirect(reverse('view_account'))
     
     else:
         messages.error(request, 'Sharpen your eyes, Witcher! Something went wrong.')
