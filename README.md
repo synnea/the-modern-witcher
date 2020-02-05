@@ -4,6 +4,7 @@
 
 ### Milestone Project 4: Fullstack Frameworks
 
+![demo](https://github.com/synnea/the-modern-witcher/blob/master/media/design/demo.JPG).
 
 [The Modern Witcher](https://the-modern-witcher.herokuapp.com/) was designed, built and deployed by Carina Pöll as the final project of her diploma in software development. It is an E-Commerce website aimed at fans of the Witcher franchise. Through it, fans can purchase goods that replicate items that exist within the world of the The Witcher novels and video games.
 

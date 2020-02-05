@@ -1,5 +1,5 @@
 .shop-wrapper, .detail-wrapper {
-    margin: 0;
+    margin: 0 auto;
 
     @media (min-width: $bp-tablet) {
         margin: 10vh;
@@ -51,30 +51,39 @@
     background-color:$orange !important;
 }
 
-.row.row-flex {
+.grid-row {
     display: flex;
-    flex-wrap: wrap;
-    margin-top: 30px;
-}
+    flex-flow: row wrap;
+    justify-content: center;
+  }
 
-.panel-default {
-    border-color: transparent;
-    padding: 0 10px;
-    margin-bottom: 5vh;
-}
+  .grid-container {
+    max-width: 1335px;
+    margin: 0 auto;
+    padding: 10vh;
+    padding-top: 10vh;
+  }
+
+  .shop-container {
+    max-width: 1335px;
+    margin: 0 auto; 
+    padding-left: 10vh;
+  }
+  .panel {
+    max-height: 550px;
+    flex-basis: 20%;
+    -ms-flex: auto;
+    flex: auto;
+    max-width: 350px;
+    position: relative;
+    padding: 30px;
+    margin: 20px;
+    box-sizing: border-box;
+    border: 1px solid grey;
+  }
 
 .product-header {
     text-align: center;
-}
-
-.panel-body {
-    height: 100%;
-    border: 1px solid #ddd;
-    padding: 10px;
-}
-
-.panel-details {
-text-align: center;
 }
 
 .product-description {
