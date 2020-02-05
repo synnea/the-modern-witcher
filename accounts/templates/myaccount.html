@@ -30,7 +30,7 @@
                         {{ form.errors }}
                         {{ form.non_field_errors }}
                         {{  profile_form | as_bootstrap  }}
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="submit" class="btn custom-button orange-button">Update</button>
                     </fieldset>
                 </form>
             </div>
@@ -38,6 +38,12 @@
 
         <div class="col-6">
             <h3>Purchased Items</h3>
+
+            {% if not order_items %}
+
+            <p>Looks like you haven't made any orders yet. <a href="{% url 'view_all' %}">Go shopping!</a></p>
+
+            {% endif %}
 
             {% for order in all_orders %}
 

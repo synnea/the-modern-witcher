@@ -35,6 +35,8 @@ def view_account(request):
         orders = Order.objects.filter(user=request.user).order_by('-date')
 
         all_orders = []
+        order_items = []
+        print("order items were assigned")
 
         for order in orders:
             order_items_db = OrderLineItem.objects.filter(order=order)
