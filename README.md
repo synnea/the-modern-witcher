@@ -14,7 +14,6 @@ The project utilizes Python 3, Django 2.2, JavaScript, and various other framewo
 ## Table of Contents
 
 1. [UX](#UX)
-    - [Logo Design](#logo)
     - [User Stories](#userstories)
     - [Wireframes](#wireframes)
 
@@ -61,23 +60,26 @@ The following user stories were used to design the website:
 
 - I am a fan of the The Witcher franchise, and I'm specifically interested in buying merchandise.
 - I am a fan of the The Witcher franchise, but I'm not specifically interested in buying merchandise.
-- 
+- I am not a particular fan of the The Witcher franchise, but I am interested in buying unique gifts.
+- I want to make a safe and secure online purchase.
 
 
 ### Wireframes <a name="wireframes"></a>
 
-Extensive wireframes with Balsamiq were created for the project. As an example, here is a wireframe for the index page:
+Extensive wireframes for both desktop and mobile versions were created with Balsamiq for the project. As an example, here is a wireframe for the index page:
 
-![index-wire](https://github.com/synnea/tanDev--tandem-for-devs/blob/master/static/img/wireframe_index.jpg)
+![index-wire](https://github.com/synnea/the-modern-witcher/blob/master/media/design/example-wf.JPG)
 
 
-The wireframes for every page on the website are available in .pdf format on this github respository: [DESKTOP VERSION](https://github.com/synnea/tanDev--tandem-for-devs/blob/master/schemas/wireframes/wireframes%20desktop.pdf) and [MOBILE VERSION](https://github.com/synnea/tanDev--tandem-for-devs/blob/master/schemas/wireframes/wireframes%20for%20mobile.pdf).
+The wireframes for every page on the website are available in .pdf format on this github respository: [WIREFRAME](https://github.com/synnea/the-modern-witcher/tree/master/wireframes).
 
-A color palette was created early on, using the colors found in the background image as the basic point of reference. The palette was created using https://coolors.co/. The decision was taken early on that the website would feature a blue color scheme.
+A color palette was created early on, using the colors found in the background image as the basic point of reference. The palette was created using https://coolors.co/. The decision was taken early on that the website would feature a color scheme focused on shades of orange and purple.
 
-For the most part, the wireframes are similar to the finished product. However, some features were taken out due to time restraints: originally, the skill levels were supposed to be illustrated in a star rating on the search page, user details page as well as the profile page. However due to complexity of the dataset, this was later taken out.
+The following screenshot features most of the colors used throughout the project:
 
-An initially envisioned option to favorite other users was also removed, and has been added to the 'future features' wishlist.
+[COLOR PALETTE](https://github.com/synnea/the-modern-witcher/blob/master/media/design/color_palette.JPG).
+
+For the most part, the wireframes are similar to the finished product. However, some features were taken out due to time restraints and/or practical design concerns. One example is the 'related products' feature, which took page real estate from the review function, and which didn't seem particularly helpful due to the low number of the overall items. Since each category currently holds only about 2 items each, the database currently doesn't hold enough items to make meaningful recommendations.
 
 ## Data <a name="data"></a>
 
