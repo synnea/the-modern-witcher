@@ -33,17 +33,31 @@ def submit_review(request, id):
     """A view that lets users submit reviews of items
     that they have already purchased. """
 
+    item = get_object_or_404(Item, id=id)
+
     review_form = ReviewForm(request.POST)
+    user = request.user
 
     if review_form.is_valid():
-        review = review_form.save(commit=False)
-        review.user = get_object_or_404(User, pk=request.user.id)
-        review.reviewed_item = get_object_or_404(Item, pk=id)
-        
-        review_form.save()
-        messages.success(request, "Thank you for telling us what you think!")
-        return redirect('view_all')
+
+    # Check if the user actually purchased the item they're trying to review in order 
+    # to prevent review fraud.
+
+        try:
+            ordered_items = OrderLineItem.objects.filter(user=user, product=item)[0]
+
+            review = review_form.save(commit=False)
+            review.user = get_object_or_404(User, pk=request.user.id)
+            review.reviewed_item = get_object_or_404(Item, pk=id)
+            
+            review_form.save()
+            messages.success(request, "Thank you for telling us what you think!")
+            return redirect('view_all')
+
+        except:
+                messages.error(request, "Sorry, you are not authorized to review this item")
+
 
     else: 
-        messages.error(request, "Sorry, we could not save your review.")
+        messages.error(request, "Something went wrong in your review form.")
         return redirect(reverse('view_all'))
