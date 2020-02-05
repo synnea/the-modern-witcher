@@ -18,6 +18,8 @@ The project utilizes Python 3, Django 2.2, JavaScript, and various other framewo
     - [Wireframes](#wireframes)
 
 2. [Data](#data)
+    - [Items](#items)
+    - [Models](#models)
 
 3. [Features](#features)
     - [Current Features](#current-features)
@@ -27,6 +29,7 @@ The project utilizes Python 3, Django 2.2, JavaScript, and various other framewo
     - [Programming Languages](#languages)
     - [Frameworks](#frameworks)
     - [Libraries](#libraries)
+    - [Databases](#databases)
     - [Other Technologies](#other)
 
 5. [Testing](#testing)
@@ -61,7 +64,7 @@ The following user stories were used to design the website:
 - I am a fan of the The Witcher franchise, and I'm specifically interested in buying merchandise.
 - I am a fan of the The Witcher franchise, but I'm not specifically interested in buying merchandise.
 - I am not a particular fan of the The Witcher franchise, but I am interested in buying unique gifts.
-- I want to make a safe and secure online purchase.
+- I want to have an enjoyable online shopping experience.
 
 
 ### Wireframes <a name="wireframes"></a>
@@ -83,69 +86,66 @@ For the most part, the wireframes are similar to the finished product. However, 
 
 ## Data <a name="data"></a>
 
-tanDev is backed by a MongoDB database. Only one collection is in use, the 'profile' collection. Here is the data schema used for individual documents in this collection:
+### Items <a name="items"></a>
 
-| Key               | Value           |
-| -------------     |:-------------:| 
-| _id               | < integer > | 
-| username          | < string >  |  
-| imgUrl            |  < string > | 
-| district          | < string >  |  
-| shortDescription  | < string >  | 
-| communicationStyle| < array >   |  
-| skills            | < array >   | 
-| desiredSkills     | < array >   |  
-| otherDetails      | < array >   | 
-| github            | < string >  |
-| published         | < datetime >| 
-| display           | < boolean > |  
+The Modern Witcher is backed by a PostgreSQL database. At the time of writing, there are 7 items in the database.
 
-The database was populated early on with 13 original profiles. 
+All item photos were taken from popular shops such as Etsy. Links to the sources of each individual item can be found in the Credits section of this README file.
+ 
 
+### Models <a name="models"></a>
+
+The Witcher supports full CRUD functionality with its models.
+
+The custom models created for the database are: Profile, Review, Item, Order, and OrderLineItem.
+
+The 'Profile' model saves the users address and displays it in the Account section of the website. It also automatically renders the pre-saved address to the checkout area.
+
+The 'Review' model uses the User and Item as foreign key. When a user has purchased an item, the option to leave a review gets unlocked.
+
+The 'Item' model represents the items which can be bought on The Modern Witcher. 
+
+'Order' and 'OrderLineItem' keep track of the overall orders and the individual items contained therein, respectively. 
+
+The Modern Witcher does not use a 'Cart' model. Instead, the contents of the cart are made available through a global context.
 
 ## Features <a name="features"></a>
 
 ### Current Features <a name="current-features"></a>
 
-#### Feature 1 - Carousel
-The index page features a carousel of user profiles who have been published on tanDev.
+#### Feature 1 - Save Address & view past orders
+Users have the option to save their address for future use in the 'Account' section of the website. It is also automatically rendered to checkout. Past orders are also displayed in the same section.
 
-#### Feature 2 - Animation on Scroll
-The 'about' page features animation on scroll achieved through the [AOS library](https://michalsnik.github.io/aos/).
+#### Feature 2 - Review Purchased Items
+Once an item has been purchased, a review can be left for it. Prompts to leave a review are provided in the confirmation screen after purchase as well as in the 'account' view.
 
-#### Feature 3 - Search function
-The search page of tanDev allows the users to search the database for other users who have published their profiles. Searches can be executed according to desired skills, location (Berlin districts), communication styles, and other details. The search page also features pagination.
+#### Feature 3 - Flexible Navbar design
+On the index page, the navbar is transparent and pops into view upon scroll. On the other pages, the navbar fixed. In the checkout pages, the navbar and footer are hidden altogether.
 
-#### Feature 4 - Toggleable Sidebar
-The search page also features a sidebar, which is fixed on desktop view, but toggleable on mobile, with a smooth transition animation.
+#### Feature 4 - Toggle Items by Category
+In the shop section of the website, items can be filtered by category by clicking on the corresponding category button. 
 
-#### Feature 5 - Eye-Catching Animated Usernames
-In the user details view, the username is animated with an infinite text shadow keyframe.
-
-#### Feature 6 - Preview Option
-After successfully saving his or her details, the user may preview what their information would look like in a profile view.
-
-#### Feature 7 - Flexible Navbar design
-On the search and about pages, the navbar is transparent and pops into view upon scroll. On the other pages, and on mobile view, the navbar is dark and fixed.
+#### Feature 5 - Item Detail View
+Each item features a separate, more detailed view after having been selected from the main shop or index views.
 
 
 
 ### Features Left to Implement <a name="future-features"></a>
 
-#### Messaging 
-Currently, there is no way for users to connect with other users on tanDev. A messaging function of some sort is needed.
+#### Password Resetting 
+Currently, there is no way for passwords to be reset. This is a feature that I would like to implement in future releases of this project.
 
 #### Favoriting
-The option to favorite users and save them in a 'my favorites' tab of the my account dropdown is also a feature that is missing and which would add a lot of value to the website's UX.
+The option to favorite items and save them in a 'my favorites' area of the account view is also a feature that is missing and which would add a lot of value to the website's UX.
 
 ## Technologies Used <a name="technologies"></a>
 
 ### Programming Languages  <a name="languages"></a>
 
- [HTML5](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5)
+ [HTML](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5)
     - The project uses **HTML5** to build the structure of the content.
     
- [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS3)
+ [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS3)
     - The project uses **CSS3** to style the content.
 
  [JavaScript](https://developer.mozilla.org/de/docs/Web/JavaScript)
@@ -158,27 +158,30 @@ The option to favorite users and save them in a 'my favorites' tab of the my acc
 [Bootstrap](https://getbootstrap.com/)
     - The project uses **Bootstrap**, a CSS3 and JavaScript framework.
 
-[Flask](https://flask.palletsprojects.com/en/1.0.x/)
-    - The project uses *Flask**, a Python framework.
+[Django](https://www.djangoproject.com/)
+    - The project uses *Django**, a Python framework.
 
 ### Libraries <a name="libraries"></a>
 
 [jQuery.js, version 3.4.1](https://jquery.com/)
     - The project uses **jQuery.js**, a JavaScript library used for event handling.
 
-[AOS](https://michalsnik.github.io/aos/)
-    - The project uses **Animate on Scroll**.
+### Databases <a name="databases"></a>
+
+[PostgreSQL](https://www.postgresql.org/)
+    - The project uses **PostgreSQL** as its database.
+
 
 ### Other Technologies <a name="other"></a>
-
-[Pymongo](https://api.mongodb.com/python/current/)
-    - The project uses **Pymongo** to manipulate the data using Python.
 
 [Font Awesome](https://fontawesome.com/)
     - The project uses **Font Awesome**, free icons for improved UI.
 
 [Google Fonts](https://developers.google.com/fonts/)
      - The project uses **Google Fonts** for its typography.  
+
+[Git](https://git-scm.com/)
+    - The project uses **Git** for version control.
 
  
 ## Testing <a name="testing"></a>
