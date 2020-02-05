@@ -22,10 +22,15 @@ $( ".cat-button" ).click(function() {
     } else {
         $('.cat-all').addClass('selected');
     }
+
+    $("#review-header").click(function() {
+      $(this).toggleClass('review-opened');
+    });
+
+  $('.collapse').collapse();
   });
 
 
-  $('.collapse').collapse();
 
 
 

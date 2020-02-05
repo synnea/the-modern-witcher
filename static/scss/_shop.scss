@@ -156,13 +156,11 @@ padding: 50px;
     }
 }
 
-.fa-arrow-circle-down.active a:before {
-	-webkit-transform: rotate(180deg);
-	-moz-transform: rotate(180deg);
-	transform: rotate(180deg);
-} 
-
 .leave-review {
     padding-left: 50px;
     margin-top: 10vh;
+}
+
+#review-header.review-opened i {
+    transform: rotate(180deg);
 }

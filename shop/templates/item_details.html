@@ -45,80 +45,98 @@
 
     <div class="row review-row">
 
-        <div class="col-12">
+        <div class="accordion" id="review-accordion">
 
-            <div class="collapse" id="reviews">
+            <div class="container">
 
-                {% for review in reviews %}
+                <div class="card">
 
-                <p>
-                    <h4>{{ review.headline }}</h4> by {{review.user}}
-                </p>
+                    <div class="card-header" id="review-header">
 
-                {% if review.rating == "5" %}
+                        <button class="btn d-flex justify-content-between" id="review-button" type="button" data-toggle="collapse"
+                            data-target="#reviews" aria-expanded="false" aria-controls="reviews">
+                                <h4>Show Reviews</h4>
+                                <i class="fas fa-chevron-down chevron"></i>
+                        </button>
 
-                <div class="star-rating"></div>
-                <div class="star-rating"></div>
-                <div class="star-rating"></div>
-                <div class="star-rating"></div>
-                <div class="star-rating"></div>
+                    </div>
 
-                {% endif %}
+                    <!-- Collapsed section, displayes all orders in the users cart -->
 
-                {% if review.rating == "4" %}
+                    <div id="reviews" class="collapse" aria-labelledby="review-header" data-parent="#review-accordion">
 
-                <div class="star-rating"></div>
-                <div class="star-rating"></div>
-                <div class="star-rating"></div>
-                <div class="star-rating"></div>
-                {% endif %}
+                        {% for review in reviews %}
 
-                {% if review.rating == "3" %}
-                <div class="star-rating"></div>
-                <div class="star-rating"></div>
-                <div class="star-rating"></div>
-                {% endif %}
+                        <p>
+                            <h4>{{ review.headline }}</h4> by {{review.user}}
+                        </p>
 
-                {% if review.rating == "2" %}
+                        {% if review.rating == "5" %}
 
-                <div class="star-rating"></div>
-                <div class="star-rating"></div>
-                {% endif %}
+                        <div class="star-rating"></div>
+                        <div class="star-rating"></div>
+                        <div class="star-rating"></div>
+                        <div class="star-rating"></div>
+                        <div class="star-rating"></div>
 
-                {% if review.rating == "1" %}
+                        {% endif %}
 
-                <div class="star-rating"></div>
+                        {% if review.rating == "4" %}
 
-                {% endif %}
+                        <div class="star-rating"></div>
+                        <div class="star-rating"></div>
+                        <div class="star-rating"></div>
+                        <div class="star-rating"></div>
+                        {% endif %}
 
-                <p>{{ review.review_text }}</p>
+                        {% if review.rating == "3" %}
+                        <div class="star-rating"></div>
+                        <div class="star-rating"></div>
+                        <div class="star-rating"></div>
+                        {% endif %}
 
-                {% endfor %}
+                        {% if review.rating == "2" %}
+
+                        <div class="star-rating"></div>
+                        <div class="star-rating"></div>
+                        {% endif %}
+
+                        {% if review.rating == "1" %}
+
+                        <div class="star-rating"></div>
+
+                        {% endif %}
+
+                        <p>{{ review.review_text }}</p>
+
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
-
     </div>
 
+</div>
 
-    {% if purchased %}
 
-    <div class="row leave-review">
+{% if purchased %}
 
-        <form role="form" id="review-form" method="POST" action="{% url 'submit_review' id=item.id %}">
+<div class="row leave-review">
 
-            <h3>Leave a Review!</h3>
+    <form role="form" id="review-form" method="POST" action="{% url 'submit_review' id=item.id %}">
 
-            <fieldset class="form-group">
-                {% csrf_token %}
-                {% load bootstrap_tags %}
-                {{  review_form | as_bootstrap }}
-            </fieldset>
+        <h3>Leave a Review!</h3>
 
-            <button class="btn btn-success" button="submit" id="submit_review" name="review" type="submit"
-                value="Submit Review"><span class="glyphicon glyphicon-ok-sign"
-                    aria-hidden="true"></span>Review</button>
-        </form>
-    </div>
+        <fieldset class="form-group">
+            {% csrf_token %}
+            {% load bootstrap_tags %}
+            {{  review_form | as_bootstrap }}
+        </fieldset>
+
+        <button class="btn btn-success" button="submit" id="submit_review" name="review" type="submit"
+            value="Submit Review"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Review</button>
+    </form>
+</div>
 
 </div>
 {% endif %}
