@@ -201,11 +201,9 @@ The responsiveness of the website was tested on Responsinator.
 * iPad portrait
 * iPad landscape
 
-I collected the results in a responsiveness matrix:
+The project is not optimized for all of the above. Landscapes and iPad versions in particular are not optimized.
 
-![responsiveness matrix](https://github.com/synnea/tanDev--tandem-for-devs/blob/master/static/img/responsiveness_screenshot.JPG)
-
-The complete .xls file has been uploaded [here](https://github.com/synnea/tanDev--tandem-for-devs/blob/master/tests/responsiveness_test_matrix.xls).
+Since this project's focus is on the design of the backend, I chose not to spend as much time as I did previously on strict responsiveness optimization. 
 
 ### Code Testing <a name="code-testing"></a>
 
