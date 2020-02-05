@@ -6,6 +6,8 @@
 
     <h1 class="cart-headline">The Modern Witcher</h1>
 
+    <!-- Checkout journey -->
+
     <div class="row">
         <div class="col-12">
             <p class="checkout-journey">Cart > <span class="highlighted">Information</span> > Payment > Confirm</p>
@@ -13,6 +15,9 @@
     </div>
 
     <div class="row">
+
+        <!-- Address Column -->
+
         <div class="col-12 col-md-6">
             <h3 class="cart-header"> Contact Information</h3>
 
@@ -29,6 +34,8 @@
             </form>
         </div>
 
+        <!-- Order Item Column -->
+
         <div class="col-12 col-md-6">
 
             {% block ordersummary %}
@@ -36,18 +43,16 @@
             {% endblock %}
 
             {% if cart_items %}
-            <button class="btn green-button custom-button" button="submit" value="shipping" form="shipping"
-                name="shipping" role="button"><span class="glyphicon glyphicon-ok-sign"
-                    aria-hidden="true"></span>Continue</button>
+            <button class="btn green-button custom-button" type="submit" value="shipping" form="shipping"
+                name="shipping"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Continue</button>
             {% else %}
-            <p class="cart-add">Add to your cart in order to get your awesome Witcher items! <a href="{% url 'view_all' %}">Go to
+            <p class="cart-add">Add to your cart in order to get your awesome Witcher items! <a
+                    href="{% url 'view_all' %}">Go to
                     shop</a></p>
 
             {% endif %}
         </div>
     </div>
-</div>
-
 </div>
 
 {% endblock %}

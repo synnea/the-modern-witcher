@@ -1,3 +1,5 @@
+// This function was taken unchanged from the CI course material's E-Commerce mini project.
+
 $(function(){
     $('#payment-form').submit(function(){
         var form = this ;

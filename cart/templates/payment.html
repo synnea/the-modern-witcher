@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
+
+<!-- Add the script to enable the Stripe functionality. -->
+<!-- Inject the script for hiding the navbar -->
+
 {% block head_js %}
 <script type='text/javascript' src='https://js.stripe.com/v2/'></script>
 <script type="text/javascript" src="{% static 'js/hide-navbar.js' %}"></script>
@@ -19,12 +23,16 @@
         <h1 class="cart-headline mb-5 d-block">The Modern Witcher</h1>
     </div>
 
+    <!-- Back button which leads back to the shipping part of the checkout journey. -->
 
     <div class="row">
         <div class="col-12 d-block back-link">
             <a href="{% url 'view_cart' %}">Go back</a>
         </div>
     </div>
+
+
+        <!-- Checkout journey -->
 
     <div class="row">
         <div class="col-12">
@@ -33,6 +41,10 @@
     </div>
 
     <div class="row">
+<!-- 
+        Summarized address, with a button to change it which leads back to the previous page in
+        the checkout journey. -->
+
         <div class="col-12 col-md-6">
 
             <h3 class="cart-header">Shipping Address</h3>
@@ -50,10 +62,9 @@
                     </a>
                 </div>
 
-
+                <!-- Form which initiates the payment and triggers the script in stripe.js. -->
 
                 <form role="form" id="payment-form" method="POST" action="{% url 'payment' %}">
-
 
                     <h3 class="cart-header">Order Details</h3 c>
 
@@ -70,6 +81,8 @@
                         {% load bootstrap_tags %}
                         {{  payment_form | as_bootstrap }}
                     </fieldset>
+
+                    <!-- Complete Order button -->
 
                     <button class="btn custom-button green-button order-button" button="submit" id="submit_payment_btn"
                         name="commit" type="submit" value="Submit Payment"><span class="glyphicon glyphicon-ok-sign"

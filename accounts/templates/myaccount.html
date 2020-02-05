@@ -4,19 +4,22 @@
 
 <section class="profile-wrapper">
 
+    <!-- Greeting and logout button -->
     <div class="row">
         <div class="col-6">
             <h1>Greetings, {{ user.username }}</h1>
         </div>
 
         <div class="col-6">
-            <button class="btn btn-secondary logout-btn"><a class="logout-link" href="{% url 'logout' %}">
-                Logout
-            </a></button>
+            <a class="logout-link" href="{% url 'logout' %}"><button class="btn btn-secondary logout-btn">
+                    Logout
+                </button></a>
         </div>
 
     </div>
     <div class="row address-row">
+
+        <!-- Saved address column -->
         <div class="col-6">
 
             <h3>Saved Address</h3>
@@ -36,6 +39,7 @@
             </div>
         </div>
 
+        <!-- Past Orders column -->
         <div class="col-6">
             <h3>Purchased Items</h3>
 
@@ -47,8 +51,9 @@
 
             {% for order in all_orders %}
 
-            <p><b>{{ order.order.date }} - Total Order Price: € {{ order.total }}</p></b>
+            <p><b>{{ order.order.date }} - Total Order Price: € {{ order.total }}</b></p>
 
+            <!-- Table that displays the previously ordered items. -->
             <table class="table">
 
                 <thead>
@@ -64,23 +69,24 @@
                     {% for order_item in order.order_items %}
                     <tr>
                         <td>{{ order_item.product }}</td>
-                        <td><p><a href="{{ order_item.product.get_item_details }}">Review this item!</a></p></td>
-                        <td><p>{{ order_item.quantity }}</p></td>
-                        <td><p>€ {{ order_item.product.price }}</p></td>
+                        <td>
+                            <p><a href="{{ order_item.product.get_item_details }}">Review this item!</a></p>
+                        </td>
+                        <td>
+                            <p>{{ order_item.quantity }}</p>
+                        </td>
+                        <td>
+                            <p>€ {{ order_item.product.price }}</p>
+                        </td>
                         </th>
                     </tr>
-
+                </tbody>
             </table>
             {% endfor %}
 
             {% endfor %}
 
-
-
-
-
         </div>
-
 
 </section>
 {% endblock %}

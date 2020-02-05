@@ -32,7 +32,3 @@ class OrderLineItem(models.Model):
     def __str__(self):
         return "{0} {1}".format(
             self.quantity, self.product.name)
-
-
-# len(carina.orders.products.filter(pk=item_to_review.pk)) == 0
-# view level
