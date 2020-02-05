@@ -53,12 +53,10 @@
 
                     <div class="card-header" id="review-header">
 
-                        <button class="btn d-flex justify-content-between" id="review-button" type="button" data-toggle="collapse"
-                            data-target="#reviews" aria-expanded="false" aria-controls="reviews">
-                                <h4>Show Reviews</h4>
-                                <i class="fas fa-chevron-down chevron"></i>
+                        <button class="btn d-flex justify-content-between" id="review-button" type="button"
+                            data-toggle="collapse" data-target="#reviews" aria-expanded="false" aria-controls="reviews">
+                            <h4>Show Reviews</h4> <i class="fas fa-chevron-down chevron"></i>
                         </button>
-
                     </div>
 
                     <!-- Collapsed section, displayes all orders in the users cart -->
@@ -116,27 +114,27 @@
         </div>
     </div>
 
-</div>
 
 
-{% if purchased %}
+    {% if purchased %}
 
-<div class="row leave-review">
+    <div class="row leave-review">
 
-    <form role="form" id="review-form" method="POST" action="{% url 'submit_review' id=item.id %}">
+        <form role="form" id="review-form" method="POST" action="{% url 'submit_review' id=item.id %}">
 
-        <h3>Leave a Review!</h3>
+            <h3>Leave a Review!</h3>
 
-        <fieldset class="form-group">
-            {% csrf_token %}
-            {% load bootstrap_tags %}
-            {{  review_form | as_bootstrap }}
-        </fieldset>
+            <fieldset class="form-group">
+                {% csrf_token %}
+                {% load bootstrap_tags %}
+                {{  review_form | as_bootstrap }}
+            </fieldset>
 
-        <button class="btn btn-success" button="submit" id="submit_review" name="review" type="submit"
-            value="Submit Review"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Review</button>
-    </form>
-</div>
+            <button class="btn btn-success" button="submit" id="submit_review" name="review" type="submit"
+                value="Submit Review"><span class="glyphicon glyphicon-ok-sign"
+                    aria-hidden="true"></span>Review</button>
+        </form>
+    </div>
 
 </div>
 {% endif %}

@@ -457,9 +457,18 @@ ul {
   margin-top: 10vh;
 }
 
+#review-header i {
+  margin-left: 2vh;
+}
+
 #review-header.review-opened i {
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
+  margin-left: 2vh;
+}
+
+#reviews {
+  padding: 20px;
 }
 
 @font-face {
