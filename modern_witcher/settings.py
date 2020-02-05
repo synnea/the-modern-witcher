@@ -20,7 +20,10 @@ from django.contrib.messages import constants as messages
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://github.com' ]
+    "localhost",
+     "127.0.0.1",
+    'https://github.com',
+    "the-modern-witcher.herokuapp.com" ]
 
 CORS_ORIGIN_WHITELIST = [ "https://github.com"]
 

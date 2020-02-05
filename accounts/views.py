@@ -13,6 +13,8 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 
 def view_account(request):
+
+    print("we hit view_account")
     """
     Renders the account page.
     Checks if the user is logged in. If they are, fetch their
@@ -22,6 +24,7 @@ def view_account(request):
     """
 
     if request.user.is_authenticated:
+        print("user is authenticated")
 
         try:
             current_user = request.user
@@ -67,10 +70,12 @@ def logreg(request):
 
 
 def register(request):
+    print("we hit register")
     """A view that manages the registration form"""
 
     register_form = UserRegistrationForm(request.POST)
     if register_form.is_valid():
+        print("form is valid")
         register_form.save()
 
         # if the form was valid, insert the user data into the form.
@@ -81,6 +86,7 @@ def register(request):
         auth.login(request=request, user=user)
         messages.success(request, "Place of power, it's gotta be! You've been registered.")
         if request.session.get('account'):
+            print("account cookie found")
             del request.session['account']
             return redirect(reverse('view_account'))
 
@@ -90,6 +96,8 @@ def register(request):
 
             # if the form was not valid, reject the form and reload the page.
     else:
+        print("else was triggered")
+        print(register_form.errors)
         messages.error(request, "We could not register you! Sure you re-entered your password correctly and haven't already registered?")
         return redirect(reverse('view_account'))
         
