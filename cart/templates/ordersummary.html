@@ -13,7 +13,7 @@
             <form class="form-inline" method="post" action="{% url 'amend_cart' id=item.product.id %}">
                 {% csrf_token %}
                 <div class="form-group">
-                    <label for="exampleInputAmount" class="sr-only">New Qty</label>
+                    <label for="quantity" class="sr-only">New Qty</label>
                     <div class="input-group">
                         <div class="input-group-addon">Qty</div>
                         <input class="quantity-input" name="quantity" id="quantity" type="number" min="0" max="999" class="form-control" placeholder="{{item.quantity}}">

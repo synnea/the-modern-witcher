@@ -15,12 +15,12 @@
                     </li>
 
                     <li class="nav-item" id="navAccount">
-                        <a class="nav-link hvr-bounce-in" href="{% url 'view_account' %}" id="navAccount">
+                        <a class="nav-link hvr-bounce-in" href="{% url 'view_account' %}">
                             <i class="fas fa-user-circle"></i>
                         </a>
                     </li>
 
-                    <li class="nav-item" id="navCart">
+                    <li class="nav-item">
                         <a class="nav-link hvr-bounce-in" href="{% url 'view_cart' %}" id="navCart">
                             <i class="fas fa-cart-arrow-down"></i>
                             {% if product_count > 0 %}

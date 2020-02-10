@@ -56,9 +56,10 @@
 
                 </div>
                 <div class="col-6 profile-col">
-                    <a class="btn custom-button orange-button" id="address-button" type="button"
+                    <a><buttin class="btn custom-button orange-button" id="address-button" type="button"
                         href="{% url 'view_cart' %}">
                         Change Address
+                    </button>
                     </a>
                 </div>
 
@@ -66,7 +67,7 @@
 
                 <form role="form" id="payment-form" method="POST" action="{% url 'payment' %}">
 
-                    <h3 class="cart-header">Order Details</h3 c>
+                    <h3 class="cart-header">Order Details</h3>
 
                     <fieldset class="form-group">
                         {% csrf_token %}
@@ -74,7 +75,7 @@
                         {{  order_form | as_bootstrap }}
                     </fieldset>
 
-                    <h3 class="cart-header">Payment Details</h3 c>
+                    <h3 class="cart-header">Payment Details</h3>
 
                     <fieldset class="form-group">
                         {% csrf_token %}
@@ -84,7 +85,7 @@
 
                     <!-- Complete Order button -->
 
-                    <button class="btn custom-button green-button order-button" button="submit" id="submit_payment_btn"
+                    <button class="btn custom-button green-button order-button" type="submit" id="submit_payment_btn"
                         name="commit" type="submit" value="Submit Payment"><span class="glyphicon glyphicon-ok-sign"
                             aria-hidden="true"></span>Complete Order</button>
 

@@ -69,6 +69,8 @@
                             <h4>{{ review.headline }}</h4> by {{review.user}}
                         </p>
 
+                        <!-- Check how many stars have been awarded, and render the corresponding number of svg stars. -->
+
                         {% if review.rating == "5" %}
 
                         <div class="star-rating"></div>
@@ -130,7 +132,7 @@
                 {{  review_form | as_bootstrap }}
             </fieldset>
 
-            <button class="btn btn-success" button="submit" id="submit_review" name="review" type="submit"
+            <button class="btn btn-success" type="submit" id="submit_review" name="review" type="submit"
                 value="Submit Review"><span class="glyphicon glyphicon-ok-sign"
                     aria-hidden="true"></span>Review</button>
         </form>

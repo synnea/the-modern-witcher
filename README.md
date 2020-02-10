@@ -211,10 +211,9 @@ Since this project's focus is on the design of the backend, I chose not to spend
 **HTML** 
 * [HTML Validator](https://www.freeformatter.com/html-validator.html).
     - The project contains a total of 12 html files. Throughout all of them, the HTML Validator did not recognize templating language, such as variable interpolation and functions, as valid HTML, and threw errors. This was ignored throughout all files. The following anomalies remain:
-        - in the 'forbidden.html' file, the HTML Validator throws an error that inline style CSS is not allowed in this context. However, moving the CSS to a separate file leads to the CSS not being rendered at all. Thus, I chose to keep the inline styling.
-        - in the 'logreg.html' file, the HTML Validator throws the error that tabpanels must be part of a tablist. However, adding a div with the role of tablist disabled the functionality. Thus, the semantic problem remains uncorrected.
-        - similarly, the profile pages also throw the tabpanel and tablist error. Not wanting to break the functionality, I chose to leave it alone.
-        - for the 'base.html' file, the HTML Validator throws the error that the "|" character is not allowed in a query. However, it has been copied as part of a query to Google Fonts to import several different custom fonts, and was left in.
+        - in the item_details.html file, the validator warns that it is not allowed to nest an h4 inside of a button. I chose to keep it anyway as the button is still fully functional.
+        - for the navbar.html file, the validator warns that a label should not appear as a descendant of the a element. I chose to keep it in for similar reasons as the one above.
+
 
 **CSS**  
 * [CSS Validator](https://jigsaw.w3.org/css-validator/).

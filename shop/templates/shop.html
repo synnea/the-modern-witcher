@@ -2,11 +2,15 @@
 
 {% block content %}
 
+<!-- START SHOP -->
+
 <div class="shop-wrapper">
 
     <div class="shop-container">
 
     <h1>Shop</h1>
+
+    <!-- Display the categories at the top of the page. -->
 
     <ul class="cat-list flex flex-wrap justify-center items-center">
         <li class="mx-1 d-block cat-item">
@@ -21,6 +25,8 @@
         {% endfor %}
     </ul>
 </div>
+
+<!-- Display the items in a fluid grid -->
 
     <div class="grid-container">
         <div class="grid-row">
@@ -39,6 +45,8 @@
                     </div>
                     <form method="post" action="{% url 'add_to_cart' id=product.id %}">
 
+                        <!-- Add the item to the shopping cart. -->
+
                         {% csrf_token %}
                         <div class="input-group">
                             <input name="quantity" type="number" min="1" max="999" class="form-control"
@@ -54,5 +62,7 @@
         </div>
     </div>
 </div>
+
+<!-- END SHOP -->
 
 {% endblock %}
