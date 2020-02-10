@@ -1,5 +1,5 @@
 from django.test import TestCase
-from accounts.forms import UserLoginForm, UserRegistrationForm
+from accounts.forms import UserLoginForm, UserRegistrationForm, ProfileAddressForm
 
 # Create your tests here.
 
@@ -17,6 +17,7 @@ class TestAccountForms(TestCase):
                                      'password1': 'testing321',
                                      'password2': 'wrongpassword'})
         self.assertFalse(form.is_valid())
+
 
     def test_can_login(self):
         form = UserLoginForm({'username': 'tester',
