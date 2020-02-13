@@ -48,13 +48,12 @@ class TestOrderModel(TestCase):
 
             def test_can_create_new_order_model_instance(self):
                 orderitem = OrderLineItem(
-                    username = user.username,
-                    product = Item.objects.filter(pk=1)
-                    full_name = 'Jon Snow',
+                    product = Item.objects.filter(pk=1),
+                    quantity = '2',
                     date = datetime.date.today,
                     phone_number = "004915145113456"
                     )
             
-                order.save()
-                self.assertEqual(order.full_name, 'Jon Snow')
+                orderitem.save()
+                self.assertEqual(orderitem.quantity, '2')
 
