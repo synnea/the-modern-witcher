@@ -39,12 +39,10 @@ The project utilizes Python 3, Django 2.2, JavaScript, and various other framewo
     - [Unit Testing](#unit-testing)
     - [User Story Testing](#user-stories-testing)
 
-6. [Known Bugs](#bugs)
-
-7. [Deployment](#deployment)
+6. [Deployment](#deployment)
     - [Deployment Writeup](#deployment-writeup)
 
-8. [Credits](#credits)
+7. [Credits](#credits)
 
 ## UX <a name="UX"></a>
 
