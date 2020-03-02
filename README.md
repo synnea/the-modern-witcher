@@ -233,28 +233,28 @@ Here are the results for the user story tests:
 
 **Story 1**
 
-- I am a developer or designer. I heard about tanDev and have an idea what it's about. I am interested in finding out if there are other developers in the city with whom I could exchange my skills with.
+- I am a fan of the The Witcher franchise, and I'm specifically interested in buying merchandise.
 
-Solution: upon landing on the main page, the background picture of the puzzle pieces and the slogan 'exchange your skills with other developers and designers' confirms that I've come to the right place. I click on 'sign up' and am taken to the registration route.
+Solution: upon landing on the main page, the characteristic font and background image immediately tell the user that they are on a website that is related to The Witcher franchise. The slogan makes clear that it's a merchandise website. A click on the prominently-displayed 'shop now' button leads them to the shop view.
 
 
 **Story 2**
 
-- I am a developer or designer. I stumble upon tanDev without knowing what it is.
+- I am a fan of the The Witcher franchise, but I'm not specifically interested in buying merchandise.
 
-Solution: upon landing on the main page, the imagry and slogan give me an idea about what tanDev is about. Scrolling down the page and seeing the profiles in the carousel gives a further idea. Finally, clicking on the 'about' page clarifies all doubts. Navigating back to the main page, I click on the 'sign up' button and follow the same journey as user story 1 from there on out.
+Solution: upon landing on the main page, the characteristic font and background image immediately tell the user that they are on a website that is related to The Witcher franchise. Since they aren't here to buy merchandise, it might not be clear to them that this is what the website is about, but the background image is interesting enough that they want to find out more about it. Scrolling down to the 'about' section, they discover that they are on a merchandise e-commerce shop. Out of curiosity, they proceed to the shop view by clicking on the main call-to-action button.
 
 **Story 3**
 
-- I am a tech recruiter interested in contacting available talent.
+- I am not a particular fan of the The Witcher franchise, but I am interested in buying unique gifts.
 
-Solution: upon landing on the main page, the imagry and slogan quickly give me an idea that I've come to a place where I can find relevant tech talent. The 'search' button seems most relevant to me, so I click on it. There, among the search options, I find the 'available for Hire' checkbox. I select it, and search the database for developers and designers who are open to new opportunities.
+Solution:
 
 **Story 4**
 
-- I am a startup entrepreneur interested in finding a co-founder. I am a designer and need a programmer with strong backend skills to bring my product to life.
+- I want to have an enjoyable online shopping experience.
 
-Solution: upon landing on the main page, the imagry and slogan quickly give me an idea that I've come to a place where I can find someone to help me. The 'search' button seems most relevant to me, so I click on it. There, among the search options, I find the 'looking for Co-Founder' checkbox. I select it, and then select several backend languages in the skills menu. This gives me a list of people who have the skills I need, and who are open to being approached about co-founding opportunities. I decide to send one or several of them a message. The last point is not achieved yet, as tanDev at present does not feature a messaging function.
+Solution: 
 
 
 ## Known Bugs <a name="bugs"></a>
