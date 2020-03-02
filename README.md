@@ -248,24 +248,26 @@ Solution: upon landing on the main page, the characteristic font and background 
 
 - I am not a particular fan of the The Witcher franchise, but I am interested in buying unique gifts.
 
-Solution:
+Solution: upon landing on the main page, the user does not immediatelz recognize the character of Geralt of Rivia in the background, nor the characteristic font. However, the navbar, which is typical for e-commerce platforms, makes it clear that this is a website on which the user can buy things. 
+
+Scrolling down, the user sees the recommended items on the front page to get an idea about the sort of items that they can purchase. The sort of items (armor, swords) makes it clear that unique gifts can be bought here.
+
+Upon clicking on one of the recommended items, the user can see reviews as well as more general information about the items, such as measurements and weight.
 
 **Story 4**
 
 - I want to have an enjoyable online shopping experience.
 
-Solution: 
+Solution: The Modern Witcher adheres to e-commerce standards. The navbar contains the elements that a user would expect from an e-commerce website. The navbar contains familiar icons, and the checkout area follows e-commerce convention of illustrating the user journey and hiding the navbar and footer elements.
 
+The user area offers the option to save the address for future use.
 
-## Known Bugs <a name="bugs"></a>
-
-On iPhones, the carousel on the index page overlaps with the indicators below. I was not able to find a good fix for it before it was time to submit, but I would like to fix this eventually.
 
 ## Deployment <a name="deployment"></a>
 
 ### Deployment Writeup <a name="deployment-writeup"></a>
  
-To deploy tanDev on heroku, I took the following steps:
+To deploy The Modern Witcher on heroku, I took the following steps:
 
 1. I created a requirements.txt file using the terminal command pip freeze > requirements.txt.
 
@@ -273,9 +275,9 @@ To deploy tanDev on heroku, I took the following steps:
 
 3. I staged and committed the requirements.txt and Procfile to my project repository. 
 
-4. I went to heroku.com, logged in, and clicked on the "New" button in the dashboard to create a new app. I named it 'tanDev' and set its region to Europe.
+4. I went to heroku.com, logged in, and clicked on the "New" button in the dashboard to create a new app. I named it 'the-modern-witcher' and set its region to Europe.
 
-5. In the heroku dashboard for the application, I clicked on "Settings" > "Reveal Config Vars". Then, I set the Port, IP, MongoURI and Secret Key variables.
+5. In the heroku dashboard for the application, I clicked on "Settings" > "Reveal Config Vars". Then, I set the Port, IP, PostgreSQL and Secret Key variables.
 
 6. From my terminal window, I logged into heroku using "heroku login --interactive." After entering my credentials, I registered heroku as a remote destination for my project with "heroku git remote." I then pushed my project to heroku with "git push heroku."
 
@@ -285,15 +287,11 @@ To deploy tanDev on heroku, I took the following steps:
 
 ### Differences between local and deployed versions <a name="deployment-differences"></a>
 
-The project was developed locally with Visual Studio Code. Environment variables, including secret key and Mongo URI, were saved in a settings.json file which was added to .gitignore. For the deployed version, as mentioned in the deployment writeup above, environemnt variables were set in the Config Variables.
+The project was developed locally with Visual Studio Code. Environment variables, including secret key and PostgreSQL URLs, were saved in a settings.json file which was added to .gitignore. For the deployed version, as mentioned in the deployment writeup above, environemnt variables were set in the Config Variables.
 
 ## Credits <a name="credits"></a>
 
-Credit for the logo goes to he-who-prefers-to-go-uncredited. You're awesome.
-
-Many thanks to [Tim Nelson](https://github.com/TravelTimN), whose patience helped me to get started on the sever-side development.
-
-Most of the images used on tanDev have been sourced from [Adobe Stock](https://stock.adobe.com/).
+Most of the images used on The Modern Witcher have been sourced from [Etsy](https://etsy.com/).
 
 
 
