@@ -20,14 +20,26 @@ class TestReviewModel(TestCase):
             user = User.objects.create_user(**self.credentials)
 
             def test_can_create_new_review(self):
-                order = Order(
-                    username = user.username,
-                    full_name = 'Jon Snow',
-                    date = datetime.date.today,
-                    phone_number = "004915145113456"
-                    )
-            
-                order.save()
+                item = Item(
+                        name = 'Test Product',
+                        description = 'Test description',
+                        category = 'BLACKSMITH',
+                        height = '4',
+                        weight = '4',
+                        width = '4',
+                        price = '50'
+                        )
+                    
+                item.save()
 
+                review = Review(
+                    user = user.username,
+                    reviewed_item = item.name,
+                    headline = "An exciting new product",
+                    rating = '5',
+                    review_text = "test test test test test"
+                )
+
+                review.save()
+                self.assertEqual(review.headline, 'An exciting new product')
             
-                self.assertEqual(order.full_name, 'Jon Snow')
