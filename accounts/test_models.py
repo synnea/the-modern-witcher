@@ -17,25 +17,24 @@ class TestItemModel(TestCase):
 
             def test_can_create_new_profile_model_instance(self):
                 profile = Profile(
-                    username = user.username,
-                    last_name = 'Smith',
-                    first_name = 'John',
+                    username=user.username,
+                    last_name='Smith',
+                    first_name='John',
 
-                    address1 = 'Knorrgasse 23',
-                    address2 = '',
-                    zipcode = "10247",
-                    country = 'Germany'
+                    address1='Knorrgasse 23',
+                    address2='',
+                    zipcode="10247",
+                    country='Germany'
                     )
-            
+
                 profile.save()
                 self.assertEqual(profile.last_name, 'Smith')
 
-
-    def test_can_update_existing_profile(self):        
+    def test_can_update_existing_profile(self):
         """This test checks if a user who  has not already
-        saved their information in the profile can 
-        update it."""        
-                
+        saved their information in the profile can
+        update it."""
+
         def setUp(self):
             self.credentials = {
                 'username': 'testuser',
@@ -49,20 +48,20 @@ class TestItemModel(TestCase):
                 'first_name': 'John',
                 'address1': 'Knorrgasse 23',
                 'address2': '',
-                'zipcode' : "10247",
-                'country' : 'Germany'
+                'zipcode': "10247",
+                'country': 'Germany'
                 }
             profile = Profile.objects.create(**self.credentials)
 
             def test_can_update_existing_profile(self):
                 profile = Profile(
-                    username = user.username,
-                    last_name = 'Kerrigan',
-                    first_name = 'John',
-                    address1 = 'Knorrgasse 23',
-                    address2 = '',
-                    zipcode = "10247",
-                    country = 'Germany'
-                )                    
+                    username=user.username,
+                    last_name='Kerrigan',
+                    first_name='John',
+                    address1='Knorrgasse 23',
+                    address2='',
+                    zipcode="10247",
+                    country='Germany'
+                )   
                 profile.save()
                 self.assertEqual(profile.last_name, 'Kerrigan')

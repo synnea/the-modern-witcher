@@ -8,7 +8,9 @@ class Profile(models.Model):
 
     objects = models.Manager()
 
-    username = models.OneToOneField(User,on_delete=models.CASCADE, default=None)
+    username = models.OneToOneField(
+        User, on_delete=models.CASCADE, default=None
+        )
     last_name = models.CharField(max_length=30, blank=False)
     first_name = models.CharField(max_length=30, blank=False)
     address1 = models.CharField(max_length=30, blank=False)

@@ -12,6 +12,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 
+
 def view_account(request):
 
     """
@@ -29,7 +30,6 @@ def view_account(request):
             user = Profile.objects.get(username=current_user)
             profile_form = ProfileAddressForm(instance=user)
 
-        
         except:
             profile_form = ProfileAddressForm()
 
@@ -45,10 +45,23 @@ def view_account(request):
             for order_item in order_items_db:
                 order_items.append(order_item)
                 order_items = order_items
-                order_total += int(order_item.product.price * order_item.quantity)
-            all_orders.append({'order': order, 'order_items': order_items, "total": order_total})
+                order_total += int(
+                    order_item.product.price * order_item.quantity
+                    )
+            all_orders.append(
+                {
+                    'order': order,
+                    'order_items': order_items,
+                    "total": order_total
+                }
+                )
 
-        return render(request, 'myaccount.html', {'profile_form': profile_form, 'all_orders': all_orders, 'order_items': order_items})
+        context = {
+            'profile_form': profile_form,
+            'all_orders': all_orders,
+            'order_items': order_items
+        }
+        return render(request, 'myaccount.html', context)
 
     else:
         account = True
@@ -80,7 +93,11 @@ def register(request):
         raw_password = register_form.cleaned_data.get('password1')
         user = authenticate(username=username, password=raw_password)
         auth.login(request=request, user=user)
-        messages.success(request, "Place of power, it's gotta be! You've been registered.")
+        messages.success(
+            request,
+            "Place of power, it's gotta be! You've been registered."
+            )
+
         if request.session.get('account'):
             del request.session['account']
             return redirect(reverse('view_account'))
@@ -93,11 +110,11 @@ def register(request):
     else:
         messages.error(request, "We could not register you! Sure you re-entered your password correctly and haven't already registered?")
         return redirect(reverse('view_account'))
-        
+
 
 def logout(request):
     """A view that logs the user out and redirects back to the home page"""
-        
+
     auth.logout(request)
     messages.success(request, 'You have successfully logged out')
     return redirect(reverse('home_view'))
@@ -109,25 +126,31 @@ def login(request):
     login_form = UserLoginForm(request.POST)
     if login_form.is_valid():
         user = auth.authenticate(username=request.POST['username'],
-                                     password=request.POST['password'])
+                                 password=request.POST['password'])
         if user:
             auth.login(request=request, user=user)
             current_user = request.user
 
-            # Checks if the user previously tried to access account and redirects to account
+            # Checks if the user previously tried to access
+            # account and redirects to account
 
             if request.session.get('account'):
                 del request.session['account']
                 return redirect(reverse('view_account'))
 
-            # Checks if the user previously tried to access the cart and redirects to cart
+            # Checks if the user previously tried to access the cart
+            # and redirects to cart
 
             elif request.session.get('cart_access'):
                 del request.session['cart_access']
                 return redirect(reverse('view_cart'))
 
         else:
-            messages.error(request, "Wind's howling... your credentials are incorrect.")
+            messages.error(
+                request,
+                "Wind's howling... your credentials are incorrect."
+                )
+
             return redirect(reverse('logreg'))
 
     else:
@@ -135,30 +158,31 @@ def login(request):
         return redirect(reverse('view_account'))
 
 
-
 @login_required
 def save_address(request):
     """ A view that saves the address in the Profile model.
     It updates the profile model if no address had been saved before.
     Otherwise, it creates a new profile instance. """
-     
+
     form = ProfileAddressForm(request.POST)
     if form.is_valid():
         user = request.user
         profile = form.cleaned_data
-        obj, created = Profile.objects.update_or_create(username=user, defaults=profile)
+        obj, created = Profile.objects.update_or_create(
+            username=user, defaults=profile
+            )
+
         if created:
             messages.success(request, 'Thanks for saving your address!')
         else:
             messages.success(request, 'Updated successfully.')
 
-        profile_form = ProfileAddressForm(request.POST)        
+        profile_form = ProfileAddressForm(request.POST)
         return redirect(reverse('view_account'))
-    
+
     else:
-        messages.error(request, 'Sharpen your eyes, Witcher! Something went wrong.')
+        messages.error(
+            request,
+            'Sharpen your eyes, Witcher! Something went wrong.'
+        )
         return redirect(reverse('view_account'))
-
-
-
-
