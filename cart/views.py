@@ -18,24 +18,26 @@ import datetime
 
 stripe.api_key = settings.STRIPE_SECRET
 
+
 def view_cart(request):
     """ A view that renders the cart view."""
 
     if request.user.is_authenticated:
 
-        # Save a cookie to signify that the user is on the shipping part of 
+        # Save a cookie to signify that the user is on the shipping part of
         # the checkout process. This is needed for the amend_cart function.
 
         shipping = True
         request.session['shipping'] = shipping
 
-        # checks if the user already has saved their address in the account section.
+        # checks if the user already has saved their address in the
+        # account section.
 
         try:
             current_user = request.user
             user = Profile.objects.get(username=current_user)
             profile_form = ProfileAddressForm(instance=user)
-        
+
         # if they haven't, instantiate an empty form.
 
         except:
@@ -52,11 +54,18 @@ def view_cart(request):
             if profile_form.is_valid():
                 user = request.user
                 profile = profile_form.cleaned_data
-                obj, created = Profile.objects.update_or_create(username=user, defaults=profile)
+                obj, created = Profile.objects.update_or_create(
+                                                                username=user,
+                                                                defaults=profile
+                                                                )
                 return redirect(reverse('view_payment'))
 
             else:
-                messages.error(request, "Keep an eye on your mana! Something went wrong with that form.")
+                messages.error(
+                                request,
+                                "Keep an eye on your mana! Something went wrong with that form."
+                                )
+
                 return redirect(reverse('view_cart'))
 
         else:
@@ -81,10 +90,10 @@ def add_to_cart(request, id):
 
     str_id = str(id)
     if str_id in cart:
-        cart[id] = int(cart[id]) + int(quantity) 
+        cart[id] = int(cart[id]) + int(quantity)
 
     else:
-        cart[id] = cart.get(id, quantity) 
+        cart[id] = cart.get(id, quantity)
 
     request.session['cart'] = cart
     return redirect(reverse('view_cart'))
@@ -102,7 +111,7 @@ def amend_cart(request, id):
     if quantity > 0:
         cart[id] = quantity
     else:
-        cart.pop(str(id))    
+        cart.pop(str(id))
 
     request.session['cart'] = cart
 
@@ -111,7 +120,7 @@ def amend_cart(request, id):
     if request.session.get('shipping'):
         return redirect(reverse('view_cart'))
 
-    else:    
+    else:
         return redirect(reverse('view_payment'))
 
 
@@ -126,18 +135,17 @@ def view_payment(request):
     payment_form = MakePaymentForm()
     order_form = OrderForm()
 
-
-    context = {'profile_form': profile_form, 'payment_form': payment_form, 
-            'profile': profile,
-            'order_form': order_form,
-            'publishable': settings.STRIPE_PUBLISHABLE}
+    context = {'profile_form': profile_form, 'payment_form': payment_form,
+                'profile': profile,
+                'order_form': order_form,
+                'publishable': settings.STRIPE_PUBLISHABLE}
 
     return render(request, 'payment.html', context)
 
 
 def payment(request):
     """ View that handles all the payment functionality."""
-    
+
     payment_form = MakePaymentForm(request.POST)
     order_form = OrderForm(request.POST)
 
@@ -165,8 +173,8 @@ def payment(request):
                 order_line_item = OrderLineItem(
                         order=order,
                         product=product,
-                        quantity=quantity, 
-                        user = request.user
+                        quantity=quantity,
+                        user=request.user
                     )
                 order_line_item.save()
 
@@ -182,7 +190,7 @@ def payment(request):
 
         except stripe.error.CardError:
             messages.error(request, "Your card was declined!")
-            
+
         if customer.paid:
             messages.error(request, "You have successfully paid")
             request.session['cart'] = {}
@@ -194,7 +202,6 @@ def payment(request):
     else:
         messages.error(request, "Your payment form was not valid")
         return redirect(reverse('view_payment'))
-
 
 
 def view_confirm(request):

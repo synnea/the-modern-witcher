@@ -15,10 +15,9 @@ class Order(models.Model):
     phone_number = models.CharField(max_length=20, blank=False, default=0)
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     date = models.DateField(default=datetime.date.today, null=True)
-    
+
     def __str__(self):
         return "{0} @ {1}".format(self.full_name, self.date)
-
 
 
 class OrderLineItem(models.Model):
