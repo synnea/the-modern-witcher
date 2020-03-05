@@ -24,6 +24,7 @@ from items import urls as item_urls
 from .settings import MEDIA_ROOT, MEDIA_URL
 from django.conf.urls.static import static
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name="home_view"),
@@ -32,4 +33,5 @@ urlpatterns = [
     path('shop/', include(shop_urls)),
     path('items/', include(item_urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 

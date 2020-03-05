@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import view_account, register, login, logout, save_address, logreg
 
+
 urlpatterns = [
     path('', view_account, name="view_account"),
     path('logreg/', logreg, name="logreg"),
