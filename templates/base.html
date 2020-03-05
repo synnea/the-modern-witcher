@@ -1,65 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
-        <!-- Common metadata, such as information on the author and a description.  -->
+    <!-- Common metadata, such as information on the author and a description.  -->
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-    content="A shop for fans by fans of The Witcher series of novels, video games and TV series. Buy swords, armor, potions, and all els a witcher may need.">
-<meta name="author" content="Carina Pöll">
+        content="A shop for fans by fans of The Witcher series of novels, video games and TV series. Buy swords, armor, potions, and all els a witcher may need.">
+    <meta name="author" content="Carina Pöll">
     <title>The Modern Witcher</title>
 </head>
+
 <body>
 
     {% load static %}
 
-      <!-- bootstrap css -->
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-      <!-- Font awesome -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
-    
-      <!-- Google fonts -->
-      <link href="https://fonts.googleapis.com/css?family=Merriweather|Oswald&display=swap" rel="stylesheet">
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+        integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
 
-        <!-- Hover CSS -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover.css"/>
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather|Oswald&display=swap" rel="stylesheet">
 
-      
-      <link rel="stylesheet" href="{% static 'fonts/the-witcher-stylesheet.css' %}" type="text/css" charset="utf-8" />
+    <!-- Hover CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover.css" />
 
-      {% load compress %}
 
-      {% compress css %}
+    <link rel="stylesheet" href="{% static 'fonts/the-witcher-stylesheet.css' %}" type="text/css" charset="utf-8" />
 
-          <link type="text/x-scss" href="{% static 'scss/main.scss' %}" rel="stylesheet" media="screen">
-      {% endcompress %}
+    {% load compress %}
 
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha256-CjSoeELFOcH0/uxWu6mC/Vlrc1AARqbm/jiiImDGV3s=" crossorigin="anonymous"></script>
- 
- 
-      <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
- 
-      <script type="text/javascript" src="{% static 'js/shop.js' %}"></script>
- 
-      
-      {% block head_js %}
-      {% endblock head_js%}
+    {% compress css %}
+
+    <link type="text/x-scss" href="{% static 'scss/main.scss' %}" rel="stylesheet" media="screen">
+    {% endcompress %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha256-CjSoeELFOcH0/uxWu6mC/Vlrc1AARqbm/jiiImDGV3s=" crossorigin="anonymous"></script>
+
+
+    <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'js/shop.js' %}"></script>
+
+
+    {% block head_js %}
+    {% endblock head_js%}
     {% include 'components/navbar.html' %}
 
 
     {% if messages %}
-    <div class="alert alert-success">
-        <div class="messages">
-            {% for message in messages %}
-                {{ message }}
-            {% endfor %}
-        </div>
+    {% for message in messages %}
+    <div class="alert {{ message.tags }}" role="alert">
+        {{ message }}
     </div>
+    {% endfor %}
     {% endif %}
 
     {% block content %}
@@ -69,4 +72,5 @@
     {% include 'components/footer.html' %}
 
 </body>
+
 </html>

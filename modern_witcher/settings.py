@@ -94,7 +94,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'modern_witcher.wsgi.application'
 
 MESSAGE_TAGS = {
-    messages.ERROR: 'danger',
+    messages.SUCCESS: 'alert-success',
+    messages.ERROR: 'alert-danger',
 }
 
 # Database
