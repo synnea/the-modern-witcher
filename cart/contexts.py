@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
 from items.models import Item
+import decimal
 
 
 def cart_contents(request):
@@ -18,7 +19,7 @@ def cart_contents(request):
         for id, quantity in cart.items():
             product = get_object_or_404(Item, pk=id)
             quantity = int(quantity)
-            total += quantity * product.price
+            total += quantity * product.price + decimal.Decimal('7.50')
             product_count += quantity
             cart_items.append(
                 {'id': id,

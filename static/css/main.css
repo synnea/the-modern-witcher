@@ -366,6 +366,11 @@ ul {
 
 .product-header {
   text-align: center;
+  color: #534B62;
+}
+
+.product-link {
+  text-decoration: none !important;
 }
 
 .product-description {
