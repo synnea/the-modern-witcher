@@ -21,35 +21,41 @@
     <h3 class="cart-header">Purchased Items</h3>
 
     <table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Product</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Price per Unit</th>
-            <th scope="col">Review</th>
-        </tr>
-    </thead>
+        <thead>
+            <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price per Unit</th>
+                <th scope="col">Review</th>
+            </tr>
+        </thead>
 
-    <tbody>
-        {% for orderline in orderline %}
-        <tr>
-            <td>
-                <p>{{ orderline.product }}</p>
-            </td>
-            <td>
-                <p>{{ orderline.quantity }}</p>
-            </td>
-            <td>
-                <p> {{ orderline.product.price }}</p>
-            </td>
-            <td>
-                <p><a href="{{ orderline.product.get_item_details }}">Review this item!</a></p>
-            </td>
+        <tbody>
+            {% for orderline in orderline %}
+            <tr>
+                <td>
+                    <p>{{ orderline.product }}</p>
+                </td>
+                <td>
+                    <p>{{ orderline.quantity }}</p>
+                </td>
+                <td>
+                    <p> {{ orderline.product.price }}</p>
+                </td>
+                <td>
+                    <p><a href="{{ orderline.product.get_item_details }}">Review this item!</a></p>
+                </td>
 
-            {% endfor %}
-        </tr>
-    </tbody>
+                {% endfor %}
+            </tr>
+        </tbody>
 
     </table>
+
+    <a href="{% url 'view_all' %}">
+        <div class="col-12">
+            <button class="custom-button purple-button">Go Back to the Shop</button>
+        </div>
+    </a>
 </div>
 {% endblock %}
