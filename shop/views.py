@@ -23,7 +23,7 @@ def view_categories(request, category):
 
     categories = dict(Item.CATEGORY_CHOICES)
     categories = categories.values()
-    
+
     products = Item.objects.filter(category=category)
     return render(request, 'shop.html', {'products': products, 'categories': categories})
 
@@ -40,8 +40,8 @@ def submit_review(request, id):
 
     if review_form.is_valid():
 
-    # Check if the user actually purchased the item they're trying to review in order 
-    # to prevent review fraud.
+        # Check if the user actually purchased the item they're
+        # trying to review in order to prevent review fraud.
 
         try:
             ordered_items = OrderLineItem.objects.filter(user=user, product=item)[0]
@@ -49,7 +49,7 @@ def submit_review(request, id):
             review = review_form.save(commit=False)
             review.user = get_object_or_404(User, pk=request.user.id)
             review.reviewed_item = get_object_or_404(Item, pk=id)
-            
+
             review_form.save()
             messages.success(request, "Thank you for telling us what you think!")
             return redirect('view_all')
@@ -57,7 +57,6 @@ def submit_review(request, id):
         except:
                 messages.error(request, "Sorry, you are not authorized to review this item")
 
-
-    else: 
+    else:
         messages.error(request, "Something went wrong in your review form.")
         return redirect(reverse('view_all'))
