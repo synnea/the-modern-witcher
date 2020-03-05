@@ -5,6 +5,7 @@ from django.views.generic.detail import DetailView
 from shop.forms import ReviewForm
 from shop.models import Review
 
+
 class ItemDetailView(DetailView):
     """ A detailed view for the shop items."""
 
@@ -16,7 +17,7 @@ class ItemDetailView(DetailView):
         """ Function that createst the context to be renders on the detail page.
         Fetches the item by id, and determines if the user has already bought
         that very item by checking against the database.
-        Then it checks if reviews have been submitted for the item, and 
+        Then it checks if reviews have been submitted for the item, and
         collects them in a separate object. """
 
         _id = int(self.kwargs.get('pk'))
@@ -39,11 +40,7 @@ class ItemDetailView(DetailView):
 
         review_form = ReviewForm()
 
-        product = {'item': item, 'purchased': purchased, 
-        'review_form': review_form, 'reviews': reviews}
+        product = {'item': item, 'purchased': purchased,
+                   'review_form': review_form, 'reviews': reviews}
 
         return product
-
-
-
-

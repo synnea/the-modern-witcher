@@ -1,8 +1,9 @@
 from django.db import models
 from django.urls import reverse
 
+
 class Item(models.Model):
-   
+
     objects = models.Manager()
 
     ARMORER = 'Armor'
@@ -19,13 +20,12 @@ class Item(models.Model):
 
     name = models.CharField(max_length=254, default='')
     description = models.TextField()
-    
+
     category = models.CharField(
         max_length=20,
         choices=CATEGORY_CHOICES,
         default=OTHER,
     )
-
 
     height = models.DecimalField(max_digits=3, decimal_places=1)
     width = models.DecimalField(max_digits=3, decimal_places=1)
