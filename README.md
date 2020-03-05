@@ -235,30 +235,33 @@ Currently, about 45% of the code has been covered, according to coverage. This i
 
 Here are the results for the user story tests:
 
-**Story 1**
+#### Story 1
 
-- I am a developer or designer. I heard about tanDev and have an idea what it's about. I am interested in finding out if there are other developers in the city with whom I could exchange my skills with.
+I am a fan of the The Witcher franchise, and I'm specifically interested in buying merchandise.
+Solution: upon landing on the main page, the characteristic font and background image immediately tell the user that they are on a website that is related to The Witcher franchise. The slogan makes clear that it's a merchandise website. A click on the prominently-displayed 'shop now' button leads them to the shop view.
 
-Solution: upon landing on the main page, the background picture of the puzzle pieces and the slogan 'exchange your skills with other developers and designers' confirms that I've come to the right place. I click on 'sign up' and am taken to the registration route.
+#### Story 2
 
+I am a fan of the The Witcher franchise, but I'm not specifically interested in buying merchandise.
+Solution: upon landing on the main page, the characteristic font and background image immediately tell the user that they are on a website that is related to The Witcher franchise. Since they aren't here to buy merchandise, it might not be clear to them that this is what the website is about, but the background image is interesting enough that they want to find out more about it. Scrolling down to the 'about' section, they discover that they are on a merchandise e-commerce shop. Out of curiosity, they proceed to the shop view by clicking on the main call-to-action button.
 
-**Story 2**
+#### Story 3
 
-- I am a developer or designer. I stumble upon tanDev without knowing what it is.
+I am not a particular fan of the The Witcher franchise, but I am interested in buying unique gifts.
+Solution: upon landing on the main page, the user does not immediatelz recognize the character of Geralt of Rivia in the background, nor the characteristic font. However, the navbar, which is typical for e-commerce platforms, makes it clear that this is a website on which the user can buy things.
 
-Solution: upon landing on the main page, the imagry and slogan give me an idea about what tanDev is about. Scrolling down the page and seeing the profiles in the carousel gives a further idea. Finally, clicking on the 'about' page clarifies all doubts. Navigating back to the main page, I click on the 'sign up' button and follow the same journey as user story 1 from there on out.
+Scrolling down, the user sees the recommended items on the front page to get an idea about the sort of items that they can purchase. The sort of items (armor, swords) makes it clear that unique gifts can be bought here.
 
-**Story 3**
+Upon clicking on one of the recommended items, the user can see reviews as well as more general information about the items, such as measurements and weight.
 
-- I am a tech recruiter interested in contacting available talent.
+#### Story 4
 
-Solution: upon landing on the main page, the imagry and slogan quickly give me an idea that I've come to a place where I can find relevant tech talent. The 'search' button seems most relevant to me, so I click on it. There, among the search options, I find the 'available for Hire' checkbox. I select it, and search the database for developers and designers who are open to new opportunities.
+I want to have an enjoyable online shopping experience.
+Solution: The Modern Witcher adheres to e-commerce standards. The navbar contains the elements that a user would expect from an e-commerce website. The navbar contains familiar icons, and the checkout area follows e-commerce convention of illustrating the user journey and hiding the navbar and footer elements.
 
-**Story 4**
+The user area offers the option to save the address for future use.
 
-- I am a startup entrepreneur interested in finding a co-founder. I am a designer and need a programmer with strong backend skills to bring my product to life.
-
-Solution: upon landing on the main page, the imagry and slogan quickly give me an idea that I've come to a place where I can find someone to help me. The 'search' button seems most relevant to me, so I click on it. There, among the search options, I find the 'looking for Co-Founder' checkbox. I select it, and then select several backend languages in the skills menu. This gives me a list of people who have the skills I need, and who are open to being approached about co-founding opportunities. I decide to send one or several of them a message. The last point is not achieved yet, as tanDev at present does not feature a messaging function.
+Deployment
 
 
 
@@ -266,7 +269,7 @@ Solution: upon landing on the main page, the imagry and slogan quickly give me a
 
 ### Deployment Writeup <a name="deployment-writeup"></a>
  
-To deploy tanDev on heroku, I took the following steps:
+To deploy The Modern Witcher on heroku, I took the following steps:
 
 1. I created a requirements.txt file using the terminal command pip freeze > requirements.txt.
 
@@ -274,7 +277,7 @@ To deploy tanDev on heroku, I took the following steps:
 
 3. I staged and committed the requirements.txt and Procfile to my project repository. 
 
-4. I went to heroku.com, logged in, and clicked on the "New" button in the dashboard to create a new app. I named it 'tanDev' and set its region to Europe.
+4. I went to heroku.com, logged in, and clicked on the "New" button in the dashboard to create a new app. I named it 'the-modern-witcher' and set its region to Europe.
 
 5. In the heroku dashboard for the application, I clicked on "Settings" > "Reveal Config Vars". Then, I set the environment variables, such as DATABASE_URL, Secret Key, Stripe publishable and Stripe Secret keys.
 
@@ -290,10 +293,6 @@ The project was developed locally with Visual Studio Code. Environment variables
 
 ## Credits <a name="credits"></a>
 
-Credit for the logo goes to he-who-prefers-to-go-uncredited. You're awesome.
-
-Many thanks to [Tim Nelson](https://github.com/TravelTimN), whose patience helped me to get started on the sever-side development.
-
-Most of the images used on tanDev have been sourced from [Adobe Stock](https://stock.adobe.com/).
+Most of the items used in The Modern Witcher were sourced from Etsy.
 
 
