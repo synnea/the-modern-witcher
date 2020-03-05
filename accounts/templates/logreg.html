@@ -41,10 +41,10 @@
 
                         <!-- Login Form -->
                         <form id="loginform" class="loginform" method="POST" action="{% url 'login' %}">
+                            {% csrf_token %}
 
                         <fieldset class="form-group">
-                            <!-- <p>Already got an account? <a href="">Sign In</a></p> -->
-                            {% csrf_token %}
+                            <!-- <p>Already got an account? <a href="">Sign In</a></p> -->                            
                             {% load bootstrap_tags %}
                             {{ form.errors }}
                             {{ form.non_field_errors }}
