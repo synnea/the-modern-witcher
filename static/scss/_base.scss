@@ -211,7 +211,7 @@ html {
 
 footer {
 
-    height: 29vh;
+    height: 24vh;
     position: relative;
     color: $murky-purple;
     width: 100% !important;
@@ -229,17 +229,10 @@ footer {
     }
 
 
-    @media (min-width: $bp-mobile) {
-        height: 22vh;
+    @media (max-width: $bp-mobile) {
+        height: 29vh;
         font-size: 0.8em;    }
 
-    @media (min-width: $bp-tablet) {
-        height: 16vh;
-    }
-
-    @media (min-width: $bp-desktop) {
-        height: 18vh;
-    }
 
 }
 

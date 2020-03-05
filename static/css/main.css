@@ -103,6 +103,10 @@ h1 {
   margin-left: 5vw;
 }
 
+.logreg-wrapper {
+  height: 100vh;
+}
+
 body {
   font-family: "Oswald", sans-serif;
   padding: 0;
@@ -162,7 +166,7 @@ html {
 }
 
 footer {
-  height: 29vh;
+  height: 24vh;
   position: relative;
   color: #534B62;
   width: 100% !important;
@@ -181,22 +185,10 @@ footer {
   }
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   footer {
-    height: 22vh;
+    height: 29vh;
     font-size: 0.8em;
-  }
-}
-
-@media (min-width: 992px) {
-  footer {
-    height: 16vh;
-  }
-}
-
-@media (min-width: 1200px) {
-  footer {
-    height: 18vh;
   }
 }
 
@@ -576,6 +568,10 @@ h1 {
   margin-left: 5vw;
 }
 
+.logreg-wrapper {
+  height: 100vh;
+}
+
 body {
   font-family: "Oswald", sans-serif;
   padding: 0;
@@ -635,7 +631,7 @@ html {
 }
 
 footer {
-  height: 29vh;
+  height: 24vh;
   position: relative;
   color: #534B62;
   width: 100% !important;
@@ -654,22 +650,10 @@ footer {
   }
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   footer {
-    height: 22vh;
+    height: 29vh;
     font-size: 0.8em;
-  }
-}
-
-@media (min-width: 992px) {
-  footer {
-    height: 16vh;
-  }
-}
-
-@media (min-width: 1200px) {
-  footer {
-    height: 18vh;
   }
 }
 
@@ -1076,6 +1060,10 @@ h1 {
   margin-left: 5vw;
 }
 
+.logreg-wrapper {
+  height: 100vh;
+}
+
 body {
   font-family: "Oswald", sans-serif;
   padding: 0;
@@ -1135,7 +1123,7 @@ html {
 }
 
 footer {
-  height: 29vh;
+  height: 24vh;
   position: relative;
   color: #534B62;
   width: 100% !important;
@@ -1154,22 +1142,10 @@ footer {
   }
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   footer {
-    height: 22vh;
+    height: 29vh;
     font-size: 0.8em;
-  }
-}
-
-@media (min-width: 992px) {
-  footer {
-    height: 16vh;
-  }
-}
-
-@media (min-width: 1200px) {
-  footer {
-    height: 18vh;
   }
 }
 
