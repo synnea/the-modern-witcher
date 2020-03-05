@@ -955,6 +955,12 @@ ul {
   margin-top: 10vh;
 }
 
+@media (min-width: 768px) {
+  .profile-col {
+    padding: 10px !important;
+  }
+}
+
 @font-face {
   font-family: 'the-witcher';
   src: url("/static/fonts/the-witcher.woff") format("woff");
@@ -1265,6 +1271,12 @@ ul {
 
 .profile-col {
   margin-bottom: 5vh;
+}
+
+@media (min-width: 768px) {
+  .profile-col {
+    padding: 10px !important;
+  }
 }
 
 .order-card {

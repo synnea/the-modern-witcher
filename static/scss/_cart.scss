@@ -40,6 +40,10 @@
 
 .profile-col {
     margin-bottom: 5vh;
+
+    @media (min-width: $bp-mobile) {
+        padding: 10px !important;
+    }
 }
 
 .order-card {

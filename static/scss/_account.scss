@@ -10,3 +10,9 @@
 .address-row {
     margin-top: 10vh;
 }
+
+.profile-col {
+    @media (min-width: $bp-mobile) {
+        padding: 10px !important;
+    }
+}
